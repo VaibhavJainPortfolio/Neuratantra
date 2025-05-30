@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategic AI Consulting Services - NeuraTantra</title>
+    <link rel="stylesheet" href="/stylu.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-alt) 100%);
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background: radial-gradient(circle at 30% 20%, var(--color-primary) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, var(--color-secondary) 0%, transparent 50%);
+            animation: pulse 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.1; }
+            100% { opacity: 0.2; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: var(--font-size-xl);
+            color: var(--color-text-muted);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+/* Button Base Styles */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 50px;
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-width: 180px;
+    white-space: nowrap;
+}
+
+/* Primary Button */
+.btn-primary {
+    background: linear-gradient(135deg, #6e54c2 0%, #4c90e6 100%);
+    color: white;
+    border: 1px solid transparent;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(110, 84, 194, 0.4);
+    background: linear-gradient(135deg, #5a45a0 0%, #3a7bc8 100%);
+}
+
+/* Secondary Button */
+.btn-secondary {
+    background: transparent;
+    color: var(--color-text, #ffffff);
+    border: 2px solid rgba(110, 84, 194, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+    background: rgba(110, 84, 194, 0.1);
+    border-color: rgba(110, 84, 194, 0.8);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(110, 84, 194, 0.2);
+}
+
+/* Button Container */
+.cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 2.5rem;
+            border: 1px solid var(--color-border);
+            transition: all var(--transition-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            transform: scaleX(0);
+            transition: transform var(--transition-medium);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-color: rgba(110, 84, 194, 0.4);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            border-radius: var(--border-radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .service-title {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .service-description {
+            color: var(--color-text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features li {
+            color: var(--color-text-muted);
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--color-secondary);
+            font-weight: bold;
+        }
+
+        .timeline-section {
+            padding: var(--section-spacing) 0;
+            background: var(--color-bg-alt);
+        }
+
+        .timeline-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            flex: 1;
+            max-width: 45%;
+            padding: 0 2rem;
+        }
+
+        .timeline-card {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius-md);
+            padding: 2rem;
+            border: 1px solid var(--color-border);
+            position: relative;
+        }
+
+        .timeline-card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-card::before {
+            right: -42px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-card::before {
+            left: -42px;
+        }
+
+        .timeline-step {
+            color: var(--color-primary);
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description {
+            color: var(--color-text-muted);
+            line-height: 1.6;
+        }
+
+        .industries-section {
+            padding: var(--section-spacing) 0;
+        }
+
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .industry-card {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius-md);
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--color-border);
+            transition: all var(--transition-medium);
+            cursor: pointer;
+        }
+
+        .industry-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            border-color: rgba(110, 84, 194, 0.3);
+        }
+
+        .industry-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .industry-title {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .industry-description {
+            color: var(--color-text-muted);
+            font-size: var(--font-size-sm);
+            line-height: 1.5;
+        }
+
+        .cta-section {
+            padding: var(--section-spacing) 0;
+            background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-alt) 100%);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-description {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .stats-section {
+            padding: 4rem 0;
+            background: var(--color-bg);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 1.5rem;
+        }
+
+        .stat-number {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--color-text-muted);
+            font-size: var(--font-size-sm);
+        }
+
+        @media screen and (max-width: 768px) {
+            .timeline-line {
+                left: 30px;
+            }
+
+            .timeline-item {
+                flex-direction: row !important;
+            }
+
+            .timeline-content {
+                max-width: 100%;
+                padding-left: 4rem;
+            }
+
+            .timeline-card::before {
+                left: -42px !important;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .industries-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+<!-- Navigation will be loaded here -->
+<div id="navbar-placeholder"></div>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-background"></div>
+    <div class="container">
+        <div class="hero-content reveal">
+            <h1 class="hero-title">
+                Strategic <span class="text-gradient">Agentic AI</span> Consulting
+            </h1>
+            <p class="hero-subtitle">
+                Transform your business with cutting-edge AI solutions. From strategy to implementation, we guide enterprises through their AI transformation journey with precision and expertise.
+            </p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="btn btn-primary">Schedule Consultation</a>
+                <a href="products.html" class="btn btn-secondary">Explore Services</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats-section">
+    <div class="container">
+        <div class="stats-grid reveal">
+            <div class="stat-item">
+                <div class="stat-number text-gradient">200+</div>
+                <div class="stat-label">Projects Delivered</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number text-gradient">50+</div>
+                <div class="stat-label">Enterprise Clients</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number text-gradient">95%</div>
+                <div class="stat-label">Success Rate</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number text-gradient">24/7</div>
+                <div class="stat-label">Support Available</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="section">
+    <div class="container">
+        <h2 class="section-title text-center reveal">Our Consulting Services</h2>
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <div class="service-icon">🚀</div>
+                <h3 class="service-title">AI Strategy & Implementation</h3>
+                <p class="service-description">
+                    Comprehensive AI strategy development and hands-on implementation support to ensure successful digital transformation.
+                </p>
+                <ul class="service-features">
+                    <li>Strategic roadmap development</li>
+                    <li>Technology stack selection</li>
+                    <li>Custom AI solution design</li>
+                    <li>Implementation oversight</li>
+                    <li>Performance optimization</li>
+                </ul>
+                <a href="#consultation" class="btn btn-secondary">Learn More</a>
+            </div>
+
+            <div class="service-card reveal">
+                <div class="service-icon">💡</div>
+                <h3 class="service-title">Advisory & Consultation</h3>
+                <p class="service-description">
+                    Expert guidance and strategic advice to navigate complex AI decisions and maximize return on investment.
+                </p>
+                <ul class="service-features">
+                    <li>AI readiness assessment</li>
+                    <li>Use case identification</li>
+                    <li>Risk analysis & mitigation</li>
+                    <li>ROI forecasting</li>
+                    <li>Executive briefings</li>
+                </ul>
+                <a href="#consultation" class="btn btn-secondary">Learn More</a>
+            </div>
+
+            <div class="service-card reveal">
+                <div class="service-icon">🛠️</div>
+                <h3 class="service-title">Deployment & Support</h3>
+                <p class="service-description">
+                    End-to-end deployment services with ongoing support to ensure your AI solutions perform optimally in production.
+                </p>
+                <ul class="service-features">
+                    <li>Production deployment</li>
+                    <li>System integration</li>
+                    <li>Performance monitoring</li>
+                    <li>Maintenance & updates</li>
+                    <li>24/7 technical support</li>
+                </ul>
+                <a href="#consultation" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Timeline Section -->
+<section class="timeline-section">
+    <div class="container">
+        <h2 class="section-title text-center reveal">Our Proven Process</h2>
+        <div class="timeline-container">
+            <div class="timeline-line"></div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-content">
+                    <div class="timeline-card">
+                        <div class="timeline-step">PHASE 1</div>
+                        <h3 class="timeline-title">Discovery & Assessment</h3>
+                        <p class="timeline-description">
+                            We begin with a comprehensive analysis of your current infrastructure, business processes, and AI readiness to identify opportunities and challenges.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-content">
+                    <div class="timeline-card">
+                        <div class="timeline-step">PHASE 2</div>
+                        <h3 class="timeline-title">Strategy Development</h3>
+                        <p class="timeline-description">
+                            Based on our findings, we develop a tailored AI strategy with clear roadmaps, timelines, and success metrics aligned with your business objectives.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-content">
+                    <div class="timeline-card">
+                        <div class="timeline-step">PHASE 3</div>
+                        <h3 class="timeline-title">Pilot Implementation</h3>
+                        <p class="timeline-description">
+                            We start with a focused pilot project to validate our approach, demonstrate value, and refine the solution before full-scale deployment.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-content">
+                    <div class="timeline-card">
+                        <div class="timeline-step">PHASE 4</div>
+                        <h3 class="timeline-title">Full Deployment</h3>
+                        <p class="timeline-description">
+                            After successful pilot validation, we proceed with full-scale implementation, ensuring seamless integration with existing systems.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-content">
+                    <div class="timeline-card">
+                        <div class="timeline-step">PHASE 5</div>
+                        <h3 class="timeline-title">Optimization & Support</h3>
+                        <p class="timeline-description">
+                            Continuous monitoring, optimization, and support ensure your AI solutions deliver maximum value and adapt to evolving business needs.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Industries Section -->
+<section id="industries" class="industries-section">
+    <div class="container">
+        <h2 class="section-title text-center reveal">Industry-Specific Expertise</h2>
+        <div class="industries-grid">
+            <div class="industry-card reveal">
+                <div class="industry-icon">🏦</div>
+                <h3 class="industry-title">Financial Services</h3>
+                <p class="industry-description">
+                    Risk management, fraud detection, algorithmic trading, and customer experience optimization for banks and fintech companies.
+                </p>
+            </div>
+
+            <div class="industry-card reveal">
+                <div class="industry-icon">🏥</div>
+                <h3 class="industry-title">Healthcare</h3>
+                <p class="industry-description">
+                    Medical imaging analysis, drug discovery acceleration, patient care optimization, and clinical decision support systems.
+                </p>
+            </div>
+
+            <div class="industry-card reveal">
+                <div class="industry-icon">🏭</div>
+                <h3 class="industry-title">Manufacturing</h3>
+                <p class="industry-description">
+                    Predictive maintenance, quality control automation, supply chain optimization, and smart factory implementations.
+                </p>
+            </div>
+
+            <div class="industry-card reveal">
+                <div class="industry-icon">🛒</div>
+                <h3 class="industry-title">Retail & E-commerce</h3>
+                <p class="industry-description">
+                    Personalized recommendations, inventory optimization, demand forecasting, and customer behavior analysis.
+                </p>
+            </div>
+
+            <div class="industry-card reveal">
+                <div class="industry-icon">🚛</div>
+                <h3 class="industry-title">Logistics</h3>
+                <p class="industry-description">
+                    Route optimization, warehouse automation, delivery prediction, and supply chain visibility enhancement.
+                </p>
+            </div>
+
+            <div class="industry-card reveal">
+                <div class="industry-icon">⚡</div>
+                <h3 class="industry-title">Energy</h3>
+                <p class="industry-description">
+                    Smart grid optimization, renewable energy forecasting, predictive maintenance, and energy consumption analysis.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section id="consultation" class="cta-section">
+    <div class="container">
+        <div class="cta-content reveal">
+            <h2 class="cta-title">Ready to Transform Your Business?</h2>
+            <p class="cta-description">
+                Let's discuss how our strategic AI consulting can accelerate your digital transformation and drive sustainable growth.
+            </p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="btn btn-primary">Schedule a Consultation</a>
+                <a href="case-studies.html" class="btn btn-secondary">View Case Studies</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer will be loaded here -->
+<div id="footer-placeholder"></div>
+
+<script>
+    // Load navbar and footer
+    fetch('/navbar.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('navbar-placeholder').innerHTML = data;
+        });
+
+    fetch('/footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-placeholder').innerHTML = data;
+        });
+
+    // Scroll reveal animation
+    function revealOnScroll() {
+        const reveals = document.querySelectorAll('.reveal');
+
+        reveals.forEach(reveal => {
+            const windowHeight = window.innerHeight;
+            const elementTop = reveal.getBoundingClientRect().top;
+            const elementVisible = 150;
+
+            if (elementTop < windowHeight - elementVisible) {
+                reveal.classList.add('active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll(); // Initial call
+
+    // Smooth scrolling for anchor links
+    document.addEventListener('DOMContentLoaded', function() {
+        const links = document.querySelectorAll('a[href^="#"]');
+
+        links.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('.site-header');
+        if (header) {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }
+    });
+</script>
+</body>
+</html>

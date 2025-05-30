@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - NeuraTantra</title>
+    <link rel="stylesheet" href="stylu.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="navbar-container"></div>
+
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container" data-aos="fade-up">
+                <h1 class="section-title">We'd Love to Hear From You</h1>
+                <p class="hero-subtitle">
+                    Ready to transform your business with AI? Have questions about our solutions? 
+                    Get in touch with our team of experts.
+                </p>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section class="py-20">
+            <div class="container">
+                <div class="max-w-4xl mx-auto">
+                    <div class="grid lg:grid-cols-2 gap-12 items-start">
+                        <!-- Contact Form -->
+                        <div data-aos="fade-right">
+                            <h2 class="text-3xl font-semibold mb-6 text-white">Send us a Message</h2>
+                            <form class="contact-form" id="contactForm">
+                                <div class="form-group">
+                                    <label for="name" class="form-label">Full Name *</label>
+                                    <input 
+                                        type="text" 
+                                        id="name" 
+                                        name="name" 
+                                        class="form-input" 
+                                        required
+                                        placeholder="Enter your full name"
+                                    >
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Email Address *</label>
+                                    <input 
+                                        type="email" 
+                                        id="email" 
+                                        name="email" 
+                                        class="form-input" 
+                                        required
+                                        placeholder="Enter your email address"
+                                    >
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="company" class="form-label">Company (Optional)</label>
+                                    <input 
+                                        type="text" 
+                                        id="company" 
+                                        name="company" 
+                                        class="form-input" 
+                                        placeholder="Enter your company name"
+                                    >
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="subject" class="form-label">Subject</label>
+                                    <select id="subject" name="subject" class="form-input">
+                                        <option value="">Select a subject</option>
+                                        <option value="general">General Inquiry</option>
+                                        <option value="support">Technical Support</option>
+                                        <option value="partnership">Partnership Opportunity</option>
+                                        <option value="investment">Investment Inquiry</option>
+                                        <option value="demo">Request Demo</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="message" class="form-label">Message *</label>
+                                    <textarea 
+                                        id="message" 
+                                        name="message" 
+                                        class="form-textarea" 
+                                        rows="6" 
+                                        required
+                                        placeholder="Tell us about your project or inquiry..."
+                                    ></textarea>
+                                </div>
+                                
+                                <button type="submit" class="btn-primary w-full">
+                                    Send Message
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Contact Info -->
+                        <div data-aos="fade-left">
+                            <h2 class="text-3xl font-semibold mb-8 text-white">Get in Touch</h2>
+                            <div class="space-y-6">
+                                <div class="contact-info-item">
+                                    <div class="contact-icon">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2"/>
+                                            <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="contact-info-title">Email Us</h3>
+                                        <p class="contact-info-text">hello@neuratantra.com</p>
+                                        <p class="contact-info-text">info@neuratantra.com</p>
+                                    </div>
+                                </div>
+
+                                <div class="contact-info-item">
+                                    <div class="contact-icon">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="2"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="contact-info-title">Call Us</h3>
+                                        <p class="contact-info-text">+1 (555) 123-4567</p>
+                                        <p class="contact-info-text text-sm opacity-70">Mon-Fri, 9AM-6PM EST</p>
+                                    </div>
+                                </div>
+
+                                <div class="contact-info-item">
+                                    <div class="contact-icon">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke="currentColor" stroke-width="2"/>
+                                            <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="contact-info-title">Visit Us</h3>
+                                        <p class="contact-info-text">123 Innovation Drive<br>Tech District, San Francisco<br>CA 94105, USA</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Info Grid Section -->
+        <section class="py-20 bg-gradient-to-b from-transparent to-[#111124]/30">
+            <div class="container">
+                <h2 class="section-title mb-16" data-aos="fade-up">How Can We Help?</h2>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- General Contact -->
+                    <div class="contact-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="contact-card-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 17h.01" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h3 class="contact-card-title">General Inquiries</h3>
+                        <p class="contact-card-text">
+                            Have questions about our AI solutions or need general information?
+                        </p>
+                        <div class="contact-card-info">
+                            <p>hello@neuratantra.com</p>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+
+                    <!-- Support -->
+                    <div class="contact-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="contact-card-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                                <path d="M14.828 14.828a4 4 0 0 1-5.656 0" stroke="currentColor" stroke-width="2"/>
+                                <path d="M9 9h.01" stroke="currentColor" stroke-width="2"/>
+                                <path d="M15 9h.01" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h3 class="contact-card-title">Technical Support</h3>
+                        <p class="contact-card-text">
+                            Need help with implementation or technical issues? Our experts are here.
+                        </p>
+                        <div class="contact-card-info">
+                            <p>support@neuratantra.com</p>
+                            <p>24/7 Support Available</p>
+                        </div>
+                    </div>
+
+                    <!-- Investment -->
+                    <div class="contact-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="contact-card-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                                <line x1="12" y1="1" x2="12" y2="23" stroke="currentColor" stroke-width="2"/>
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h3 class="contact-card-title">Investor Relations</h3>
+                        <p class="contact-card-text">
+                            Interested in investment opportunities? Connect with our investor relations team.
+                        </p>
+                        <div class="contact-card-info">
+                            <p>investors@neuratantra.com</p>
+                            <p>Confidentiality Assured</p>
+                        </div>
+                    </div>
+
+                    <!-- Partnerships -->
+                    <div class="contact-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="contact-card-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87" stroke="currentColor" stroke-width="2"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h3 class="contact-card-title">Partnership Opportunities</h3>
+                        <p class="contact-card-text">
+                            Looking to partner with us? Let's explore collaboration opportunities.
+                        </p>
+                        <div class="contact-card-info">
+                            <p>partnerships@neuratantra.com</p>
+                            <p>Strategic Alliances</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <section class="py-20">
+            <div class="container">
+                <div class="max-w-6xl mx-auto">
+                    <h2 class="section-title mb-12" data-aos="fade-up">Find Us</h2>
+                    <div class="map-container" data-aos="fade-up" data-aos-delay="200">
+                        <div class="map-placeholder">
+                            <div class="map-placeholder-content">
+                                <div class="map-icon">
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke="currentColor" stroke-width="2"/>
+                                        <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold text-white mb-2">NeuraTantra Headquarters</h3>
+                                <p class="text-gray-300">123 Innovation Drive, Tech District</p>
+                                <p class="text-gray-300">San Francisco, CA 94105</p>
+                                <button class="btn-secondary mt-4">Get Directions</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Load navbar and footer
+        async function loadComponent(file, containerId) {
+            try {
+                const response = await fetch(file);
+                if (!response.ok) throw new Error(`Failed to load ${file}`);
+                const html = await response.text();
+                document.getElementById(containerId).innerHTML = html;
+                
+                // After navbar is loaded, adjust main content padding
+                if (containerId === 'navbar-container') {
+                    adjustMainContentPadding();
+                }
+            } catch (error) {
+                console.error(`Error loading ${file}:`, error);
+            }
+        }
+
+        // Function to adjust main content padding based on navbar height
+        function adjustMainContentPadding() {
+            const navbar = document.querySelector('#navbar-container nav, #navbar-container header, #navbar-container .navbar');
+            if (navbar) {
+                const navbarHeight = navbar.offsetHeight;
+                const mainContent = document.querySelector('.main-content');
+                if (mainContent) {
+                    mainContent.style.paddingTop = navbarHeight + 'px';
+                }
+            }
+        }
+
+        // Load components
+        loadComponent('navbar.html', 'navbar-container');
+        loadComponent('footer.html', 'footer-container');
+
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const formObject = {};
+            formData.forEach((value, key) => {
+                formObject[key] = value;
+            });
+            
+            // Simple validation
+            if (!formObject.name || !formObject.email || !formObject.message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Simulate form submission
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                alert('Thank you for your message! We\'ll get back to you soon.');
+                this.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+
+        // Form input focus effects
+        const inputs = document.querySelectorAll('.form-input, .form-textarea');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('focused');
+            });
+            
+            input.addEventListener('blur', function() {
+                if (!this.value) {
+                    this.parentElement.classList.remove('focused');
+                }
+            });
+        });
+
+        // Handle window resize to readjust padding
+        window.addEventListener('resize', adjustMainContentPadding);
+    </script>
+
+    <style>
+        /* Main content spacing to prevent navbar overlap */
+        .main-content {
+            /* Default padding-top that will be adjusted by JavaScript */
+            padding-top: 80px;
+        }
+
+        /* Contact Form Styles */
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            color: #ffffff;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Contact Info Styles */
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .contact-info-title {
+            color: #ffffff;
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Contact Cards */
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .contact-card-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin: 0 auto 1.5rem;
+        }
+
+        .contact-card-title {
+            color: #ffffff;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-card-info p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Map Section */
+        .map-container {
+            border-radius: 20px;
+            overflow: hidden;
+            height: 400px;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a17, #111124);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .map-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .map-placeholder-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .map-icon {
+            color: #6366f1;
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-content {
+                padding-top: 70px; /* Smaller padding for mobile */
+            }
+            
+            .contact-form {
+                padding: 1.5rem;
+            }
+            
+            .contact-info-item {
+                padding: 1rem;
+            }
+            
+            .contact-card {
+                padding: 1.5rem;
+            }
+            
+            .map-container {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding-top: 60px; /* Even smaller padding for very small screens */
+            }
+        }
+    </style>
+</body>
+</html>

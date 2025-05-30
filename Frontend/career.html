@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers - Join the Agentic AI Revolution | NeuraTantra AI</title>
+    <link rel="stylesheet" href="stylu.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Fix for navbar overlap - Add padding to body */
+        body {
+            padding-top: 80px; /* Adjust this value based on your actual navbar height */
+        }
+
+        /* Additional padding for mobile devices if needed */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px; /* Adjust for mobile navbar height */
+            }
+        }
+
+        /* Ensure smooth scrolling accounts for fixed navbar */
+        html {
+            scroll-padding-top: 100px; /* Adds offset when scrolling to anchors */
+        }
+
+        /* Custom styles for Careers page */
+        .job-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .job-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .job-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .job-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(102, 126, 234, 0.3);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.1);
+        }
+
+        .job-card:hover::before {
+            opacity: 1;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .job-title {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #ffffff;
+            margin: 0 0 5px 0;
+        }
+
+        .job-department {
+            color: #667eea;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .job-tags {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            align-items: flex-end;
+        }
+
+        .job-tag {
+            background: rgba(102, 126, 234, 0.2);
+            color: #667eea;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+
+        .job-tag.remote {
+            background: rgba(118, 75, 162, 0.2);
+            color: #764ba2;
+        }
+
+        .job-description {
+            color: #a0a0a0;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .job-requirements {
+            margin-bottom: 25px;
+        }
+
+        .job-requirements h4 {
+            color: #ffffff;
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+
+        .requirements-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .requirements-list li {
+            color: #a0a0a0;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .requirements-list li::before {
+            content: '•';
+            color: #667eea;
+            position: absolute;
+            left: 0;
+        }
+
+        .job-apply-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .job-apply-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8em;
+        }
+
+        .benefit-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .benefit-description {
+            color: #a0a0a0;
+            line-height: 1.5;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .process-step {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.2em;
+            font-weight: 700;
+            color: white;
+        }
+
+        .step-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .step-description {
+            color: #a0a0a0;
+            line-height: 1.5;
+        }
+
+        .cta-dual {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .stats-bar {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 60px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            color: #a0a0a0;
+            font-size: 0.9em;
+        }
+
+        .no-positions {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            margin-top: 40px;
+        }
+
+        .no-positions h3 {
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+
+        .no-positions p {
+            color: #a0a0a0;
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .job-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .job-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .job-tags {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+            
+            .cta-dual {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar will be loaded via JavaScript -->
+    <div id="navbar"></div>
+
+    <!-- Hero Section -->
+    <section class="hero-section" data-aos="fade-up">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="section-title">Join the Agentic AI Revolution</h1>
+                <p class="hero-subtitle">Shape the future of artificial intelligence with us. Build AI agents that think, learn, and transform industries while upholding dharmic principles of innovation.</p>
+                
+                <div class="stats-bar" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-item">
+                        <h3>50+</h3>
+                        <p>Team Members</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>15+</h3>
+                        <p>Countries</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>100%</h3>
+                        <p>Remote First</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>4.9/5</h3>
+                        <p>Employee Rating</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Open Positions -->
+    <section class="section" data-aos="fade-up" id="open-positions">
+        <div class="container">
+            <h2 class="section-title">Open Positions</h2>
+            <p style="text-align: center; margin-bottom: 20px; color: #a0a0a0;">
+                Join our mission to democratize AI and create intelligent agents that enhance human potential
+            </p>
+            
+            <div class="job-grid">
+                <!-- Senior AI Engineer -->
+                <div class="job-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="job-header">
+                        <div>
+                            <h3 class="job-title">Senior AI Engineer</h3>
+                            <div class="job-department">Engineering</div>
+                        </div>
+                        <div class="job-tags">
+                            <span class="job-tag">Full-Time</span>
+                            <span class="job-tag remote">Remote</span>
+                        </div>
+                    </div>
+                    <p class="job-description">
+                        Lead the development of next-generation AI agents and neural networks. Work on cutting-edge research in agentic AI, natural language processing, and machine learning systems.
+                    </p>
+                    <div class="job-requirements">
+                        <h4>Key Requirements:</h4>
+                        <ul class="requirements-list">
+                            <li>5+ years in AI/ML engineering</li>
+                            <li>Expert in Python, TensorFlow, PyTorch</li>
+                            <li>Experience with LLMs and agent frameworks</li>
+                            <li>PhD/Masters in CS or related field preferred</li>
+                        </ul>
+                    </div>
+                    <button class="job-apply-btn" onclick="applyForJob('Senior AI Engineer')">Apply Now</button>
+                </div>
+
+                <!-- Product Manager - AI -->
+                <div class="job-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="job-header">
+                        <div>
+                            <h3 class="job-title">Product Manager - AI</h3>
+                            <div class="job-department">Product</div>
+                        </div>
+                        <div class="job-tags">
+                            <span class="job-tag">Full-Time</span>
+                            <span class="job-tag remote">Remote</span>
+                        </div>
+                    </div>
+                    <p class="job-description">
+                        Drive product strategy for our AI agent platform. Work closely with engineering and design teams to build intuitive AI products that solve real-world problems.
+                    </p>
+                    <div class="job-requirements">
+                        <h4>Key Requirements:</h4>
+                        <ul class="requirements-list">
+                            <li>3+ years in AI/tech product management</li>
+                            <li>Experience with B2B SaaS products</li>
+                            <li>Strong understanding of AI/ML concepts</li>
+                            <li>Excellent communication skills</li>
+                        </ul>
+                    </div>
+                    <button class="job-apply-btn" onclick="applyForJob('Product Manager - AI')">Apply Now</button>
+                </div>
+
+                <!-- Frontend Developer -->
+                <div class="job-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="job-header">
+                        <div>
+                            <h3 class="job-title">Frontend Developer</h3>
+                            <div class="job-department">Engineering</div>
+                        </div>
+                        <div class="job-tags">
+                            <span class="job-tag">Full-Time</span>
+                            <span class="job-tag remote">Remote</span>
+                        </div>
+                    </div>
+                    <p class="job-description">
+                        Build beautiful, responsive interfaces for our AI agent platform. Create seamless user experiences that make complex AI functionality accessible to everyone.
+                    </p>
+                    <div class="job-requirements">
+                        <h4>Key Requirements:</h4>
+                        <ul class="requirements-list">
+                            <li>3+ years in frontend development</li>
+                            <li>Expert in React, TypeScript, CSS</li>
+                            <li>Experience with design systems</li>
+                            <li>Knowledge of AI/ML interfaces preferred</li>
+                        </ul>
+                    </div>
+                    <button class="job-apply-btn" onclick="applyForJob('Frontend Developer')">Apply Now</button>
+                </div>
+
+                <!-- DevOps Engineer -->
+                <div class="job-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="job-header">
+                        <div>
+                            <h3 class="job-title">DevOps Engineer</h3>
+                            <div class="job-department">Infrastructure</div>
+                        </div>
+                        <div class="job-tags">
+                            <span class="job-tag">Full-Time</span>
+                            <span class="job-tag remote">Remote</span>
+                        </div>
+                    </div>
+                    <p class="job-description">
+                        Scale our AI infrastructure to serve millions of AI agents. Build robust, secure, and efficient systems that power the next generation of artificial intelligence.
+                    </p>
+                    <div class="job-requirements">
+                        <h4>Key Requirements:</h4>
+                        <ul class="requirements-list">
+                            <li>4+ years in DevOps/Cloud engineering</li>
+                            <li>Expert in AWS, Kubernetes, Docker</li>
+                            <li>Experience with ML infrastructure</li>
+                            <li>Strong security and monitoring skills</li>
+                        </ul>
+                    </div>
+                    <button class="job-apply-btn" onclick="applyForJob('DevOps Engineer')">Apply Now</button>
+                </div>
+
+                <!-- UX Designer -->
+                <div class="job-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="job-header">
+                        <div>
+                            <h3 class="job-title">UX Designer</h3>
+                            <div class="job-department">Design</div>
+                        </div>
+                        <div class="job-tags">
+                            <span class="job-tag">Full-Time</span>
+                            <span class="job-tag remote">Remote</span>
+                        </div>
+                    </div>
+                    <p class="job-description">
+                        Design intuitive experiences for AI-powered products. Research user needs and create design solutions that make AI accessible and delightful for businesses and individuals.
+                    </p>
+                    <div class="job-requirements">
+                        <h4>Key Requirements:</h4>
+                        <ul class="requirements-list">
+                            <li>3+ years in UX/Product design</li>
+                            <li>Expert in Figma, design systems</li>
+                            <li>Experience with B2B software design</li>
+                            <li>Understanding of AI/ML interfaces</li>
+                        </ul>
+                    </div>
+                    <button class="job-apply-btn" onclick="applyForJob('UX Designer')">Apply Now</button>
+                </div>
+
+                <!-- Business Development -->
+                <div class="job-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="job-header">
+                        <div>
+                            <h3 class="job-title">Business Development Manager</h3>
+                            <div class="job-department">Sales</div>
+                        </div>
+                        <div class="job-tags">
+                            <span class="job-tag">Full-Time</span>
+                            <span class="job-tag remote">Remote</span>
+                        </div>
+                    </div>
+                    <p class="job-description">
+                        Drive partnerships and revenue growth in the AI space. Build relationships with enterprises and help them transform their operations with our AI agent platform.
+                    </p>
+                    <div class="job-requirements">
+                        <h4>Key Requirements:</h4>
+                        <ul class="requirements-list">
+                            <li>3+ years in B2B sales/partnerships</li>
+                            <li>Experience in AI/SaaS industry</li>
+                            <li>Strong relationship building skills</li>
+                            <li>Track record of meeting sales targets</li>
+                        </ul>
+                    </div>
+                    <button class="job-apply-btn" onclick="applyForJob('Business Development Manager')">Apply Now</button>
+                </div>
+            </div>
+
+            <!-- No positions message (hidden by default) -->
+            <div class="no-positions" id="noPositions" style="display: none;">
+                <h3>No Open Positions Right Now</h3>
+                <p>We're not actively hiring at the moment, but we're always interested in connecting with exceptional talent.</p>
+                <button class="btn btn-primary" onclick="sendSpeculativeApplication()">Send Us Your Resume</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Benefits -->
+    <section class="section" data-aos="fade-up">
+        <div class="container">
+            <h2 class="section-title">Why Work With Us</h2>
+            <p style="text-align: center; margin-bottom: 40px; color: #a0a0a0;">
+                We believe in creating an environment where innovation thrives and people grow
+            </p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="benefit-icon">🌍</div>
+                    <h3 class="benefit-title">100% Remote First</h3>
+                    <p class="benefit-description">Work from anywhere in the world. We've been remote-first since day one, with team members across 15+ countries.</p>
+                </div>
+
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="benefit-icon">💰</div>
+                    <h3 class="benefit-title">Competitive Salary + Equity</h3>
+                    <p class="benefit-description">Top-tier compensation packages with meaningful equity stakes. Share in our success as we grow.</p>
+                </div>
+
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="benefit-icon">🏥</div>
+                    <h3 class="benefit-title">Health & Wellness</h3>
+                    <p class="benefit-description">Comprehensive health insurance, mental health support, and wellness stipends for gym memberships.</p>
+                </div>
+
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="benefit-icon">📚</div>
+                    <h3 class="benefit-title">Learning Budget</h3>
+                    <p class="benefit-description">$3000 annual learning budget for courses, conferences, books, and skill development programs.</p>
+                </div>
+
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="benefit-icon">⚖️</div>
+                    <h3 class="benefit-title">Work-Life Balance</h3>
+                    <p class="benefit-description">Flexible hours, unlimited PTO, and a culture that respects your time and personal commitments.</p>
+                </div>
+
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="benefit-icon">🚀</div>
+                    <h3 class="benefit-title">Cutting-Edge Tech</h3>
+                    <p class="benefit-description">Work with the latest AI technologies, contribute to open source, and shape the future of artificial intelligence.</p>
+                </div>
+
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="700">
+                    <div class="benefit-icon">🤝</div>
+                    <h3 class="benefit-title">Inclusive Culture</h3>
+                    <p class="benefit-description">Diverse, inclusive environment where every voice matters. We celebrate different perspectives and backgrounds.</p>
+                </div>
+
+                <div class="benefit-card" data-aos="fade-up" data-aos-delay="800">
+                    <div class="benefit-icon">🌟</div>
+                    <h3 class="benefit-title">Impact & Purpose</h3>
+                    <p class="benefit-description">Work on projects that matter. Build AI that enhances human potential and creates positive change in the world.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Process -->
+    <section class="section" data-aos="fade-up">
+        <div class="container">
+            <h2 class="section-title">Application Process</h2>
+            <p style="text-align: center; margin-bottom: 40px; color: #a0a0a0;">
+                Our hiring process is designed to be transparent, fair, and efficient
+            </p>
+            
+            <div class="process-steps">
+                <div class="process-step" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Apply Online</h3>
+                    <p class="step-description">Submit your application through our careers page. Include your resume, portfolio, and a brief cover letter explaining your interest.</p>
+                </div>
+
+                <div class="process-step" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Initial Screening</h3>
+                    <p class="step-description">Our talent team will review your application and conduct a brief phone screening to discuss your background and interest.</p>
+                </div>
+
+                <div class="process-step" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Technical Interview</h3>
+                    <p class="step-description">Depending on the role, you'll have a technical interview or skills assessment to demonstrate your expertise and problem-solving abilities.</p>
+                </div>
+
+                <div class="process-step" data-aos="fade-up" data-aos-delay="400">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Team Interviews</h3>
+                    <p class="step-description">Meet with potential teammates and managers to discuss collaboration, culture fit, and dive deeper into your experience.</p>
+                </div>
+
+                <div class="process-step" data-aos="fade-up" data-aos-delay="500">
+                    <div class="step-number">5</div>
+                    <h3 class="step-title">Final Decision</h3>
+                    <p class="step-description">We'll make our decision quickly and provide detailed feedback. If successful, we'll extend an offer and help you join our team.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section" data-aos="fade-up">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="section-title">Ready to Join Us?</h2>
+                <p class="cta-subtitle">Be part of the team that's building the future of AI. Apply to open positions or refer someone amazing.</p>
+                <div class="cta-dual">
+                    <a href="#open-positions" class="btn btn-primary" data-aos="fade-up" data-aos-delay="100">View Open Positions</a>
+                    <a href="/refer" class="btn btn-secondary" data-aos="fade-up" data-aos-delay="200">Refer a Friend</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer will be loaded via JavaScript -->
+    <div id="footer"></div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Job application function
+        function applyForJob(jobTitle) {
+            // In a real application, this would redirect to an application form
+            // or open a modal with the application form
+            alert(`Redirecting to application form for ${jobTitle}...`);
+            // Example: window.location.href = `/apply?job=${encodeURIComponent(jobTitle)}`;
+        }
+
+        // Speculative application function
+        function sendSpeculativeApplication() {
+            alert('Redirecting to general application form...');
+            // Example: window.location.href = '/apply/general';
+        }
+
+        // Smooth scrolling for anchor links with navbar offset
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 100; // Adjust for navbar height
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Counter animation for stats
+        function animateCounter(element) {
+            const text = element.textContent;
+            const hasPlus = text.includes('+');
+            const hasSlash = text.includes('/');
+            const hasPercent = text.includes('%');
+            
+            let target;
+            if (hasSlash) {
+                target = parseFloat(text);
+            } else {
+                target = parseInt(text.replace(/[^0-9]/g, ''));
+            }
+            
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+            
+            const updateCounter = () => {
+                current += step;
+                if (current < target) {
+                    if (hasSlash) {
+                        element.textContent = current.toFixed(1) + '/5';
+                    } else {
+                        element.textContent = Math.floor(current) + (hasPlus ? '+' : '') + (hasPercent ? '%' : '');
+                    }
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = text;
+                }
+            };
+            
+            updateCounter();
+        }
+
+        // Trigger counter animation when stats come into view
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target.querySelector('h3');
+                    if (counter && !counter.classList.contains('animated')) {
+                        counter.classList.add('animated');
+                        animateCounter(counter);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe stats bar for counter animation
+        const statsBar = document.querySelector('.stats-bar');
+        if (statsBar) {
+            observer.observe(statsBar);
+        }
+
+        // Function to load external HTML files
+        async function loadHTML(elementId, filePath) {
+            try {
+                const response = await fetch(filePath);
+                if (response.ok) {
+                    const html = await response.text();
+                    document.getElementById(elementId).innerHTML = html;
+                    
+                    // If loading navbar, ensure proper spacing
+                    if (elementId === 'navbar') {
+                        adjustBodyPadding();
+                    }
+                } else {
+                    console.error(`Failed to load ${filePath}`);
+                }
+            } catch (error) {
+                console.error(`Error loading ${filePath}:`, error);
+            }
+        }
+
+        // Function to adjust body padding based on actual navbar height
+        function adjustBodyPadding() {
+            setTimeout(() => {
+                const navbar = document.querySelector('#navbar nav, #navbar header, #navbar .navbar');
+                if (navbar) {
+                    const navbarHeight = navbar.offsetHeight;
+                    document.body.style.paddingTop = (navbarHeight + 20) + 'px';
+                    
+                    // Update scroll padding for smooth scrolling
+                    document.documentElement.style.scrollPaddingTop = (navbarHeight + 30) + 'px';
+                    
+                    // Update smooth scrolling offset in existing event listeners
+                    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                        anchor.removeEventListener('click', handleSmoothScroll);
+                        anchor.addEventListener('click', handleSmoothScroll);
+                    });
+                }
+            }, 100); // Small delay to ensure navbar is fully rendered
+        }
+
+        // Updated smooth scrolling handler
+        function handleSmoothScroll(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const navbar = document.querySelector('#navbar nav, #navbar header, #navbar .navbar');
+                const navbarHeight = navbar ? navbar.offsetHeight : 80;
+                const offsetTop = target.offsetTop - (navbarHeight + 20);
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Load navbar and footer when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load navbar and footer
+            loadHTML('navbar', 'navbar.html');
+            loadHTML('footer', 'footer.html');
+            
+            // Fallback: adjust padding after a delay if navbar exists
+            setTimeout(() => {
+                if (document.getElementById('navbar').innerHTML.trim() !== '') {
+                    adjustBodyPadding();
+                }
+            }, 500);
+        });
+
+        // Handle window resize to readjust padding
+        window.addEventListener('resize', () => {
+            if (document.getElementById('navbar').innerHTML.trim() !== '') {
+                adjustBodyPadding();
+            }
+        });
+
+        // Additional CSS to ensure navbar stays fixed and doesn't overlap
+        const additionalStyles = `
+            <style>
+                #navbar {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    z-index: 1000;
+                    width: 100%;
+                }
+                
+                #navbar nav,
+                #navbar header,
+                #navbar .navbar {
+                    position: relative;
+                    z-index: 1001;
+                }
+                
+                /* Ensure main content starts below navbar */
+                .hero-section {
+                    position: relative;
+                    z-index: 1;
+                }
+                
+                /* Mobile adjustments */
+                @media (max-width: 768px) {
+                    body {
+                        padding-top: 70px !important;
+                    }
+                }
+            </style>
+        `;
+        
+        // Inject additional styles
+        document.head.insertAdjacentHTML('beforeend', additionalStyles);
+    </script>
+</body>
+</html>
