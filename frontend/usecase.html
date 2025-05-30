@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Generation with Agentic AI - NeuraTantra</title>
+    <link rel="stylesheet" href="stylu.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        /* Custom styles for use case pages */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(110, 84, 194, 0.15), rgba(76, 144, 230, 0.15));
+            padding-top: calc(var(--header-height) + 4rem);
+            padding-bottom: 6rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 25% 25%, rgba(110, 84, 194, 0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 75% 75%, rgba(76, 144, 230, 0.2) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: var(--font-size-xl);
+            color: var(--color-text-muted);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .use-case-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .challenge-section {
+            background: rgba(22, 22, 45, 0.3);
+            border-radius: var(--border-radius-lg);
+            padding: 4rem;
+            margin: 4rem 0;
+        }
+
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .challenge-item {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius-md);
+            padding: 2rem;
+            border: 1px solid var(--color-border);
+            border-left: 4px solid var(--color-accent-1);
+            transition: all var(--transition-medium);
+        }
+
+        .challenge-item:hover {
+            transform: translateY(-5px);
+            border-left-color: var(--color-primary);
+        }
+
+        .challenge-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(230, 96, 168, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .challenge-title {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .challenge-desc {
+            color: var(--color-text-muted);
+            line-height: 1.6;
+        }
+
+        .solution-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .solution-step {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius-md);
+            padding: 2.5rem;
+            border: 1px solid var(--color-border);
+            position: relative;
+            transition: all var(--transition-medium);
+            text-align: center;
+        }
+
+        .solution-step:hover {
+            transform: translateY(-10px);
+            border-color: rgba(110, 84, 194, 0.3);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            font-size: var(--font-size-sm);
+        }
+
+        .step-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .step-title {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .step-desc {
+            color: var(--color-text-muted);
+            line-height: 1.6;
+        }
+
+        .roi-section {
+            background: linear-gradient(135deg, rgba(110, 84, 194, 0.1), rgba(76, 144, 230, 0.1));
+            border-radius: var(--border-radius-lg);
+            padding: 4rem;
+            margin: 4rem 0;
+        }
+
+        .roi-comparison {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .before-after {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius-md);
+            padding: 2.5rem;
+            border: 1px solid var(--color-border);
+            text-align: center;
+        }
+
+        .before-after.before {
+            border-left: 4px solid var(--color-accent-1);
+        }
+
+        .before-after.after {
+            border-left: 4px solid var(--color-accent-2);
+        }
+
+        .ba-label {
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .before .ba-label {
+            color: var(--color-accent-1);
+        }
+
+        .after .ba-label {
+            color: var(--color-accent-2);
+        }
+
+        .ba-metric {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .ba-description {
+            color: var(--color-text-muted);
+            font-size: var(--font-size-sm);
+        }
+
+        .vs-divider {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: var(--border-radius-md);
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: all var(--transition-medium);
+        }
+
+        .metric-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--color-accent-2), var(--color-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-desc {
+            color: var(--color-text-muted);
+            font-size: var(--font-size-sm);
+        }
+
+        .cta-section {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 4rem;
+            text-align: center;
+            margin: 4rem 0;
+            border: 1px solid var(--color-border);
+        }
+
+        .cta-title {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-subtitle {
+            color: var(--color-text-muted);
+            margin-bottom: 2rem;
+            font-size: var(--font-size-lg);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .feature-highlight {
+            background: rgba(46, 203, 175, 0.1);
+            border: 1px solid rgba(46, 203, 175, 0.2);
+            border-radius: var(--border-radius-md);
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-highlight h4 {
+            color: var(--color-accent-2);
+            margin-bottom: 0.5rem;
+        }
+
+        .process-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+        }
+
+        .flow-step {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius-md);
+            padding: 1.5rem;
+            border: 1px solid var(--color-border);
+            min-width: 150px;
+            text-align: center;
+            transition: all var(--transition-medium);
+        }
+
+        .flow-step:hover {
+            transform: scale(1.05);
+            border-color: var(--color-primary);
+        }
+
+        .flow-arrow {
+            font-size: 1.5rem;
+            color: var(--color-primary);
+        }
+
+        @media (max-width: 768px) {
+            .roi-comparison {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .vs-divider {
+                transform: rotate(90deg);
+            }
+
+            .process-flow {
+                flex-direction: column;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+      <!-- Navbar -->
+    <header class="site-header" id="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="../index.html">
+                        <div class="logo-icon">
+                            <svg viewBox="0 0 40 40" class="logo-svg">
+                                <circle cx="20" cy="20" r="18" class="logo-circle" fill="none" stroke="currentColor" stroke-width="1"/>
+                                <circle cx="20" cy="20" r="3" fill="currentColor"/>
+                                <circle cx="12" cy="12" r="2" fill="currentColor"/>
+                                <circle cx="28" cy="12" r="2" fill="currentColor"/>
+                                <circle cx="12" cy="28" r="2" fill="currentColor"/>
+                                <circle cx="28" cy="28" r="2" fill="currentColor"/>
+                                <line x1="20" y1="20" x2="12" y2="12" stroke="currentColor" stroke-width="1"/>
+                                <line x1="20" y1="20" x2="28" y2="12" stroke="currentColor" stroke-width="1"/>
+                                <line x1="20" y1="20" x2="12" y2="28" stroke="currentColor" stroke-width="1"/>
+                                <line x1="20" y1="20" x2="28" y2="28" stroke="currentColor" stroke-width="1"/>
+                            </svg>
+                        </div>
+                        <span>NeuraTantra<span class="accent">AI</span></span>
+                    </a>
+                </div>
+
+                <div class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </div>
+
+                <div class="nav-container" id="navContainer">
+                    <nav class="main-nav">
+                        <ul class="nav-links">
+                            <li><a href="../index.html#hero">About</a></li>
+                            <li class="dropdown">
+                                <a href="../index.html#products" class="dropdown-toggle">Products <span class="dropdown-arrow">▼</span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" class="active">AgentOS Lite</a></li>
+                                    <li><a href="../products/agent-builder.html">Agent Builder</a></li>
+                                    <li><a href="../products/consulting.html">Consulting</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="../index.html#vision">Vision</a></li>
+                            <li><a href="../index.html#market">Market</a></li>
+                            <li><a href="../index.html#team">Team</a></li>
+                            <li><a href="../index.html#contact">Contact</a></li>
+                        </ul>
+                    </nav>
+
+                    <div class="nav-cta">
+                        <a href="#trial" class="btn btn-primary">Free Trial</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div data-aos="fade-up">
+                <div class="use-case-badge">Lead Generation Solution</div>
+                <h1 class="hero-title">
+                    <span class="text-gradient">Lead Generation</span> with Agentic AI
+                </h1>
+                <p class="hero-subtitle">
+                    Transform your sales pipeline with intelligent lead qualification, personalized outreach, 
+                    and automated follow-ups that convert prospects into customers at scale.
+                </p>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary">Start Free Trial</button>
+                    <button class="btn btn-secondary">See Demo</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Challenge/Problem Overview -->
+    <section class="py-5">
+        <div class="container">
+            <div class="challenge-section" data-aos="fade-up">
+                <div class="text-center mb-4">
+                    <h2 class="section-title">The Lead Generation Challenge</h2>
+                    <p class="hero-subtitle">
+                        Traditional lead generation processes are broken, costing businesses time, money, and opportunities
+                    </p>
+                </div>
+                
+                <div class="challenge-grid">
+                    <div class="challenge-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="challenge-icon">⏰</div>
+                        <div class="challenge-title">Time-Intensive Manual Work</div>
+                        <p class="challenge-desc">
+                            Sales teams spend 70% of their time on non-selling activities like lead research, 
+                            data entry, and manual follow-ups instead of closing deals.
+                        </p>
+                    </div>
+                    
+                    <div class="challenge-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="challenge-icon">🎯</div>
+                        <div class="challenge-title">Poor Lead Quality</div>
+                        <p class="challenge-desc">
+                            Only 27% of leads are sales-ready, leading to wasted effort on unqualified prospects 
+                            and missed opportunities with high-value potential customers.
+                        </p>
+                    </div>
+                    
+                    <div class="challenge-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="challenge-icon">📊</div>
+                        <div class="challenge-title">Inconsistent Follow-up</div>
+                        <p class="challenge-desc">
+                            48% of sales people never follow up with prospects, and manual processes lead to 
+                            inconsistent messaging and delayed responses.
+                        </p>
+                    </div>
+                    
+                    <div class="challenge-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="challenge-icon">💰</div>
+                        <div class="challenge-title">High Cost Per Lead</div>
+                        <p class="challenge-desc">
+                            Traditional lead generation costs $198 per lead on average, with conversion rates 
+                            below 2% due to lack of personalization and timing.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NeuraTantra Solution -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">NeuraTantra's AI-Powered Solution</h2>
+                <p class="hero-subtitle">
+                    Our agentic AI transforms lead generation with intelligent automation and personalization
+                </p>
+            </div>
+
+            <div class="solution-steps">
+                <div class="solution-step" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">🔍</div>
+                    <div class="step-title">Intelligent Lead Discovery</div>
+                    <p class="step-desc">
+                        AI agents scan multiple data sources, social platforms, and business databases to 
+                        identify high-potential prospects matching your ideal customer profile.
+                    </p>
+                </div>
+                
+                <div class="solution-step" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">🧠</div>
+                    <div class="step-title">Smart Qualification</div>
+                    <p class="step-desc">
+                        Advanced scoring algorithms analyze firmographics, technographics, and behavioral 
+                        signals to rank leads by conversion likelihood and revenue potential.
+                    </p>
+                </div>
+                
+                <div class="solution-step" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">✍️</div>
+                    <div class="step-title">Personalized Outreach</div>
+                    <p class="step-desc">
+                        AI crafts personalized messages based on prospect research, company news, and 
+                        industry insights, ensuring relevant and engaging communication.
+                    </p>
+                </div>
+                
+                <div class="solution-step" data-aos="fade-up" data-aos-delay="400">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">🔄</div>
+                    <div class="step-title">Automated Follow-up</div>
+                    <p class="step-desc">
+                        Intelligent follow-up sequences adapt based on prospect behavior, engagement levels, 
+                        and optimal timing for maximum response rates.
+                    </p>
+                </div>
+            </div>
+
+            <div class="feature-highlight" data-aos="fade-up">
+                <h4>🚀 Advanced Features</h4>
+                <p>Real-time lead scoring updates, CRM integration, A/B testing for outreach messages, 
+                and detailed analytics dashboard for performance optimization.</p>
+            </div>
+
+            <!-- Process Flow -->
+            <div class="process-flow" data-aos="fade-up">
+                <div class="flow-step">
+                    <strong>Data Sources</strong><br>
+                    <small>LinkedIn, ZoomInfo, Company Websites</small>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <strong>AI Analysis</strong><br>
+                    <small>Qualification & Scoring</small>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <strong>Personalization</strong><br>
+                    <small>Custom Messaging</small>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <strong>Engagement</strong><br>
+                    <small>Qualified Leads</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI/Impact Metrics -->
+    <section class="py-5">
+        <div class="container">
+            <div class="roi-section" data-aos="fade-up">
+                <div class="text-center mb-4">
+                    <h2 class="section-title">Measurable ROI & Impact</h2>
+                    <p class="hero-subtitle">
+                        See the dramatic improvement in your lead generation performance
+                    </p>
+                </div>
+
+                <div class="roi-comparison">
+                    <div class="before-after before" data-aos="fade-right">
+                        <div class="ba-label">Before NeuraTantra</div>
+                        <div class="ba-metric">2%</div>
+                        <p class="ba-description">
+                            Average conversion rate with manual lead qualification and generic outreach
+                        </p>
+                    </div>
+                    
+                    <div class="vs-divider">VS</div>
+                    
+                    <div class="before-after after" data-aos="fade-left">
+                        <div class="ba-label">With NeuraTantra</div>
+                        <div class="ba-metric">12%</div>
+                        <p class="ba-description">
+                            Conversion rate with AI-powered qualification and personalized outreach
+                        </p>
+                    </div>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-card" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="metric-value">75%</div>
+                        <div class="metric-label">Time Saved</div>
+                        <p class="metric-desc">Reduction in manual lead research and qualification time</p>
+                    </div>
+                    
+                    <div class="metric-card" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="metric-value">4x</div>
+                        <div class="metric-label">Lead Quality</div>
+                        <p class="metric-desc">Improvement in sales-ready lead identification</p>
+                    </div>
+                    
+                    <div class="metric-card" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="metric-value">60%</div>
+                        <div class="metric-label">Cost Reduction</div>
+                        <p class="metric-desc">Lower cost per qualified lead compared to traditional methods</p>
+                    </div>
+                    
+                    <div class="metric-card" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="metric-value">3x</div>
+                        <div class="metric-label">Response Rate</div>
+                        <p class="metric-desc">Higher email response rates with personalized messaging</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-5">
+        <div class="container">
+            <div class="cta-section" data-aos="fade-up">
+                <h2 class="cta-title">Ready to <span class="text-gradient">Transform</span> Your Lead Generation?</h2>
+                <p class="cta-subtitle">
+                    Join hundreds of companies already using NeuraTantra to supercharge their sales pipeline 
+                    and drive predictable revenue growth.
+                </p>
+                <div class="cta-buttons">
+                  
+                    <button class="btn btn-secondary" onclick="scheduleDemo()">
+                        🎥 Schedule Demo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Footer will be loaded here -->
+     <footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h2>NeuraTantra AI</h2>
+                <p>Building the Fabric of Future Intelligence</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-links-group">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/products/">Products</a></li>
+                        <li><a href="/solutions/">Solutions</a></li>
+                        <li><a href="/contact/">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-group">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="/resources/blog/">Blog</a></li>
+                        <li><a href="/resources/docs/">Documentation</a></li>
+                        <li><a href="/resources/case-studies/">Case Studies</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-group">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+                        <li><a href="/terms/">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-social">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">
+                        <svg viewBox="0 0 24 24"><path d="..."/></svg>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <svg viewBox="0 0 24 24"><path d="..."/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 NeuraTantra AI. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Load navbar and footer
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load navbar
+            fetch('/navbar.html')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('navbar-placeholder').innerHTML = html;
+                    
+                    // Initialize navbar functionality after loading
+                    const menuToggle = document.querySelector('.menu-toggle');
+                    const navContainer = document.querySelector('.nav-container');
+                    
+                    if (menuToggle && navContainer) {
+                        menuToggle.addEventListener('click', function() {
+                            navContainer.classList.toggle('active');
+                            menuToggle.classList.toggle('active');
+                        });
+                    }
+
+                    // Handle header scroll effect
+                    const header = document.querySelector('.site-header');
+                    window.addEventListener('scroll', () => {
+                        if (window.scrollY > 50) {
+                            header.classList.add('scrolled');
+                        } else {
+                            header.classList.remove('scrolled');
+                        }
+                    });
+                })
+                .catch(err => console.error('Error loading navbar:', err));
+
+            // Load footer
+            fetch('/footer.html')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('footer-placeholder').innerHTML = html;
+                })
+                .catch(err => console.error('Error loading footer:', err));
+        });
+
+        // CTA Functions
+        function startTrial() {
+            // In real implementation, this would redirect to signup page
+            window.location.href = '/signup?use_case=lead_generation';
+        }
+
+        function contactTeam() {
+            // In real implementation, this would open contact form or redirect
+            window.location.href = '/contact?inquiry=lead_generation';
+        }
+
+        function scheduleDemo() {
+            // In real implementation, this would open calendar booking
+            window.location.href = '/demo?product=lead_generation';
+        }
+
+        // Add interactive hover effects
+        const solutionSteps = document.querySelectorAll('.solution-step');
+        solutionSteps.forEach((step, index) => {
+            step.addEventListener('mouseenter', () => {
+                step.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+            
+            step.addEventListener('mouseleave', () => {
+                step.style.transform = 'translateY(-10px) scale(1)';
+            });
+        });
+
+        // Dynamic content switching (for demo purposes)
+        function switchUseCase(useCase) {
+            const content = {
+                'lead_generation': {
+                    badge: 'Lead Generation Solution',
+                    title: 'Lead Generation with Agentic AI',
+                    subtitle: 'Transform your sales pipeline with intelligent lead qualification, personalized outreach, and automated follow-ups that convert prospects into customers at scale.'
+                },
+                'summarization': {
+                    badge: 'Document Summarization',
+                    title: 'Document Summarization with Agentic AI',
+                    subtitle: 'Process vast amounts of documents, reports, and content with AI agents that extract key insights, generate summaries, and create actionable intelligence.'
+                },
+                'workflow_automation': {
+                    badge: 'Workflow Automation',
+                    title: 'Workflow Automation with Agentic AI',
+                    subtitle: 'Streamline complex business processes with intelligent automation that adapts, learns, and optimizes workflows for maximum efficiency.'
+                }
+            };
+
+            if (content[useCase]) {
+                document.querySelector('.use-case-badge').textContent = content[useCase].badge;
+                document.querySelector('.hero-title').innerHTML = content[useCase].title.replace(/(\w+)\s+with/, '<span class="text-gradient">$1</span> with');
+                document.querySelector('.hero-subtitle').textContent = content[useCase].subtitle;
+            }
+        }
+    </script>
+</body>
+</html>
