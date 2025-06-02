@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - NeuraTantra</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Pricing-specific styles */
+        .pricing-hero {
+            background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-alt) 50%, var(--color-bg) 100%);
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(230, 96, 168, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(110, 84, 194, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .pricing-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .pricing-hero h1 {
+            font-size: var(--font-size-5xl);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary), var(--color-accent-1));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .pricing-hero p {
+            font-size: var(--font-size-xl);
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Pricing Toggle */
+        .billing-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .toggle-wrapper {
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            padding: 4px;
+            backdrop-filter: blur(10px);
+        }
+
+        .toggle-switch {
+            width: 60px;
+            height: 28px;
+            background: var(--color-primary);
+            border-radius: 50px;
+            position: relative;
+            cursor: pointer;
+            transition: all var(--transition-medium);
+        }
+
+        .toggle-switch::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            transition: transform var(--transition-medium);
+        }
+
+        .toggle-switch.annual::before {
+            transform: translateX(32px);
+        }
+
+        .billing-label {
+            font-weight: 500;
+            color: var(--color-text-muted);
+            transition: color var(--transition-fast);
+        }
+
+        .billing-label.active {
+            color: var(--color-text);
+        }
+
+        .save-badge {
+            background: linear-gradient(45deg, var(--color-accent-1), var(--color-accent-2));
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        /* Pricing Cards */
+        .pricing-section {
+            padding: 80px 0;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 2.5rem;
+            position: relative;
+            border: 1px solid var(--color-border);
+            transition: all var(--transition-medium);
+            backdrop-filter: blur(10px);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-color: rgba(110, 84, 194, 0.4);
+        }
+
+        .pricing-card.popular {
+            border: 2px solid var(--color-primary);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.popular::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+        }
+
+        .pricing-card.popular:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .plan-name {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-description {
+            color: var(--color-text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .plan-price {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 2rem;
+        }
+
+        .price-amount {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-text);
+        }
+
+        .price-currency {
+            font-size: var(--font-size-xl);
+            margin-right: 0.25rem;
+        }
+
+        .price-period {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-muted);
+            margin-left: 0.5rem;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: var(--color-text-muted);
+            font-size: var(--font-size-lg);
+            margin-left: 1rem;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2.5rem;
+        }
+
+        .plan-features li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: var(--font-size-md);
+        }
+
+        .feature-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 1rem;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-icon::before {
+            content: '✓';
+            color: white;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .plan-cta {
+            width: 100%;
+            padding: 1rem;
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+        }
+
+        /* Feature Comparison Table */
+        .comparison-section {
+            padding: 80px 0;
+            background: var(--color-bg-alt);
+        }
+
+        .comparison-table {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+            margin-top: 3rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .table-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            background: rgba(110, 84, 194, 0.1);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .table-header > div {
+            padding: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .table-header > div:first-child {
+            text-align: left;
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            border-bottom: 1px solid var(--color-border);
+            transition: background var(--transition-fast);
+        }
+
+        .table-row:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .table-row > div {
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .table-row > div:first-child {
+            justify-content: flex-start;
+            font-weight: 500;
+        }
+
+        .feature-check {
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-check::before {
+            content: '✓';
+            color: white;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .feature-cross {
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-cross::before {
+            content: '×';
+            color: var(--color-text-muted);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* ROI Calculator */
+        .roi-section {
+            padding: 80px 0;
+        }
+
+        .roi-calculator {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 3rem;
+            border: 1px solid var(--color-border);
+            margin-top: 3rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .calculator-inputs h3,
+        .calculator-results h3 {
+            font-size: var(--font-size-xl);
+            margin-bottom: 2rem;
+            color: var(--color-text);
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--color-text);
+        }
+
+        .input-group input {
+            padding: 1rem;
+            background: var(--color-input-bg);
+            border: 1px solid var(--color-input-border);
+            border-radius: var(--border-radius-sm);
+            color: var(--color-text);
+            font-size: var(--font-size-md);
+            transition: border-color var(--transition-fast);
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .result-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1.5rem;
+            border-radius: var(--border-radius-md);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .result-value {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .result-label {
+            color: var(--color-text-muted);
+            font-size: var(--font-size-sm);
+        }
+
+        /* Final CTA */
+        .final-cta {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-alt) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(110, 84, 194, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .final-cta .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .final-cta h2 {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .final-cta p {
+            font-size: var(--font-size-xl);
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .pricing-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+
+            .table-header,
+            .table-row {
+                grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            }
+
+            .calculator-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .pricing-hero h1 {
+                font-size: var(--font-size-4xl);
+            }
+
+            .pricing-card.popular {
+                transform: none;
+            }
+
+            .pricing-card.popular:hover {
+                transform: translateY(-10px);
+            }
+
+            .table-header,
+            .table-row {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .table-header > div:first-child,
+            .table-row > div:first-child {
+                text-align: center;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .final-cta h2 {
+                font-size: var(--font-size-3xl);
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .roi-calculator {
+                padding: 2rem 1.5rem;
+            }
+
+            .billing-toggle {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Pricing Hero -->
+<section class="pricing-hero">
+    <div class="container">
+        <h1>Simple, Transparent Pricing</h1>
+        <p>Choose the perfect plan for your business needs. No hidden fees, no surprises.</p>
+
+        <div class="billing-toggle">
+            <span class="billing-label active" data-billing="monthly">Monthly</span>
+            <div class="toggle-wrapper">
+                <div class="toggle-switch" id="billingToggle"></div>
+            </div>
+            <span class="billing-label" data-billing="annual">Annual<span class="save-badge">Save 20%</span></span>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing Cards -->
+<section class="pricing-section">
+    <div class="container">
+        <div class="pricing-grid">
+            <!-- Startup Plan -->
+            <div class="pricing-card">
+                <div class="plan-name">Startup</div>
+                <div class="plan-description">Perfect for small teams and startups getting started with AI automation</div>
+                <div class="plan-price">
+                    <span class="price-currency">$</span>
+                    <span class="price-amount" data-monthly="49" data-annual="39">49</span>
+                    <span class="price-period">/ month</span>
+                    <span class="original-price" style="display: none;">$59</span>
+                </div>
+                <ul class="plan-features">
+                    <li><div class="feature-icon"></div>Up to 5 AI workflows</li>
+                    <li><div class="feature-icon"></div>10,000 API calls/month</li>
+                    <li><div class="feature-icon"></div>Basic analytics</li>
+                    <li><div class="feature-icon"></div>Email support</li>
+                    <li><div class="feature-icon"></div>Standard integrations</li>
+                    <li><div class="feature-icon"></div>Community access</li>
+                </ul>
+                <button class="btn btn-secondary plan-cta">Start Free Trial</button>
+            </div>
+
+            <!-- Pro Plan -->
+            <div class="pricing-card popular">
+                <div class="plan-name text-gradient">Professional</div>
+                <div class="plan-description">Ideal for growing businesses that need advanced AI capabilities</div>
+                <div class="plan-price">
+                    <span class="price-currency">$</span>
+                    <span class="price-amount" data-monthly="149" data-annual="119">149</span>
+                    <span class="price-period">/ month</span>
+                    <span class="original-price" style="display: none;">$179</span>
+                </div>
+                <ul class="plan-features">
+                    <li><div class="feature-icon"></div>Unlimited AI workflows</li>
+                    <li><div class="feature-icon"></div>100,000 API calls/month</li>
+                    <li><div class="feature-icon"></div>Advanced analytics & insights</li>
+                    <li><div class="feature-icon"></div>Priority support</li>
+                    <li><div class="feature-icon"></div>Premium integrations</li>
+                    <li><div class="feature-icon"></div>Custom model training</li>
+                    <li><div class="feature-icon"></div>A/B testing tools</li>
+                    <li><div class="feature-icon"></div>API access</li>
+                </ul>
+                <button class="btn btn-primary plan-cta">Start Free Trial</button>
+            </div>
+
+            <!-- Enterprise Plan -->
+            <div class="pricing-card">
+                <div class="plan-name">Enterprise</div>
+                <div class="plan-description">For large organizations requiring maximum performance and customization</div>
+                <div class="plan-price">
+                    <span class="price-currency">$</span>
+                    <span class="price-amount" data-monthly="499" data-annual="399">499</span>
+                    <span class="price-period">/ month</span>
+                    <span class="original-price" style="display: none;">$599</span>
+                </div>
+                <ul class="plan-features">
+                    <li><div class="feature-icon"></div>Unlimited everything</li>
+                    <li><div class="feature-icon"></div>1M+ API calls/month</li>
+                    <li><div class="feature-icon"></div>Real-time analytics</li>
+                    <li><div class="feature-icon"></div>24/7 dedicated support</li>
+                    <li><div class="feature-icon"></div>Custom integrations</li>
+                    <li><div class="feature-icon"></div>White-label solutions</li>
+                    <li><div class="feature-icon"></div>On-premise deployment</li>
+                    <li><div class="feature-icon"></div>SLA guarantees</li>
+                    <li><div class="feature-icon"></div>Account manager</li>
+                </ul>
+                <button class="btn btn-primary plan-cta">Contact Sales</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Feature Comparison Table -->
+<section class="comparison-section">
+    <div class="container">
+        <h2 class="section-title text-center">Feature Comparison</h2>
+        <p class="text-center" style="color: var(--color-text-muted); font-size: var(--font-size-lg); margin-bottom: 2rem;">
+            Compare all features across our plans to find what's right for you
+        </p>
+
+        <div class="comparison-table">
+            <div class="table-header">
+                <div>Features</div>
+                <div>Startup</div>
+                <div>Professional</div>
+                <div>Enterprise</div>
+            </div>
+
+            <div class="table-row">
+                <div>AI Workflows</div>
+                <div>Up to 5</div>
+                <div>Unlimited</div>
+                <div>Unlimited</div>
+            </div>
+
+            <div class="table-row">
+                <div>API Calls (Monthly)</div>
+                <div>10,000</div>
+                <div>100,000</div>
+                <div>1M+</div>
+            </div>
+
+            <div class="table-row">
+                <div>Analytics Dashboard</div>
+                <div><div class="feature-check"></div></div>
+                <div><div class="feature-check"></div></div>
+                <div><div class="feature-check"></div></div>
+            </div>
+
+            <div class="table-row">
+                <div>Custom Model Training</div>
+                <div><div class="feature-cross"></div></div>
+                <div><div class="feature-check"></div></div>
+                <div><div class="feature-check"></div></div>
+            </div>
+
+            <div class="table-row">
+                <div>A/B Testing</div>
+                <div><div class="feature-cross"></div></div>
+                <div><div class="feature-check"></div></div>
+                <div><div class="feature-check"></div></div>
+            </div>
+
+            <div class="table-row">
+                <div>API Access</div>
+                <div><div class="feature-cross"></div></div>
+                <div><div class="feature-check"></div></div>
+                <div><div class="feature-check"></div></div>
+            </div>
+
+            <div class="table-row">
+                <div>White-label Solutions</div>
+                <div><div class="feature-cross"></div></div>
+                <div><div class="feature-cross"></div></div>
+                <div><div class="feature-check"></div></div>
+            </div>
+
+            <div class="table-row">
+                <div>24/7 Support</div>
+                <div><div class="feature-cross"></div></div>
+                <div><div class="feature-cross"></div></div>
+                <div><div class="feature-check"></div></div>
+            </div>
+
+            <div class="table-row">
+                <div>SLA Guarantees</div>
+                <div><div class="feature-cross"></div></div>
+                <div><div class="feature-cross"></div></div>
+                <div><div class="feature-check"></div></div>
+            </div>
+
+            <div class="table-row">
+                <div>Dedicated Account Manager</div>
+                <div><div class="feature-cross"></div></div>
+                <div><div class="feature-cross"></div></div>
+                <div><div class="feature-check"></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ROI Calculator -->
+<section class="roi-section">
+    <div class="container">
+        <h2 class="section-title text-center">ROI Calculator</h2>
+        <p class="text-center" style="color: var(--color-text-muted); font-size: var(--font-size-lg); margin-bottom: 2rem;">
+            Calculate your potential return on investment with NeuraTantra AI automation
+        </p>
+
+        <div class="roi-calculator">
+            <div class="calculator-grid">
+                <div class="calculator-inputs">
+                    <h3>Your Business Metrics</h3>
+                    <div class="input-group">
+                        <label for="monthlyRevenue">Monthly Revenue ($)</label>
+                        <input type="number" id="monthlyRevenue" placeholder="50000" value="50000">
+                    </div>
+                    <div class="input-group">
+                        <label for="employeeCount">Number of Employees</label>
+                        <input type="number" id="employeeCount" placeholder="25" value="25">
+                    </div>
+                    <div class="input-group">
+                        <label for="avgSalary">Average Employee Salary ($)</label>
+                        <input type="number" id="avgSalary" placeholder="60000" value="60000">
+                    </div>
+                    <div class="input-group">
+                        <label for="hoursAutomated">Hours Automated per Week</label>
+                        <input type="number" id="hoursAutomated" placeholder="20" value="20">
+                    </div>
+                </div>
+
+                <div class="calculator-results">
+                    <h3>Projected Savings</h3>
+                    <div class="results-grid">
+                        <div class="result-card">
+                            <div class="result-value" id="monthlySavings">$4,615</div>
+                            <div class="result-label">Monthly Savings</div>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-value" id="annualSavings">$55,385</div>
+                            <div class="result-label">Annual Savings</div>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-value" id="roiPercent">372%</div>
+                            <div class="result-label">ROI Percentage</div>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-value" id="paybackPeriod">3.2</div>
+                            <div class="result-label">Payback Months</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Final CTA -->
+<section class="final-cta">
+    <div class="container">
+        <h2>Ready to Transform Your Business?</h2>
+        <p>Join thousands of companies already using NeuraTantra to automate their workflows and boost productivity.</p>
+        <div class="cta-buttons">
+            <button class="btn btn-primary">Start Free Trial</button>
+            <button class="btn btn-secondary">Contact Sales</button>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Billing toggle functionality
+    const billingToggle = document.getElementById('billingToggle');
+    const billingLabels = document.querySelectorAll('.billing-label');
+    const priceAmounts = document.querySelectorAll('.price-amount');
+    const originalPrices = document.querySelectorAll('.original-price');
+    let isAnnual = false;
+
+    function updatePricing() {
+        priceAmounts.forEach(amount => {
+            const monthlyPrice = amount.getAttribute('data-monthly');
+            const annualPrice = amount.getAttribute('data-annual');
+            amount.textContent = isAnnual ? annualPrice : monthlyPrice;
+        });
+
+        originalPrices.forEach(price => {
+            if (isAnnual) {
+                price.style.display = 'inline';
+            } else {
+                price.style.display = 'none';
+            }
+        });
+    }
+
+    billingToggle.addEventListener('click', () => {
+        isAnnual = !isAnnual;
+        billingToggle.classList.toggle('annual', isAnnual);
+
+        billingLabels.forEach(label => {
+            const billing = label.getAttribute('data-billing');
+            if ((billing === 'annual' && isAnnual) || (billing === 'monthly' && !isAnnual)) {
+                label.classList.add('active');
+            } else {
+                label.classList.remove('active');
+            }
+        });
+
+        updatePricing();
+    });
+
+    // ROI Calculator functionality
+    function calculateROI() {
+        const monthlyRevenue = parseFloat(document.getElementById('monthlyRevenue').value) || 0;
+        const employeeCount = parseFloat(document.getElementById('employeeCount').value) || 0;
+        const avgSalary = parseFloat(document.getElementById('avgSalary').value) || 0;
+        const hoursAutomated = parseFloat(document.getElementById('hoursAutomated').value) || 0;
+
+        // Calculate hourly rate
+        const hourlyRate = avgSalary / (52 * 40);
+
+        // Calculate monthly savings (hours saved * hourly rate * 4.33 weeks)
+        const monthlySavings = hoursAutomated * hourlyRate * 4.33;
+
+        // Calculate annual savings
+        const annualSavings = monthlySavings * 12;
+
+        // Assume Professional plan cost for ROI calculation
+        const annualCost = 149 * 12;
+
+        // Calculate ROI percentage
+        const roiPercent = ((annualSavings - annualCost) / annualCost) * 100;
+
+        // Calculate payback period in months
+        const paybackPeriod = annualCost / monthlySavings;
+
+        // Update display
+        document.getElementById('monthlySavings').textContent = `$${monthlySavings.toLocaleString('en-US', {maximumFraction
+        document.getElementById('monthlySavings').textContent = `$${monthlySavings.toLocaleString('en-US', {maximumFractionDigits: 0})}`;
+            document.getElementById('annualSavings').textContent = `$${annualSavings.toLocaleString('en-US', {maximumFractionDigits: 0})}`;
+            document.getElementById('roiPercent').textContent = `${Math.round(roiPercent)}%`;
+            document.getElementById('paybackPeriod').textContent = `${paybackPeriod.toFixed(1)}`;
+        }
+
+        // Add event listeners to all calculator inputs
+        const calculatorInputs = document.querySelectorAll('.calculator-inputs input');
+        calculatorInputs.forEach(input => {
+            input.addEventListener('input', calculateROI);
+        });
+
+        // Initial calculation
+        calculateROI();
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe pricing cards
+        document.querySelectorAll('.pricing-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Add click tracking for CTA buttons
+        document.querySelectorAll('.plan-cta').forEach(button => {
+            button.addEventListener('click', function() {
+                const planName = this.closest('.pricing-card').querySelector('.plan-name').textContent;
+                console.log(`CTA clicked for plan: ${planName}`);
+                // Here you would typically send analytics data
+            });
+        });
+</script>
+</body>
+</html>

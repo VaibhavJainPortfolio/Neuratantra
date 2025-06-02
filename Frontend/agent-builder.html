@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No-Code Agent Builder - NeuraTantra AI</title>
+    <link rel="stylesheet" href="stylu.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--color-bg) 0%, #0f0f28 100%);
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: var(--font-size-xl);
+            color: var(--color-text-muted);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .hero-bg-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            opacity: 0.1;
+            animation: floatUp 8s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 20%;
+            right: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            left: 5%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            top: 10%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        /* Visual Showcase */
+        .showcase-section {
+            padding: var(--section-spacing) 0;
+            background: var(--color-bg-alt);
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        .showcase-visual {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 3rem;
+            border: 1px solid var(--color-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .drag-drop-demo {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .node {
+            background: rgba(110, 84, 194, 0.1);
+            border: 2px dashed var(--color-primary);
+            border-radius: var(--border-radius-md);
+            padding: 1.5rem;
+            text-align: center;
+            transition: all var(--transition-medium);
+            cursor: pointer;
+        }
+
+        .node:hover {
+            background: rgba(110, 84, 194, 0.2);
+            transform: scale(1.02);
+        }
+
+        .connection-line {
+            width: 2px;
+            height: 30px;
+            background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        /* Template Library */
+        .templates-section {
+            padding: var(--section-spacing) 0;
+        }
+
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .template-card {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius-md);
+            padding: 2rem;
+            border: 1px solid var(--color-border);
+            transition: all var(--transition-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .template-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+        }
+
+        .template-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--box-shadow-hover);
+            border-color: rgba(110, 84, 194, 0.4);
+        }
+
+        .template-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            border-radius: var(--border-radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 24px;
+            color: white;
+        }
+
+        .template-title {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .template-description {
+            color: var(--color-text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .template-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .template-tag {
+            background: rgba(110, 84, 194, 0.1);
+            color: var(--color-primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: var(--font-size-xs);
+            font-weight: 500;
+        }
+
+        /* Deployment Section */
+        .deployment-section {
+            padding: var(--section-spacing) 0;
+            background: var(--color-bg-alt);
+        }
+
+        .deployment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .deployment-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            color: white;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step-title {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .step-description {
+            color: var(--color-text-muted);
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: var(--section-spacing) 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--color-bg) 0%, #0f0f28 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-title {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-subtitle {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-muted);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* Interactive Elements */
+        .interactive-demo {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            border: 1px solid var(--color-border);
+            margin-top: 2rem;
+        }
+
+        .workflow-step {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: var(--border-radius-sm);
+            margin-bottom: 1rem;
+            transition: all var(--transition-medium);
+            cursor: pointer;
+        }
+
+        .workflow-step:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .workflow-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, var(--color-accent-1), var(--color-accent-2));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .workflow-arrow {
+            color: var(--color-primary);
+            font-size: 1.5rem;
+            margin: 0.5rem auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .showcase-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .deployment-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-buttons .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation will be loaded here -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-bg-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content" data-aos="fade-up">
+                <h1 class="hero-title">
+                    <span class="text-gradient">No-Code</span><br>
+                    Agent Builder
+                </h1>
+                <p class="hero-subtitle">
+                    Build intelligent AI agents without writing a single line of code. 
+                    Drag, drop, and deploy powerful automation workflows in minutes.
+                </p>
+                <div class="cta-buttons">
+                    <a href="pricing.html" class="btn btn-primary">Start building</a>
+                    <a href="demo.html" class="btn btn-secondary">Watch demo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Showcase -->
+    <section class="showcase-section">
+        <div class="container">
+            <div data-aos="fade-up">
+                <h2 class="section-title text-center">Intuitive Drag & Drop Interface</h2>
+                <p class="text-center" style="font-size: var(--font-size-lg); color: var(--color-text-muted); max-width: 600px; margin: 0 auto;">
+                    Design complex AI workflows with our visual editor. No programming knowledge required.
+                </p>
+            </div>
+
+            <div class="showcase-grid">
+                <div class="showcase-visual" data-aos="fade-right">
+                    <h3 style="margin-bottom: 2rem; text-align: center;">Visual Workflow Builder</h3>
+                    <div class="drag-drop-demo">
+                        <div class="node">
+                            <strong>📥 Data Input</strong>
+                            <p style="margin: 0.5rem 0 0; font-size: var(--font-size-sm); color: var(--color-text-muted);">
+                                Connect your data sources
+                            </p>
+                        </div>
+                        <div class="connection-line"></div>
+                        <div class="node">
+                            <strong>🤖 AI Processing</strong>
+                            <p style="margin: 0.5rem 0 0; font-size: var(--font-size-sm); color: var(--color-text-muted);">
+                                Apply intelligence layers
+                            </p>
+                        </div>
+                        <div class="connection-line"></div>
+                        <div class="node">
+                            <strong>📤 Output Actions</strong>
+                            <p style="margin: 0.5rem 0 0; font-size: var(--font-size-sm); color: var(--color-text-muted);">
+                                Execute automated responses
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-aos="fade-left">
+                    <h3 style="margin-bottom: 2rem;">Key Features</h3>
+                    <div class="interactive-demo">
+                        <div class="workflow-step">
+                            <div class="workflow-icon">⚡</div>
+                            <div>
+                                <strong>Lightning Fast Setup</strong>
+                                <p style="margin: 0; color: var(--color-text-muted); font-size: var(--font-size-sm);">
+                                    Get your agent running in under 5 minutes
+                                </p>
+                            </div>
+                        </div>
+                        <div class="workflow-step">
+                            <div class="workflow-icon">🔄</div>
+                            <div>
+                                <strong>Real-time Testing</strong>
+                                <p style="margin: 0; color: var(--color-text-muted); font-size: var(--font-size-sm);">
+                                    Test and iterate instantly as you build
+                                </p>
+                            </div>
+                        </div>
+                        <div class="workflow-step">
+                            <div class="workflow-icon">🚀</div>
+                            <div>
+                                <strong>One-Click Deploy</strong>
+                                <p style="margin: 0; color: var(--color-text-muted); font-size: var(--font-size-sm);">
+                                    Deploy to production with a single click
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Template Library -->
+    <section class="templates-section">
+        <div class="container">
+            <div data-aos="fade-up">
+                <h2 class="section-title text-center">Pre-Built Agent Templates</h2>
+                <p class="text-center" style="font-size: var(--font-size-lg); color: var(--color-text-muted); max-width: 700px; margin: 0 auto;">
+                    Jump-start your automation with our curated collection of ready-to-use agent templates.
+                </p>
+            </div>
+
+            <div class="template-grid">
+                <div class="template-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="template-icon">💬</div>
+                    <h3 class="template-title">Customer Support Agent</h3>
+                    <p class="template-description">
+                        Automate customer inquiries with intelligent responses, ticket routing, and escalation handling.
+                    </p>
+                    <div class="template-tags">
+                        <span class="template-tag">Support</span>
+                        <span class="template-tag">Chat</span>
+                        <span class="template-tag">NLP</span>
+                    </div>
+                </div>
+
+                <div class="template-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="template-icon">📊</div>
+                    <h3 class="template-title">Data Analysis Agent</h3>
+                    <p class="template-description">
+                        Process and analyze datasets automatically, generate insights, and create visual reports.
+                    </p>
+                    <div class="template-tags">
+                        <span class="template-tag">Analytics</span>
+                        <span class="template-tag">Reports</span>
+                        <span class="template-tag">ML</span>
+                    </div>
+                </div>
+
+                <div class="template-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="template-icon">📧</div>
+                    <h3 class="template-title">Email Marketing Agent</h3>
+                    <p class="template-description">
+                        Personalize email campaigns, segment audiences, and optimize send times automatically.
+                    </p>
+                    <div class="template-tags">
+                        <span class="template-tag">Marketing</span>
+                        <span class="template-tag">Email</span>
+                        <span class="template-tag">Automation</span>
+                    </div>
+                </div>
+
+                <div class="template-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="template-icon">🔍</div>
+                    <h3 class="template-title">Content Moderator</h3>
+                    <p class="template-description">
+                        Automatically review and moderate user-generated content across multiple platforms.
+                    </p>
+                    <div class="template-tags">
+                        <span class="template-tag">Moderation</span>
+                        <span class="template-tag">Safety</span>
+                        <span class="template-tag">AI</span>
+                    </div>
+                </div>
+
+                <div class="template-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="template-icon">💰</div>
+                    <h3 class="template-title">Sales Assistant</h3>
+                    <p class="template-description">
+                        Qualify leads, schedule meetings, and follow up with prospects automatically.
+                    </p>
+                    <div class="template-tags">
+                        <span class="template-tag">Sales</span>
+                        <span class="template-tag">CRM</span>
+                        <span class="template-tag">Lead Gen</span>
+                    </div>
+                </div>
+
+                <div class="template-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="template-icon">📱</div>
+                    <h3 class="template-title">Social Media Manager</h3>
+                    <p class="template-description">
+                        Schedule posts, respond to comments, and analyze engagement across social platforms.
+                    </p>
+                    <div class="template-tags">
+                        <span class="template-tag">Social</span>
+                        <span class="template-tag">Scheduling</span>
+                        <span class="template-tag">Analytics</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deployment & Workflow Automation -->
+    <section class="deployment-section">
+        <div class="container">
+            <div data-aos="fade-up">
+                <h2 class="section-title text-center">Deploy & Scale Effortlessly</h2>
+                <p class="text-center" style="font-size: var(--font-size-lg); color: var(--color-text-muted); max-width: 700px; margin: 0 auto;">
+                    From prototype to production in minutes. Our platform handles scaling, monitoring, and maintenance automatically.
+                </p>
+            </div>
+
+            <div class="deployment-grid">
+                <div class="deployment-step" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Build Visually</h3>
+                    <p class="step-description">
+                        Design your agent workflow using our intuitive drag-and-drop interface. Connect data sources, AI models, and output actions seamlessly.
+                    </p>
+                </div>
+
+                <div class="deployment-step" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Test & Refine</h3>
+                    <p class="step-description">
+                        Run real-time tests with sample data. Debug and optimize your agent's performance before deployment.
+                    </p>
+                </div>
+
+                <div class="deployment-step" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Deploy Instantly</h3>
+                    <p class="step-description">
+                        Push your agent to production with one click. Our infrastructure automatically scales based on demand.
+                    </p>
+                </div>
+
+                <div class="deployment-step" data-aos="fade-up" data-aos-delay="400">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Monitor & Optimize</h3>
+                    <p class="step-description">
+                        Track performance metrics, user interactions, and system health through comprehensive dashboards.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="hero-bg-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
+        <div class="container">
+            <div class="cta-content" data-aos="fade-up">
+                <h2 class="cta-title">
+                    Ready to Build Your First <span class="text-gradient">AI Agent</span>?
+                </h2>
+                <p class="cta-subtitle">
+                    Join thousands of businesses already automating their workflows with NeuraTantra's no-code platform.
+                </p>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary">Start Building Now</button>
+                    <button class="btn btn-secondary">Request Access</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer will be loaded here -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Load navbar
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            })
+            .catch(error => console.log('Navbar loading failed:', error));
+
+        // Load footer
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            })
+            .catch(error => console.log('Footer loading failed:', error));
+
+        // Interactive node animations
+        document.querySelectorAll('.node').forEach(node => {
+            node.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05) rotate(1deg)';
+            });
+            
+            node.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+
+        // Template card interactions
+        document.querySelectorAll('.template-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Add click animation
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+
+        // Smooth scrolling for CTA buttons
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Add ripple effect
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(255, 255, 255, 0.2);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s linear;
+                    pointer-events: none;
+                `;
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add CSS for ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+            .btn {
+                position: relative;
+                overflow: hidden;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Parallax effect for floating elements
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            
+            document.querySelectorAll('.floating-element').forEach((element, index) => {
+                element.style.transform = `translateY(${rate * (index + 1) * 0.3}px)`;
+            });
+        });
+    </script>
+</body>
+</html>

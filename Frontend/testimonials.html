@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Testimonials - NeuraTantra AI</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        /* Hero Section */
+        .hero-section {
+            padding: 8rem 0 6rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(110, 84, 194, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 20%, rgba(76, 144, 230, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: var(--font-size-xl);
+            color: var(--color-text-muted);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--color-text-muted);
+            font-size: var(--font-size-sm);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 6rem 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .testimonial-card {
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius-lg);
+            padding: 2.5rem;
+            position: relative;
+            transition: all var(--transition-medium);
+            backdrop-filter: blur(10px);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(110, 84, 194, 0.3);
+            box-shadow: var(--box-shadow-hover);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 30px;
+            font-size: 80px;
+            color: var(--color-primary);
+            font-family: Georgia, serif;
+            opacity: 0.3;
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .client-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: var(--font-size-xl);
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .client-info h4 {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .client-title {
+            color: var(--color-text-muted);
+            font-size: var(--font-size-sm);
+        }
+
+        .star-rating {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 1.5rem;
+        }
+
+        .star {
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        }
+
+        .testimonial-quote {
+            font-size: var(--font-size-lg);
+            line-height: 1.7;
+            color: var(--color-text);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .result-metric {
+            background: linear-gradient(135deg, var(--color-accent-2), rgba(46, 203, 175, 0.8));
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--border-radius-xl);
+            font-weight: 600;
+            text-align: center;
+            font-size: var(--font-size-sm);
+            display: inline-block;
+        }
+
+        /* Featured Testimonial */
+        .featured-testimonial {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg,
+                rgba(110, 84, 194, 0.1) 0%,
+                rgba(76, 144, 230, 0.05) 100%);
+            border: 2px solid var(--color-primary);
+            position: relative;
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: var(--border-radius-xl);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg,
+                var(--color-bg-alt) 0%,
+                rgba(110, 84, 194, 0.1) 100%);
+            padding: 6rem 0;
+            text-align: center;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-description {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-muted);
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.2s; }
+        .reveal-delay-2 { transition-delay: 0.4s; }
+        .reveal-delay-3 { transition-delay: 0.6s; }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .testimonial-card {
+                padding: 2rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem;
+            }
+
+            .featured-testimonial {
+                grid-column: 1;
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-card {
+                padding: 1.5rem;
+            }
+
+            .client-avatar {
+                width: 50px;
+                height: 50px;
+                font-size: var(--font-size-lg);
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <h1 class="hero-title text-gradient reveal">
+            What Our Clients Are Saying
+        </h1>
+        <p class="hero-subtitle reveal reveal-delay-1">
+            Discover how businesses transform their operations with NeuraTantra AI's cutting-edge solutions and experience remarkable growth through our innovative technology.
+        </p>
+
+        <div class="hero-stats reveal reveal-delay-2">
+            <div class="stat-card">
+                <span class="stat-number">500+</span>
+                <span class="stat-label">Satisfied Clients</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">98%</span>
+                <span class="stat-label">Success Rate</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">3.5x</span>
+                <span class="stat-label">Average ROI</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-section">
+    <div class="container">
+        <h2 class="section-title text-center reveal">Client Success Stories</h2>
+
+        <div class="testimonials-grid">
+            <!-- Featured Testimonial -->
+            <div class="testimonial-card featured-testimonial reveal">
+                <div class="featured-badge">Featured Success</div>
+                <div class="testimonial-header">
+                    <div class="client-avatar">SM</div>
+                    <div class="client-info">
+                        <h4>Sarah Mitchell</h4>
+                        <p class="client-title">CEO, TechFlow Solutions</p>
+                    </div>
+                </div>
+                <div class="star-rating">
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                </div>
+                <p class="testimonial-quote">
+                    "NeuraTantra AI completely revolutionized our business operations. Their AI-powered analytics platform helped us identify inefficiencies we never knew existed and optimize our processes. The results exceeded all expectations."
+                </p>
+                <div class="result-metric">285% Revenue Growth</div>
+            </div>
+
+            <!-- Testimonial 1 -->
+            <div class="testimonial-card reveal reveal-delay-1">
+                <div class="testimonial-header">
+                    <div class="client-avatar">MJ</div>
+                    <div class="client-info">
+                        <h4>Marcus Johnson</h4>
+                        <p class="client-title">CTO, InnovateCorp</p>
+                    </div>
+                </div>
+                <div class="star-rating">
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                </div>
+                <p class="testimonial-quote">
+                    "The machine learning models they developed for our predictive maintenance system have saved us millions in downtime costs. Their expertise in AI is unmatched."
+                </p>
+                <div class="result-metric">60% Cost Reduction</div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card reveal reveal-delay-2">
+                <div class="testimonial-header">
+                    <div class="client-avatar">LW</div>
+                    <div class="client-info">
+                        <h4>Lisa Wang</h4>
+                        <p class="client-title">Director of Operations, DataVision</p>
+                    </div>
+                </div>
+                <div class="star-rating">
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                </div>
+                <p class="testimonial-quote">
+                    "Their natural language processing solution transformed our customer service department. We now handle 5x more queries with improved satisfaction scores."
+                </p>
+                <div class="result-metric">500% Efficiency Boost</div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="testimonial-card reveal reveal-delay-3">
+                <div class="testimonial-header">
+                    <div class="client-avatar">DR</div>
+                    <div class="client-info">
+                        <h4>David Rodriguez</h4>
+                        <p class="client-title">VP Marketing, GrowthTech</p>
+                    </div>
+                </div>
+                <div class="star-rating">
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                </div>
+                <p class="testimonial-quote">
+                    "The AI-driven personalization engine they built increased our conversion rates dramatically. Our customers now receive exactly what they need, when they need it."
+                </p>
+                <div class="result-metric">340% Conversion Increase</div>
+            </div>
+
+            <!-- Testimonial 4 -->
+            <div class="testimonial-card reveal">
+                <div class="testimonial-header">
+                    <div class="client-avatar">AK</div>
+                    <div class="client-info">
+                        <h4>Amanda Kim</h4>
+                        <p class="client-title">Head of Innovation, FutureLabs</p>
+                    </div>
+                </div>
+                <div class="star-rating">
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                </div>
+                <p class="testimonial-quote">
+                    "Working with NeuraTantra AI was a game-changer. Their computer vision solutions automated our quality control process with 99.7% accuracy."
+                </p>
+                <div class="result-metric">99.7% Accuracy Rate</div>
+            </div>
+
+            <!-- Testimonial 5 -->
+            <div class="testimonial-card reveal reveal-delay-1">
+                <div class="testimonial-header">
+                    <div class="client-avatar">JT</div>
+                    <div class="client-info">
+                        <h4>James Thompson</h4>
+                        <p class="client-title">CFO, FinanceForward</p>
+                    </div>
+                </div>
+                <div class="star-rating">
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                </div>
+                <p class="testimonial-quote">
+                    "Their fraud detection AI model has protected our company from millions in potential losses. The ROI was evident within the first month of implementation."
+                </p>
+                <div class="result-metric">$12M Loss Prevention</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <h2 class="cta-title text-gradient reveal">
+                Ready to Join Our Success Stories?
+            </h2>
+            <p class="cta-description reveal reveal-delay-1">
+                Transform your business with cutting-edge AI solutions. See how NeuraTantra AI can help you achieve remarkable results and drive unprecedented growth.
+            </p>
+            <div class="cta-buttons reveal reveal-delay-2">
+                <a href="/case-studies" class="btn btn-primary">
+                    Explore Case Studies
+                </a>
+                <a href="/demo" class="btn btn-secondary">
+                    Request Demo
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Navbar and Footer inclusion
+    document.addEventListener('DOMContentLoaded', function() {
+        // Load navbar
+        fetch('/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.body.insertAdjacentHTML('afterbegin', data);
+            })
+            .catch(error => console.log('Navbar loading error:', error));
+
+        // Load footer
+        fetch('/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.body.insertAdjacentHTML('beforeend', data);
+            })
+            .catch(error => console.log('Footer loading error:', error));
+    });
+
+    // Scroll reveal animation
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    // Observe all elements with reveal class
+    document.querySelectorAll('.reveal').forEach(el => {
+        observer.observe(el);
+    });
+
+    // Enhanced hover effects for testimonial cards
+    document.querySelectorAll('.testimonial-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-15px) scale(1.02)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    // Smooth scrolling for CTA buttons
+    document.querySelectorAll('a[href^="/"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Let normal navigation work for internal links
+            // This is just to add smooth scrolling for anchor links if any exist
+        });
+    });
+
+    // Counter animation for stats
+    function animateCounters() {
+        const counters = document.querySelectorAll('.stat-number');
+
+        counters.forEach(counter => {
+            const target = counter.textContent;
+            const isPercentage = target.includes('%');
+            const isMultiplier = target.includes('x');
+            const isNumber = target.includes('+');
+
+            let finalValue = parseInt(target.replace(/[^\d]/g, ''));
+            let currentValue = 0;
+            const increment = finalValue / 50;
+
+            const updateCounter = () => {
+                if (currentValue < finalValue) {
+                    currentValue += increment;
+                    if (isPercentage) {
+                        counter.textContent = Math.ceil(currentValue) + '%';
+                    } else if (isMultiplier) {
+                        counter.textContent = (currentValue / 10).toFixed(1) + 'x';
+                    } else if (isNumber) {
+                        counter.textContent = Math.ceil(currentValue) + '+';
+                    }
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    counter.textContent = target;
+                }
+            };
+
+            updateCounter();
+        });
+    }
+
+    // Trigger counter animation when stats section is visible
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounters();
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    });
+
+    const statsSection = document.querySelector('.hero-stats');
+    if (statsSection) {
+        statsObserver.observe(statsSection);
+    }
+</script>
+</body>
+</html>

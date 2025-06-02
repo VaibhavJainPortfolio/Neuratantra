@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuraTantra EdTech - Agentic AI for Education</title>
+    <link rel="stylesheet" href="stylu.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Additional EdTech-specific styles */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--color-bg) 0%, rgba(17, 17, 36, 0.8) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(110, 84, 194, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(76, 144, 230, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 80%, rgba(230, 96, 168, 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text .subtitle {
+            font-size: var(--font-size-xl);
+            color: var(--color-text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 50px;
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-width: 180px;
+    white-space: nowrap;
+}
+
+/* Primary Button */
+.btn-primary {
+    background: linear-gradient(135deg, #6e54c2 0%, #4c90e6 100%);
+    color: white;
+    border: 1px solid transparent;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(110, 84, 194, 0.4);
+    background: linear-gradient(135deg, #5a45a0 0%, #3a7bc8 100%);
+}
+
+/* Secondary Button */
+.btn-secondary {
+    background: transparent;
+    color: var(--color-text, #ffffff);
+    border: 2px solid rgba(110, 84, 194, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+    background: rgba(110, 84, 194, 0.1);
+    border-color: rgba(110, 84, 194, 0.8);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(110, 84, 194, 0.2);
+}
+
+/* Button Container */
+.cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+        .ai-visualization {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            background: linear-gradient(45deg, rgba(110, 84, 194, 0.1), rgba(76, 144, 230, 0.1));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: floatUp 8s ease-in-out infinite;
+        }
+
+        .ai-core {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 60px rgba(110, 84, 194, 0.3);
+            position: relative;
+        }
+
+        .ai-orbit {
+            position: absolute;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+
+        .ai-orbit:nth-child(1) {
+            width: 280px;
+            height: 280px;
+            animation-duration: 15s;
+        }
+
+        .ai-orbit:nth-child(2) {
+            width: 350px;
+            height: 350px;
+            animation-duration: 25s;
+            animation-direction: reverse;
+        }
+
+        .ai-node {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: var(--color-accent-1);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--color-accent-1);
+        }
+
+        .ai-orbit:nth-child(1) .ai-node {
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .ai-orbit:nth-child(2) .ai-node {
+            bottom: -6px;
+            right: 50%;
+            transform: translateX(50%);
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .pain-points-section {
+            padding: var(--section-spacing) 0;
+            background: linear-gradient(135deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
+        }
+
+        .pain-points-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pain-point-card {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 2.5rem;
+            text-align: center;
+            border: 1px solid var(--color-border);
+            position: relative;
+            overflow: hidden;
+            transform: translateY(0);
+            transition: all var(--transition-medium);
+        }
+
+        .pain-point-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.02), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .pain-point-card:hover::before {
+            left: 100%;
+        }
+
+        .pain-point-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(110, 84, 194, 0.3);
+            box-shadow: var(--box-shadow-hover);
+        }
+
+        .pain-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 10px 30px rgba(110, 84, 194, 0.3);
+        }
+
+        .features-section {
+            padding: var(--section-spacing) 0;
+            background: var(--color-bg);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 3rem;
+            border: 1px solid var(--color-border);
+            position: relative;
+            overflow: hidden;
+            transition: all var(--transition-medium);
+        }
+
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--box-shadow-hover);
+            border-color: rgba(110, 84, 194, 0.4);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--color-accent-1), var(--color-accent-2));
+            border-radius: var(--border-radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 25px rgba(230, 96, 168, 0.2);
+        }
+
+        .workflow-section {
+            padding: var(--section-spacing) 0;
+            background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-alt) 100%);
+        }
+
+        .workflow-diagram {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius-xl);
+            padding: 4rem 2rem;
+            margin-top: 3rem;
+            border: 1px solid var(--color-border);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .workflow-diagram::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(110, 84, 194, 0.05) 0%, rgba(76, 144, 230, 0.05) 100%);
+            z-index: 1;
+        }
+
+        .workflow-placeholder {
+            text-align: center;
+            color: var(--color-text-muted);
+            z-index: 2;
+            position: relative;
+        }
+
+        .workflow-placeholder h3 {
+            font-size: var(--font-size-2xl);
+            margin-bottom: 1rem;
+            color: var(--color-text);
+        }
+
+        .cta-section {
+            padding: var(--section-spacing) 0;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-section h2 {
+            font-size: var(--font-size-4xl);
+            color: white;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .cta-section p {
+            font-size: var(--font-size-xl);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons .btn {
+            margin: 0 1rem;
+            padding: 1rem 2.5rem;
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            min-width: 200px;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--color-primary);
+            border: 2px solid white;
+        }
+
+        .btn-white:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+
+            .ai-visualization {
+                width: 300px;
+                height: 300px;
+            }
+
+            .ai-core {
+                width: 150px;
+                height: 150px;
+            }
+
+            .ai-orbit:nth-child(1) {
+                width: 220px;
+                height: 220px;
+            }
+
+            .ai-orbit:nth-child(2) {
+                width: 280px;
+                height: 280px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .features-grid,
+            .pain-points-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .workflow-diagram {
+                padding: 3rem 1.5rem;
+            }
+
+            .cta-section h2 {
+                font-size: var(--font-size-3xl);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation will be loaded here -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>
+                        <span class="text-gradient">Agentic AI</span><br>
+                        for EdTech
+                    </h1>
+                    <p class="subtitle">
+                        Transform education with intelligent agents that personalize learning, 
+                        automate administrative tasks, and create adaptive educational experiences.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="demo.html" class="btn btn-primary">Request Demo</a>
+                        <a href="contact.html" class="btn btn-secondary">Talk to Specialist</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="ai-visualization">
+                        <div class="ai-orbit">
+                            <div class="ai-node"></div>
+                        </div>
+                        <div class="ai-orbit">
+                            <div class="ai-node"></div>
+                        </div>
+                        <div class="ai-core">
+                            <span style="font-size: 3rem; color: white;">🧠</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pain Points Section -->
+    <section class="pain-points-section">
+        <div class="container">
+            <h2 class="section-title text-center">
+                Challenges in Traditional EdTech
+            </h2>
+            <div class="pain-points-grid">
+                <div class="pain-point-card reveal">
+                    <div class="pain-icon">📚</div>
+                    <h3>One-Size-Fits-All Learning</h3>
+                    <p>Traditional platforms fail to adapt to individual learning styles, paces, and preferences, leading to disengaged students and poor outcomes.</p>
+                </div>
+                <div class="pain-point-card reveal reveal-delay-1">
+                    <div class="pain-icon">⏰</div>
+                    <h3>Administrative Overload</h3>
+                    <p>Educators spend countless hours on repetitive tasks like grading, scheduling, and progress tracking instead of focusing on teaching.</p>
+                </div>
+                <div class="pain-point-card reveal reveal-delay-2">
+                    <div class="pain-icon">📊</div>
+                    <h3>Limited Analytics & Insights</h3>
+                    <p>Lack of real-time, actionable insights makes it difficult to identify struggling students and optimize learning paths effectively.</p>
+                </div>
+                <div class="pain-point-card reveal reveal-delay-3">
+                    <div class="pain-icon">🔄</div>
+                    <h3>Static Content Delivery</h3>
+                    <p>Content remains unchanged regardless of student performance, missing opportunities for dynamic adaptation and improvement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title text-center">
+                <span class="text-gradient">NeuraTantra's</span> Agentic AI Solutions
+            </h2>
+            <div class="features-grid">
+                <div class="feature-card reveal">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Intelligent Personalization Engine</h3>
+                    <p>AI agents that continuously analyze learning patterns, adapt content difficulty, and customize learning paths for each student in real-time.</p>
+                    <ul style="margin-top: 1rem; color: var(--color-text-muted);">
+                        <li>• Dynamic content adaptation</li>
+                        <li>• Learning style recognition</li>
+                        <li>• Personalized pacing</li>
+                    </ul>
+                </div>
+                <div class="feature-card reveal reveal-delay-1">
+                    <div class="feature-icon">🤖</div>
+                    <h3>Automated Teaching Assistant</h3>
+                    <p>24/7 AI tutors that provide instant feedback, answer questions, and guide students through complex concepts with natural conversation.</p>
+                    <ul style="margin-top: 1rem; color: var(--color-text-muted);">
+                        <li>• Instant question answering</li>
+                        <li>• Contextual explanations</li>
+                        <li>• Multi-language support</li>
+                    </ul>
+                </div>
+                <div class="feature-card reveal reveal-delay-2">
+                    <div class="feature-icon">📈</div>
+                    <h3>Predictive Analytics Dashboard</h3>
+                    <p>Advanced analytics that predict student performance, identify at-risk learners, and recommend interventions before problems arise.</p>
+                    <ul style="margin-top: 1rem; color: var(--color-text-muted);">
+                        <li>• Early warning systems</li>
+                        <li>• Performance predictions</li>
+                        <li>• Intervention recommendations</li>
+                    </ul>
+                </div>
+                <div class="feature-card reveal reveal-delay-3">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Automated Administrative Tasks</h3>
+                    <p>Streamline operations with AI agents that handle grading, scheduling, progress reporting, and student communications automatically.</p>
+                    <ul style="margin-top: 1rem; color: var(--color-text-muted);">
+                        <li>• Automated grading & feedback</li>
+                        <li>• Smart scheduling</li>
+                        <li>• Progress report generation</li>
+                    </ul>
+                </div>
+                <div class="feature-card reveal">
+                    <div class="feature-icon">🧩</div>
+                    <h3>Adaptive Content Generation</h3>
+                    <p>AI that creates custom exercises, quizzes, and learning materials based on curriculum requirements and student performance data.</p>
+                    <ul style="margin-top: 1rem; color: var(--color-text-muted);">
+                        <li>• Dynamic content creation</li>
+                        <li>• Curriculum alignment</li>
+                        <li>• Difficulty optimization</li>
+                    </ul>
+                </div>
+                <div class="feature-card reveal reveal-delay-1">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Seamless Integration Hub</h3>
+                    <p>Connect with existing LMS platforms, student information systems, and educational tools through our unified API ecosystem.</p>
+                    <ul style="margin-top: 1rem; color: var(--color-text-muted);">
+                        <li>• LMS integration</li>
+                        <li>• Single sign-on support</li>
+                        <li>• Data synchronization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow Section -->
+    <section class="workflow-section">
+        <div class="container">
+            <h2 class="section-title text-center">
+                How It Works
+            </h2>
+            <div class="workflow-diagram">
+                <div class="workflow-placeholder">
+                    <h3>AI-Powered Learning Workflow</h3>
+                    <p>Interactive diagram showing the complete learning lifecycle:</p>
+                    <div style="margin-top: 2rem; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem;">
+                        <div style="text-align: center;">
+                            <div style="width: 60px; height: 60px; background: var(--color-primary); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">1</div>
+                            <span>Student Assessment</span>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="width: 60px; height: 60px; background: var(--color-secondary); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">2</div>
+                            <span>AI Analysis</span>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="width: 60px; height: 60px; background: var(--color-accent-1); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">3</div>
+                            <span>Content Adaptation</span>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="width: 60px; height: 60px; background: var(--color-accent-2); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">4</div>
+                            <span>Continuous Learning</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Education?</h2>
+                <p>Join leading educational institutions that are already using NeuraTantra's agentic AI to revolutionize learning experiences.</p>
+                <div class="cta-buttons">
+                    <a href="demo.html" class="btn btn-white">Request Demo</a>
+                    <a href="contact.html" class="btn btn-outline">Talk to Specialist</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer will be loaded here -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // Load navbar and footer
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+                initializeNavbar();
+            })
+            .catch(error => console.log('Navbar not found, using default header'));
+
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            })
+            .catch(error => console.log('Footer not found'));
+
+        // Initialize navbar functionality
+        function initializeNavbar() {
+            // Header scroll effect
+            const header = document.querySelector('.site-header');
+            if (header) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                });
+            }
+
+            // Mobile menu toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navContainer = document.querySelector('.nav-container');
+            
+            if (menuToggle && navContainer) {
+                menuToggle.addEventListener('click', () => {
+                    menuToggle.classList.toggle('active');
+                    navContainer.classList.toggle('active');
+                });
+            }
+        }
+
+        // Scroll reveal animation
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add intersection observer for more advanced animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all reveal elements
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

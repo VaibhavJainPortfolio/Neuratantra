@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuraTantra AI - Documentation</title>
+    <link rel="stylesheet" href="stylu.css">
+    <style>
+        body {
+            margin: 0;
+            background: var(--color-bg);
+        }
+
+        .documentation-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .doc-sidebar {
+            width: 280px;
+            background: var(--color-bg-alt);
+            border-right: 1px solid var(--color-border);
+            padding: 2rem 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .doc-sidebar-header {
+            padding: 0 2rem 2rem;
+            border-bottom: 1px solid var(--color-border);
+            margin-bottom: 2rem;
+        }
+
+        .doc-sidebar-title {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .doc-sidebar-subtitle {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-muted);
+        }
+
+        .doc-nav-section {
+            margin-bottom: 2rem;
+        }
+
+        .doc-nav-section-title {
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            color: var(--color-text);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .doc-nav-links {
+            list-style: none;
+        }
+
+        .doc-nav-links li {
+            margin-bottom: 0.25rem;
+        }
+
+        .doc-nav-links a {
+            display: block;
+            padding: 0.75rem 2rem;
+            color: var(--color-text-muted);
+            font-size: var(--font-size-sm);
+            transition: all var(--transition-fast);
+            border-left: 3px solid transparent;
+        }
+
+        .doc-nav-links a:hover,
+        .doc-nav-links a.active {
+            color: var(--color-text);
+            background: rgba(110, 84, 194, 0.1);
+            border-left-color: var(--color-primary);
+        }
+
+        /* Main Content */
+        .doc-main {
+            margin-left: 280px;
+            flex: 1;
+            padding: 3rem;
+            max-width: calc(100% - 280px);
+        }
+
+        .doc-content {
+            max-width: 800px;
+        }
+
+        .doc-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .doc-title {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .doc-description {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-muted);
+            line-height: 1.8;
+        }
+
+        /* Content Sections */
+        .doc-section {
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .doc-section:nth-child(2) { animation-delay: 0.1s; }
+        .doc-section:nth-child(3) { animation-delay: 0.2s; }
+        .doc-section:nth-child(4) { animation-delay: 0.3s; }
+
+        .doc-section-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--color-text);
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .doc-section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 4px;
+            height: 1.5rem;
+            background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
+            border-radius: 2px;
+        }
+
+        .doc-subsection {
+            margin-bottom: 2.5rem;
+        }
+
+        .doc-subsection-title {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--color-text);
+        }
+
+        .doc-text {
+            font-size: var(--font-size-md);
+            line-height: 1.8;
+            color: var(--color-text);
+            margin-bottom: 1.5rem;
+        }
+
+        .doc-text-muted {
+            color: var(--color-text-muted);
+        }
+
+        /* Code Blocks */
+        .code-block {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius-md);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .code-block::before {
+            content: attr(data-language);
+            position: absolute;
+            top: 0.5rem;
+            right: 1rem;
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .code-block code {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: var(--font-size-sm);
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        .code-inline {
+            background: rgba(110, 84, 194, 0.2);
+            color: var(--color-primary);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9em;
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius-md);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .info-box.warning {
+            border-left-color: #f59e0b;
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        .info-box.success {
+            border-left-color: var(--color-accent-2);
+            background: rgba(46, 203, 175, 0.1);
+        }
+
+        .info-box-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--color-text);
+        }
+
+        .info-box-content {
+            color: var(--color-text-muted);
+            line-height: 1.6;
+        }
+
+        /* Lists */
+        .doc-list {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .doc-list li {
+            margin-bottom: 0.75rem;
+            color: var(--color-text);
+            line-height: 1.6;
+            position: relative;
+        }
+
+        .doc-list li::before {
+            content: '→';
+            color: var(--color-primary);
+            font-weight: bold;
+            position: absolute;
+            left: -1.5rem;
+        }
+
+        /* Tables */
+        .doc-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+        }
+
+        .doc-table th,
+        .doc-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .doc-table th {
+            background: rgba(110, 84, 194, 0.1);
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .doc-table td {
+            color: var(--color-text-muted);
+        }
+
+        .doc-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 992px) {
+            .doc-sidebar {
+                transform: translateX(-100%);
+                transition: transform var(--transition-medium);
+            }
+
+            .doc-sidebar.active {
+                transform: translateX(0);
+            }
+
+            .doc-main {
+                margin-left: 0;
+                max-width: 100%;
+                padding: 2rem 1.5rem;
+            }
+
+            .sidebar-toggle {
+                position: fixed;
+                top: 2rem;
+                left: 2rem;
+                z-index: 200;
+                background: var(--color-primary);
+                color: white;
+                border: none;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                box-shadow: var(--box-shadow);
+            }
+        }
+
+        @media screen and (min-width: 993px) {
+            .sidebar-toggle {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+
+    <div class="documentation-container">
+        <!-- Sidebar Navigation -->
+        <nav class="doc-sidebar" id="docSidebar">
+            <div class="doc-sidebar-header">
+                <div class="doc-sidebar-title">Documentation</div>
+                <div class="doc-sidebar-subtitle">NeuraTantra AI Platform</div>
+            </div>
+
+            <div class="doc-nav-section">
+                <div class="doc-nav-section-title">Getting Started</div>
+                <ul class="doc-nav-links">
+                    <li><a href="#overview" class="active">Overview</a></li>
+                    <li><a href="#installation">Installation</a></li>
+                    <li><a href="#quick-start">Quick Start</a></li>
+                    <li><a href="#authentication">Authentication</a></li>
+                </ul>
+            </div>
+
+            <div class="doc-nav-section">
+                <div class="doc-nav-section-title">API Reference</div>
+                <ul class="doc-nav-links">
+                    <li><a href="#endpoints">Endpoints</a></li>
+                    <li><a href="#models">Models</a></li>
+                    <li><a href="#responses">Responses</a></li>
+                    <li><a href="#errors">Error Handling</a></li>
+                </ul>
+            </div>
+
+            <div class="doc-nav-section">
+                <div class="doc-nav-section-title">Advanced</div>
+                <ul class="doc-nav-links">
+                    <li><a href="#webhooks">Webhooks</a></li>
+                    <li><a href="#rate-limiting">Rate Limiting</a></li>
+                    <li><a href="#best-practices">Best Practices</a></li>
+                    <li><a href="#troubleshooting">Troubleshooting</a></li>
+                </ul>
+            </div>
+
+            <div class="doc-nav-section">
+                <div class="doc-nav-section-title">Resources</div>
+                <ul class="doc-nav-links">
+                    <li><a href="#examples">Examples</a></li>
+                    <li><a href="#sdks">SDKs</a></li>
+                    <li><a href="#changelog">Changelog</a></li>
+                    <li><a href="#support">Support</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="doc-main">
+            <div class="doc-content">
+                <!-- Header -->
+                <header class="doc-header">
+                    <h1 class="doc-title">NeuraTantra AI API</h1>
+                    <p class="doc-description">
+                        Welcome to the NeuraTantra AI API documentation. This comprehensive guide will help you integrate our advanced AI capabilities into your applications with ease and efficiency.
+                    </p>
+                </header>
+
+                <!-- Overview Section -->
+                <section class="doc-section" id="overview">
+                    <h2 class="doc-section-title">Overview</h2>
+                    
+                    <div class="doc-subsection">
+                        <h3 class="doc-subsection-title">What is NeuraTantra AI?</h3>
+                        <p class="doc-text">
+                            NeuraTantra AI is a cutting-edge artificial intelligence platform that provides developers with powerful machine learning models and tools. Our API offers seamless integration for natural language processing, computer vision, and predictive analytics.
+                        </p>
+                        
+                        <div class="info-box">
+                            <div class="info-box-title">🚀 Key Features</div>
+                            <div class="info-box-content">
+                                Our platform includes advanced neural networks, real-time processing capabilities, and enterprise-grade security to power your next-generation applications.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="doc-subsection">
+                        <h3 class="doc-subsection-title">Core Capabilities</h3>
+                        <ul class="doc-list">
+                            <li><strong>Natural Language Processing:</strong> Advanced text analysis, sentiment detection, and language generation</li>
+                            <li><strong>Computer Vision:</strong> Image recognition, object detection, and visual content analysis</li>
+                            <li><strong>Predictive Analytics:</strong> Time series forecasting and pattern recognition</li>
+                            <li><strong>Real-time Processing:</strong> Sub-second response times with streaming capabilities</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Installation Section -->
+                <section class="doc-section" id="installation">
+                    <h2 class="doc-section-title">Installation</h2>
+                    
+                    <div class="doc-subsection">
+                        <h3 class="doc-subsection-title">API Key Setup</h3>
+                        <p class="doc-text">
+                            Before you can start using the NeuraTantra AI API, you'll need to obtain an API key from your dashboard.
+                        </p>
+                        
+                        <div class="code-block" data-language="bash">
+                            <code># Set your API key as an environment variable
+export NEURATANTRA_API_KEY="your_api_key_here"</code>
+                        </div>
+                        
+                        <div class="info-box warning">
+                            <div class="info-box-title">⚠️ Security Notice</div>
+                            <div class="info-box-content">
+                                Never expose your API key in client-side code or public repositories. Always keep it secure on your server.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="doc-subsection">
+                        <h3 class="doc-subsection-title">SDK Installation</h3>
+                        <p class="doc-text">
+                            Install our official SDKs for your preferred programming language:
+                        </p>
+                        
+                        <div class="code-block" data-language="python">
+                            <code># Python
+pip install neuratantra-ai</code>
+                        </div>
+                        
+                        <div class="code-block" data-language="javascript">
+                            <code># Node.js
+npm install @neuratantra/ai-sdk</code>
+                        </div>
+                        
+                        <div class="code-block" data-language="bash">
+                            <code># cURL (REST API)
+curl -X GET https://api.neuratantra.ai/v1/models \
+  -H "Authorization: Bearer YOUR_API_KEY"</code>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Quick Start Section -->
+                <section class="doc-section" id="quick-start">
+                    <h2 class="doc-section-title">Quick Start</h2>
+                    
+                    <div class="doc-subsection">
+                        <h3 class="doc-subsection-title">Your First API Call</h3>
+                        <p class="doc-text">
+                            Let's make your first API call to analyze text sentiment. Here's a simple example:
+                        </p>
+                        
+                        <div class="code-block" data-language="python">
+                            <code>import neuratantra
+
+# Initialize the client
+client = neuratantra.Client(api_key="your_api_key")
+
+# Analyze sentiment
+response = client.nlp.analyze_sentiment(
+    text="I love using NeuraTantra AI for my projects!"
+)
+
+print(f"Sentiment: {response.sentiment}")
+print(f"Confidence: {response.confidence}")</code>
+                        </div>
+                        
+                        <div class="info-box success">
+                            <div class="info-box-title">✅ Expected Output</div>
+                            <div class="info-box-content">
+                                Sentiment: positive<br>
+                                Confidence: 0.94
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="doc-subsection">
+                        <h3 class="doc-subsection-title">Response Format</h3>
+                        <p class="doc-text">
+                            All API responses follow a consistent JSON structure:
+                        </p>
+                        
+                        <div class="code-block" data-language="json">
+                            <code>{
+  "success": true,
+  "data": {
+    "sentiment": "positive",
+    "confidence": 0.94,
+    "processing_time": 0.12
+  },
+  "meta": {
+    "model_version": "v2.1",
+    "request_id": "req_123456789"
+  }
+}</code>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Authentication Section -->
+                <section class="doc-section" id="authentication">
+                    <h2 class="doc-section-title">Authentication</h2>
+                    
+                    <div class="doc-subsection">
+                        <h3 class="doc-subsection-title">API Key Authentication</h3>
+                        <p class="doc-text">
+                            NeuraTantra AI uses API key authentication. Include your API key in the <code class="code-inline">Authorization</code> header with the <code class="code-inline">Bearer</code> prefix:
+                        </p>
+                        
+                        <div class="code-block" data-language="http">
+                            <code>Authorization: Bearer YOUR_API_KEY</code>
+                        </div>
+                    </div>
+
+                    <div class="doc-subsection">
+                        <h3 class="doc-subsection-title">Authentication Errors</h3>
+                        <p class="doc-text">
+                            Common authentication errors and their solutions:
+                        </p>
+                        
+                        <table class="doc-table">
+                            <thead>
+                                <tr>
+                                    <th>Error Code</th>
+                                    <th>Description</th>
+                                    <th>Solution</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>401</td>
+                                    <td>Unauthorized - Invalid API key</td>
+                                    <td>Check your API key and ensure it's correctly formatted</td>
+                                </tr>
+                                <tr>
+                                    <td>403</td>
+                                    <td>Forbidden - API key lacks permissions</td>
+                                    <td>Verify your subscription plan includes the requested feature</td>
+                                </tr>
+                                <tr>
+                                    <td>429</td>
+                                    <td>Rate limit exceeded</td>
+                                    <td>Reduce request frequency or upgrade your plan</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- API Endpoints Section -->
+                <section class="doc-section" id="endpoints">
+                    <h2 class="doc-section-title">API Endpoints</h2>
+                    
+                    <div class="doc-subsection">
+                        <h3 class="doc-subsection-title">Base URL</h3>
+                        <p class="doc-text">
+                            All API requests should be made to our base URL:
+                        </p>
+                        
+                        <div class="code-block" data-language="text">
+                            <code>https://api.neuratantra.ai/v1</code>
+                        </div>
+                    </div>
+
+                    <div class="doc-subsection">
+                        <h3 class="doc-subsection-title">Available Endpoints</h3>
+                        
+                        <table class="doc-table">
+                            <thead>
+                                <tr>
+                                    <th>Method</th>
+                                    <th>Endpoint</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>GET</td>
+                                    <td>/models</td>
+                                    <td>List available AI models</td>
+                                </tr>
+                                <tr>
+                                    <td>POST</td>
+                                    <td>/nlp/analyze</td>
+                                    <td>Analyze text with NLP models</td>
+                                </tr>
+                                <tr>
+                                    <td>POST</td>
+                                    <td>/vision/detect</td>
+                                    <td>Object detection in images</td>
+                                </tr>
+                                <tr>
+                                    <td>POST</td>
+                                    <td>/predict/forecast</td>
+                                    <td>Time series forecasting</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Models Section -->
+                <section class="doc-section" id="models">
+                    <h2 class="doc-section-title">AI Models</h2>
+                    
+                    <div class="doc-subsection">
+                        <h3 class="doc-subsection-title">Available Models</h3>
+                        <p class="doc-text">
+                            NeuraTantra AI offers various specialized models for different use cases:
+                        </p>
+                        
+                        <ul class="doc-list">
+                            <li><strong>neuratantra-nlp-v2:</strong> Advanced natural language processing</li>
+                            <li><strong>neuratantra-vision-v1:</strong> Computer vision and image analysis</li>
+                            <li><strong>neuratantra-forecast-v1:</strong> Predictive analytics and forecasting</li>
+                            <li><strong>neuratantra-chat-v1:</strong> Conversational AI and chatbot capabilities</li>
+                        </ul>
+                    </div>
+
+                    <div class="doc-subsection">
+                        <h3 class="doc-subsection-title">Model Selection</h3>
+                        <p class="doc-text">
+                            Choose the right model for your use case by specifying the model parameter in your requests:
+                        </p>
+                        
+                        <div class="code-block" data-language="python">
+                            <code>response = client.nlp.analyze(
+    text="Your text here",
+    model="neuratantra-nlp-v2"
+)</code>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Best Practices Section -->
+                <section class="doc-section" id="best-practices">
+                    <h2 class="doc-section-title">Best Practices</h2>
+                    
+                    <div class="doc-subsection">
+                        <h3 class="doc-subsection-title">Performance Optimization</h3>
+                        <ul class="doc-list">
+                            <li>Batch multiple requests when possible to reduce latency</li>
+                            <li>Implement proper error handling and retry logic</li>
+                            <li>Cache responses for repeated queries</li>
+                            <li>Use appropriate timeout settings for your use case</li>
+                        </ul>
+                    </div>
+
+                    <div class="doc-subsection">
+                        <h3 class="doc-subsection-title">Security Best Practices</h3>
+                        <ul class="doc-list">
+                            <li>Store API keys securely and rotate them regularly</li>
+                            <li>Use HTTPS for all API communications</li>
+                            <li>Implement rate limiting on your client side</li>
+                            <li>Monitor API usage and set up alerts for unusual activity</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Sidebar toggle for mobile
+        function toggleSidebar() {
+            const sidebar = document.getElementById('docSidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        // Smooth scrolling and active link management
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.doc-nav-links a');
+            const sections = document.querySelectorAll('.doc-section');
+
+            // Add click event listeners to nav links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    
+                    if (targetSection) {
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Update active link
+                        navLinks.forEach(l => l.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        // Close mobile sidebar
+                        if (window.innerWidth <= 992) {
+                            document.getElementById('docSidebar').classList.remove('active');
+                        }
+                    }
+                });
+            });
+
+            // Update active link on scroll
+            function updateActiveLink() {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (window.pageYOffset >= sectionTop - 200) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateActiveLink);
+            updateActiveLink(); // Call once to set initial state
+
+            // Close mobile sidebar when clicking outside
+            document.addEventListener('click', function(e) {
+                const sidebar = document.getElementById('docSidebar');
+                const toggleBtn = document.querySelector('.sidebar-toggle');
+                
+                if (window.innerWidth <= 992 && 
+                    !sidebar.contains(e.target) && 
+                    !toggleBtn.contains(e.target) && 
+                    sidebar.classList.contains('active')) {
+                    sidebar.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
