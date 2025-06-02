@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - NeuraTantra AI</title>
+    <link rel="stylesheet" href="/stylu.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Hero Section Styles */
+        .hero-about {
+            background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-alt) 100%);
+            padding: calc(var(--header-height) + 4rem) 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(110, 84, 194, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(76, 144, 230, 0.15) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: var(--font-size-5xl);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: var(--font-size-xl);
+            color: var(--color-text-muted);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        /* Mission Vision Section */
+        .mission-vision {
+            padding: var(--section-spacing) 0;
+            background: linear-gradient(135deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
+        }
+
+        .mission-vision-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .mission-card, .vision-card {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 3rem;
+            border: 1px solid var(--color-border);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            transition: all var(--transition-medium);
+        }
+
+        .mission-card::before, .vision-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+        }
+
+        .mission-card:hover, .vision-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(110, 84, 194, 0.4);
+            box-shadow: var(--box-shadow-hover);
+        }
+
+        .mission-icon, .vision-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .card-title-large {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--color-text);
+        }
+
+        .card-description {
+            color: var(--color-text-muted);
+            line-height: 1.7;
+            font-size: var(--font-size-lg);
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            padding: var(--section-spacing) 0;
+            background: var(--color-bg);
+        }
+
+        .timeline-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius-md);
+            padding: 2rem;
+            border: 1px solid var(--color-border);
+            backdrop-filter: blur(10px);
+            position: relative;
+            margin: 0 2rem;
+            transition: all var(--transition-medium);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow-hover);
+            border-color: rgba(110, 84, 194, 0.4);
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            border: 4px solid var(--color-bg);
+        }
+
+        .timeline-year {
+            font-size: var(--font-size-sm);
+            color: var(--color-primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--color-text);
+        }
+
+        .timeline-description {
+            color: var(--color-text-muted);
+            line-height: 1.6;
+        }
+
+        /* India First Section */
+        .india-first {
+            padding: var(--section-spacing) 0;
+            background: linear-gradient(135deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
+            position: relative;
+        }
+
+        .india-first::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 80% 30%, rgba(230, 96, 168, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 90% 70%, rgba(46, 203, 175, 0.1) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .india-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .philosophy-item {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius-md);
+            padding: 2rem;
+            border: 1px solid var(--color-border);
+            backdrop-filter: blur(10px);
+            transition: all var(--transition-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .philosophy-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--color-accent-1), var(--color-accent-2));
+        }
+
+        .philosophy-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow-hover);
+            border-color: rgba(230, 96, 168, 0.4);
+        }
+
+        .philosophy-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, var(--color-accent-1), var(--color-accent-2));
+            border-radius: var(--border-radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .philosophy-title {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--color-text);
+        }
+
+        .philosophy-description {
+            color: var(--color-text-muted);
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: var(--section-spacing) 0;
+            background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-alt) 100%);
+            text-align: center;
+            position: relative;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 30% 40%, rgba(110, 84, 194, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(76, 144, 230, 0.2) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .cta-description {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-muted);
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 992px) {
+            .mission-vision-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .timeline-line {
+                left: 30px;
+            }
+
+            .timeline-item {
+                flex-direction: row !important;
+                padding-left: 60px;
+            }
+
+            .timeline-item:nth-child(even) {
+                flex-direction: row !important;
+            }
+
+            .timeline-dot {
+                left: 30px;
+            }
+
+            .timeline-content {
+                margin: 0;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .hero-title {
+                font-size: var(--font-size-4xl);
+            }
+
+            .hero-subtitle {
+                font-size: var(--font-size-lg);
+            }
+
+            .mission-card, .vision-card {
+                padding: 2rem;
+            }
+
+            .philosophy-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-title {
+                font-size: var(--font-size-3xl);
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Navbar will be loaded here -->
+<div id="navbar-placeholder"></div>
+
+<!-- Hero Section -->
+<section class="hero-about">
+    <div class="container">
+        <div class="hero-content reveal">
+            <h1 class="hero-title">Our Story</h1>
+            <p class="hero-subtitle">
+                Born from the vision of democratizing AI for India, NeuraTantra represents the convergence of ancient wisdom and cutting-edge technology. We're building the future of artificial intelligence, rooted in Indian values and designed for global impact.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Mission and Vision Section -->
+<section class="mission-vision">
+    <div class="container">
+        <div class="mission-vision-grid">
+            <div class="mission-card reveal">
+                <div class="mission-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L13.09 8.26L16.5 3L14.74 9.74L20 5L15.26 10.26L22 12L15.74 13.09L21 16.5L14.26 14.74L19 20L13.74 15.26L12 22L10.26 15.74L9 21L9.74 14.26L4 19L8.26 13.74L2 12L8.26 10.91L3 7.5L9.74 9.26L5 4L10.26 8.74L12 2Z" fill="white"/>
+                    </svg>
+                </div>
+                <h3 class="card-title-large">Our Mission</h3>
+                <p class="card-description">
+                    To democratize artificial intelligence by creating accessible, ethical, and culturally aware AI solutions that empower individuals and organizations across India to harness the transformative power of technology while preserving our rich heritage and values.
+                </p>
+            </div>
+
+            <div class="vision-card reveal reveal-delay-1">
+                <div class="vision-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 13.5C14.8 13.8 14.4 14 14 14H10L8.2 17.2C7.9 17.7 7.3 18 6.7 18H2V16H6.2L8 13H14L19.8 7H21V9ZM12 8C12.6 8 13 8.4 13 9S12.6 10 12 10 11 9.6 11 9 11.4 8 12 8Z" fill="white"/>
+                    </svg>
+                </div>
+                <h3 class="card-title-large">Our Vision</h3>
+                <p class="card-description">
+                    To establish India as a global leader in ethical AI innovation, creating a future where artificial intelligence seamlessly integrates with human creativity and wisdom, fostering inclusive growth and sustainable development for generations to come.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Timeline Section -->
+<section class="timeline-section">
+    <div class="container">
+        <h2 class="section-title text-center reveal">Journey Milestones</h2>
+        <div class="timeline-container">
+            <div class="timeline-line"></div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2024</div>
+                    <h3 class="timeline-title">Foundation & Vision</h3>
+                    <p class="timeline-description">
+                        NeuraTantra was founded with the ambitious goal of making AI accessible to every Indian. Our founding team came together with decades of combined experience in AI research and Indian technology innovation.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal reveal-delay-1">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">Early 2024</div>
+                    <h3 class="timeline-title">India-First AI Framework</h3>
+                    <p class="timeline-description">
+                        Developed our proprietary AI framework designed specifically for Indian languages, cultural contexts, and business needs. This became the foundation for all our future innovations.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal reveal-delay-2">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">Mid 2024</div>
+                    <h3 class="timeline-title">First Product Launch</h3>
+                    <p class="timeline-description">
+                        Successfully launched our first AI-powered solution, serving over 1,000 businesses across India within the first month. This validated our market approach and product-market fit.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal reveal-delay-3">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">Present</div>
+                    <h3 class="timeline-title">Scaling Innovation</h3>
+                    <p class="timeline-description">
+                        Today, we're expanding our AI solutions across multiple industries, building partnerships with educational institutions, and preparing for our next phase of growth to reach millions of users.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- India-First Philosophy Section -->
+<section class="india-first">
+    <div class="container">
+        <div class="india-content">
+            <h2 class="section-title text-center reveal">India-First Philosophy</h2>
+            <p class="text-center reveal" style="max-width: 800px; margin: 0 auto 3rem; color: var(--color-text-muted); font-size: var(--font-size-lg);">
+                Our approach to AI development is deeply rooted in Indian values, addressing local challenges while building for global excellence.
+            </p>
+
+            <div class="philosophy-grid">
+                <div class="philosophy-item reveal">
+                    <div class="philosophy-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L13.5 8.5L20 7L14.5 12L20 17L13.5 15.5L12 22L10.5 15.5L4 17L9.5 12L4 7L10.5 8.5L12 2Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <h3 class="philosophy-title">Cultural Intelligence</h3>
+                    <p class="philosophy-description">
+                        Our AI systems understand and respect Indian cultural nuances, languages, and traditions, ensuring technology that truly serves our diverse nation.
+                    </p>
+                </div>
+
+                <div class="philosophy-item reveal reveal-delay-1">
+                    <div class="philosophy-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12S6.48 22 12 22 22 17.52 22 12 17.52 2 12 2ZM13 17H11V15H13V17ZM13 13H11V7H13V13Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <h3 class="philosophy-title">Ethical Foundation</h3>
+                    <p class="philosophy-description">
+                        Built on principles of transparency, fairness, and responsibility, our AI solutions prioritize human welfare and societal benefit over pure technological advancement.
+                    </p>
+                </div>
+
+                <div class="philosophy-item reveal reveal-delay-2">
+                    <div class="philosophy-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 7V3H2V21H22V7H12ZM6 19H4V17H6V19ZM6 15H4V13H6V15ZM6 11H4V9H6V11ZM6 7H4V5H6V7ZM10 19H8V17H10V19ZM10 15H8V13H10V15ZM10 11H8V9H10V11ZM10 7H8V5H10V7ZM20 19H12V17H14V15H12V13H14V11H12V9H20V19ZM18 11H16V13H18V11ZM18 15H16V17H18V15Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <h3 class="philosophy-title">Local Solutions</h3>
+                    <p class="philosophy-description">
+                        Addressing uniquely Indian challenges like linguistic diversity, digital literacy gaps, and infrastructure constraints with innovative AI approaches.
+                    </p>
+                </div>
+
+                <div class="philosophy-item reveal reveal-delay-3">
+                    <div class="philosophy-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 6H16L14 4H10L8 6H4C2.9 6 2 6.9 2 8V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V8C22 6.9 21.1 6 20 6ZM12 17C9.24 17 7 14.76 7 12S9.24 7 12 7 17 9.24 17 12 14.76 17 12 17ZM12 9C10.34 9 9 10.34 9 12S10.34 15 12 15 15 13.66 15 12 13.66 9 12 9Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <h3 class="philosophy-title">Global Standards</h3>
+                    <p class="philosophy-description">
+                        While rooted in India, our solutions meet international quality and security standards, enabling seamless global adoption and collaboration.
+                    </p>
+                </div>
+
+                <div class="philosophy-item reveal reveal-delay-1">
+                    <div class="philosophy-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5ZM19 21H8V7H19V21Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <h3 class="philosophy-title">Inclusive Growth</h3>
+                    <p class="philosophy-description">
+                        Ensuring our AI innovations reach across economic and social divides, empowering small businesses, rural communities, and emerging entrepreneurs.
+                    </p>
+                </div>
+
+                <div class="philosophy-item reveal reveal-delay-2">
+                    <div class="philosophy-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 11C11.21 11 13 9.21 13 7S11.21 3 9 3 5 4.79 5 7 6.79 11 9 11ZM9 9C7.9 9 7 8.1 7 7S7.9 5 9 5 11 5.9 11 7 10.1 9 9 9ZM15.39 13.56C15.62 13.85 15.78 14.21 15.85 14.61L16.36 17.55C16.4 17.77 16.35 17.99 16.23 18.16C16.11 18.33 15.92 18.44 15.7 18.44H9.3C9.08 18.44 8.89 18.33 8.77 18.16C8.65 17.99 8.6 17.77 8.64 17.55L9.15 14.61C9.22 14.21 9.38 13.85 9.61 13.56L12 10.5L15.39 13.56Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <h3 class="philosophy-title">Continuous Learning</h3>
+                    <p class="philosophy-description">
+                        Embracing the Indian tradition of lifelong learning, our AI systems continuously evolve and adapt, learning from diverse user interactions and feedback.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content reveal">
+            <h2 class="cta-title">Join the Journey</h2>
+            <p class="cta-description">
+                Be part of India's AI revolution. Whether you're a developer, entrepreneur, researcher, or simply someone passionate about technology's potential to transform lives, there's a place for you in the NeuraTantra ecosystem.
+            </p>
+            <div class="cta-buttons">
+                <a href="/careers" class="btn btn-primary">Explore Careers</a>
+                <a href="/contact" class="btn btn-secondary">Partner With Us</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer will be loaded here -->
+<div id="footer-placeholder"></div>
+
+<script>
+    // Load navbar and footer
+    fetch('/navbar.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('navbar-placeholder').innerHTML = data;
+
+            // Initialize navbar functionality
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navContainer = document.querySelector('.nav-container');
+
+            if (menuToggle && navContainer) {
+                menuToggle.addEventListener('click', () => {
+                    menuToggle.classList.toggle('active');
+                    navContainer.classList.toggle('active');
+                });
+            }
+
+            // Header scroll effect
+            const header = document.querySelector('.site-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        });
+
+    fetch('/footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-placeholder').innerHTML = data;
+        });
+
+    // Scroll reveal animation
+    function reveal() {
+        const reveals = document.querySelectorAll('.reveal');
+
+        for (let i = 0; i < reveals.length; i++) {
+            const windowHeight = window.innerHeight;
+            const elementTop = reveals[i].getBoundingClientRect().top;
+            const elementVisible = 150;
+
+            if (elementTop < windowHeight - elementVisible) {
+                reveals[i].classList.add('active');
+            } else {
+                reveals[i].classList.remove('active');
+            }
+        }
+    }
+
+    window.addEventListener('scroll', reveal);
+    reveal(); // Check on page load
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>

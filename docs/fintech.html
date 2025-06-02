@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinTech Solutions - NeuraTantra AI</title>
+    <link rel="stylesheet" href="/stylu.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Page-specific styles */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-alt) 50%, var(--color-bg) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(110, 84, 194, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(76, 144, 230, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(230, 96, 168, 0.1) 0%, transparent 40%);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-title {
+            font-size: var(--font-size-5xl);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: var(--font-size-xl);
+            color: var(--color-text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.4;
+        }
+
+        .hero-visual {
+            flex: 1;
+            position: relative;
+            height: 500px;
+        }
+
+        .fintech-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .fintech-icon {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .fintech-icon:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .fintech-icon:nth-child(2) { top: 10%; right: 20%; animation-delay: 1s; }
+        .fintech-icon:nth-child(3) { bottom: 30%; left: 15%; animation-delay: 2s; }
+        .fintech-icon:nth-child(4) { bottom: 15%; right: 25%; animation-delay: 3s; }
+        .fintech-icon:nth-child(5) { top: 50%; right: 10%; animation-delay: 4s; }
+
+        .challenges-section {
+            padding: var(--section-spacing) 0;
+            background: var(--color-bg-alt);
+        }
+
+        /* Button Base Styles */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 50px;
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-width: 180px;
+    white-space: nowrap;
+}
+
+/* Primary Button */
+.btn-primary {
+    background: linear-gradient(135deg, #6e54c2 0%, #4c90e6 100%);
+    color: white;
+    border: 1px solid transparent;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(110, 84, 194, 0.4);
+    background: linear-gradient(135deg, #5a45a0 0%, #3a7bc8 100%);
+}
+
+/* Secondary Button */
+.btn-secondary {
+    background: transparent;
+    color: var(--color-text, #ffffff);
+    border: 2px solid rgba(110, 84, 194, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+    background: rgba(110, 84, 194, 0.1);
+    border-color: rgba(110, 84, 194, 0.8);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(110, 84, 194, 0.2);
+}
+
+/* Button Container */
+.cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+/* CSS Variables (add these if they're missing) */
+:root {
+    --font-size-md: 1rem;
+    --color-text: #ffffff;
+    --transition-medium: 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .cta-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 280px;
+        padding: 1.2rem 2rem;
+    }
+}
+
+        .challenges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .challenge-card {
+            background: var(--color-card-bg);
+            padding: 2rem;
+            border-radius: var(--border-radius-lg);
+            border: 1px solid var(--color-border);
+            position: relative;
+            overflow: hidden;
+            transition: all var(--transition-medium);
+        }
+
+        .challenge-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(230, 96, 168, 0.3);
+        }
+
+        .challenge-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-accent-1), var(--color-accent-2));
+        }
+
+        .challenge-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--color-accent-1), var(--color-accent-2));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .solutions-section {
+            padding: var(--section-spacing) 0;
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .solution-card {
+            background: linear-gradient(145deg, var(--color-card-bg), rgba(110, 84, 194, 0.05));
+            padding: 2.5rem;
+            border-radius: var(--border-radius-lg);
+            border: 1px solid var(--color-border);
+            position: relative;
+            transition: all var(--transition-medium);
+        }
+
+        .solution-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(110, 84, 194, 0.2);
+        }
+
+        .solution-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .solution-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            border-radius: var(--border-radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+        }
+
+        .integration-section {
+            padding: var(--section-spacing) 0;
+            background: var(--color-bg-alt);
+        }
+
+        .integration-flow {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 3rem;
+            margin-top: 3rem;
+            border: 1px solid var(--color-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .flow-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            position: relative;
+        }
+
+        .flow-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .step-arrow {
+            position: absolute;
+            top: 25px;
+            right: -50%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-primary), transparent);
+            opacity: 0.5;
+        }
+
+        .flow-step:last-child .step-arrow {
+            display: none;
+        }
+
+        .security-section {
+            padding: var(--section-spacing) 0;
+        }
+
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .security-item {
+            display: flex;
+            align-items: center;
+            background: var(--color-card-bg);
+            padding: 1.5rem;
+            border-radius: var(--border-radius-md);
+            border: 1px solid var(--color-border);
+            transition: all var(--transition-medium);
+        }
+
+        .security-item:hover {
+            border-color: var(--color-accent-2);
+            background: rgba(46, 203, 175, 0.05);
+        }
+
+        .security-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, var(--color-accent-2), var(--color-secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .cta-section {
+            padding: var(--section-spacing) 0;
+            background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-alt) 100%);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stats-section {
+            padding: 4rem 0;
+            background: rgba(110, 84, 194, 0.05);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--color-text-muted);
+            font-size: var(--font-size-sm);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-title {
+                font-size: var(--font-size-3xl);
+            }
+
+            .hero-visual {
+                height: 300px;
+            }
+
+            .flow-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .step-arrow {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-bg"></div>
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-text reveal">
+                <h1 class="hero-title">
+                    <span class="text-gradient">Agentic AI</span> in FinTech
+                </h1>
+                <p class="hero-subtitle">
+                    Driving financial intelligence and risk automation with cutting-edge AI agents that transform traditional banking and financial services.
+                </p>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary">Schedule a Demo</button>
+                    <button class="btn btn-secondary">Explore Integration</button>
+                </div>
+            </div>
+            <div class="hero-visual reveal reveal-delay-1">
+                <div class="fintech-icons">
+                    <div class="fintech-icon">
+                        <svg width="40" height="40" fill="currentColor" style="color: var(--color-primary)">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                    </div>
+                    <div class="fintech-icon">
+                        <svg width="40" height="40" fill="currentColor" style="color: var(--color-secondary)">
+                            <path d="M11 9h2V7h-2m1 13c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m0-18A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m-1 15h2v-6h-2v6z"/>
+                        </svg>
+                    </div>
+                    <div class="fintech-icon">
+                        <svg width="40" height="40" fill="currentColor" style="color: var(--color-accent-1)">
+                            <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M17,13H13V17H11V13H7V11H11V7H13V11H17V13Z"/>
+                        </svg>
+                    </div>
+                    <div class="fintech-icon">
+                        <svg width="40" height="40" fill="currentColor" style="color: var(--color-accent-2)">
+                            <path d="M9,11H15L13,9L11,11M7,9V11H9V13H11V11H13V13H15V11H17V9H15L13,7L11,9H7Z"/>
+                        </svg>
+                    </div>
+                    <div class="fintech-icon">
+                        <svg width="40" height="40" fill="currentColor" style="color: var(--color-primary)">
+                            <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8Z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats-section">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item reveal">
+                <div class="stat-number">95%</div>
+                <div class="stat-label">Fraud Reduction</div>
+            </div>
+            <div class="stat-item reveal reveal-delay-1">
+                <div class="stat-number">60%</div>
+                <div class="stat-label">Faster Processing</div>
+            </div>
+            <div class="stat-item reveal reveal-delay-2">
+                <div class="stat-number">85%</div>
+                <div class="stat-label">Cost Savings</div>
+            </div>
+            <div class="stat-item reveal reveal-delay-3">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">AI Support</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Key Challenges Section -->
+<section class="challenges-section">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-title reveal">Key Financial Challenges</h2>
+            <p class="hero-subtitle reveal reveal-delay-1">
+                Traditional financial institutions face mounting pressures in today's digital landscape
+            </p>
+        </div>
+        <div class="challenges-grid">
+            <div class="challenge-card reveal reveal-delay-1">
+                <div class="challenge-icon">
+                    <svg width="30" height="30" fill="white">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">Manual Risk Analysis</h3>
+                <p class="card-content">
+                    Time-consuming manual processes lead to delayed decisions and increased operational costs, affecting customer satisfaction and competitive edge.
+                </p>
+            </div>
+
+            <div class="challenge-card reveal reveal-delay-2">
+                <div class="challenge-icon">
+                    <svg width="30" height="30" fill="white">
+                        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">Fraud Detection Lag</h3>
+                <p class="card-content">
+                    Traditional fraud detection systems often react after damage is done, resulting in significant financial losses and eroded customer trust.
+                </p>
+            </div>
+
+            <div class="challenge-card reveal reveal-delay-3">
+                <div class="challenge-icon">
+                    <svg width="30" height="30" fill="white">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">Customer Onboarding Delays</h3>
+                <p class="card-content">
+                    Lengthy KYC processes and document verification create friction in customer acquisition and account opening procedures.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Solutions Section -->
+<section class="solutions-section">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-title reveal">AI-Powered Solutions</h2>
+            <p class="hero-subtitle reveal reveal-delay-1">
+                Transform your financial services with intelligent automation and advanced AI capabilities
+            </p>
+        </div>
+        <div class="solutions-grid">
+            <div class="solution-card reveal reveal-delay-1">
+                <div class="solution-header">
+                    <div class="solution-icon">
+                        <svg width="25" height="25" fill="white">
+                            <path d="M9 11H7v9a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3V5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h5v2zm0-6H4V5h5v6z"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">AI Risk Assessment Agents</h3>
+                </div>
+                <p class="card-content">
+                    Autonomous agents that continuously analyze market conditions, customer profiles, and transaction patterns to provide real-time risk assessments and predictive insights.
+                </p>
+                <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <strong>Real-time Credit Scoring</strong> - Dynamic assessment based on 500+ data points
+                    </li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <strong>Portfolio Risk Analysis</strong> - Continuous monitoring and optimization
+                    </li>
+                    <li style="padding: 0.5rem 0;">
+                        <strong>Regulatory Compliance</strong> - Automated adherence to financial regulations
+                    </li>
+                </ul>
+            </div>
+
+            <div class="solution-card reveal reveal-delay-2">
+                <div class="solution-header">
+                    <div class="solution-icon">
+                        <svg width="25" height="25" fill="white">
+                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1.8 15.2L6.4 12.4l1.4-1.4 2.4 2.4L16 7.6l1.4 1.4-6.2 6.2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Advanced Fraud Detection</h3>
+                </div>
+                <p class="card-content">
+                    Machine learning models that detect anomalous patterns and suspicious activities in milliseconds, preventing fraud before it occurs.
+                </p>
+                <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <strong>Behavioral Analytics</strong> - Learn customer patterns for anomaly detection
+                    </li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <strong>Transaction Monitoring</strong> - Real-time analysis of payment flows
+                    </li>
+                    <li style="padding: 0.5rem 0;">
+                        <strong>Identity Verification</strong> - Biometric and document authentication
+                    </li>
+                </ul>
+            </div>
+
+            <div class="solution-card reveal reveal-delay-3">
+                <div class="solution-header">
+                    <div class="solution-icon">
+                        <svg width="25" height="25" fill="white">
+                            <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 12h-2v-2h2v2zm0-4h-2V6h2v4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Conversational AI Support</h3>
+                </div>
+                <p class="card-content">
+                    Intelligent chatbots and virtual assistants that provide 24/7 customer support, handle complex financial queries, and streamline service delivery.
+                </p>
+                <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <strong>Multi-language Support</strong> - Serve global customers in their native language
+                    </li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <strong>Financial Advisory</strong> - Personalized investment and savings recommendations
+                    </li>
+                    <li style="padding: 0.5rem 0;">
+                        <strong>Account Management</strong> - Self-service transactions and account updates
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Integration Example Section -->
+<section class="integration-section">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-title reveal">Integration Workflow</h2>
+            <p class="hero-subtitle reveal reveal-delay-1">
+                Seamless integration with your existing financial infrastructure
+            </p>
+        </div>
+        <div class="integration-flow reveal reveal-delay-2">
+            <div class="flow-steps">
+                <div class="flow-step">
+                    <div class="step-number">1</div>
+                    <div class="step-arrow"></div>
+                    <h4>API Integration</h4>
+                    <p>Connect NeuraTantra agents to your core banking systems and databases</p>
+                </div>
+                <div class="flow-step">
+                    <div class="step-number">2</div>
+                    <div class="step-arrow"></div>
+                    <h4>Data Training</h4>
+                    <p>Train AI models on your historical transaction and customer data</p>
+                </div>
+                <div class="flow-step">
+                    <div class="step-number">3</div>
+                    <div class="step-arrow"></div>
+                    <h4>Testing & Validation</h4>
+                    <p>Comprehensive testing in sandbox environment with real scenarios</p>
+                </div>
+                <div class="flow-step">
+                    <div class="step-number">4</div>
+                    <h4>Live Deployment</h4>
+                    <p>Gradual rollout with continuous monitoring and optimization</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Security & Compliance Section -->
+<section class="security-section">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-title reveal">Security & Compliance</h2>
+            <p class="hero-subtitle reveal reveal-delay-1">
+                Enterprise-grade security with full regulatory compliance
+            </p>
+        </div>
+        <div class="security-grid">
+            <div class="security-item reveal reveal-delay-1">
+                <div class="security-icon">
+                    <svg width="20" height="20" fill="white">
+                        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h4>ISO 27001 Certified</h4>
+                    <p style="color: var(--color-text-muted); margin: 0;">Information security management standards</p>
+                </div>
+            </div>
+            <div class="security-item reveal reveal-delay-2">
+                <div class="security-icon">
+                    <svg width="20" height="20" fill="white">
+                        <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h4>End-to-End Encryption</h4>
+                    <p style="color: var(--color-text-muted); margin: 0;">AES-256 encryption for all data transfers</p>
+                </div>
+            </div>
+            <div class="security-item reveal reveal-delay-3">
+                <div class="security-icon">
+                    <svg width="20" height="20" fill="white">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h4>PCI DSS Compliance</h4>
+                    <p style="color: var(--color-text-muted); margin: 0;">Payment card industry data security standards</p>
+                </div>
+            </div>
+            <div class="security-item reveal reveal-delay-4">
+                <div class="security-icon">
+                    <svg width="20" height="20" fill="white">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h4>GDPR Compliant</h4>
+                    <p style="color: var(--color-text-muted); margin: 0;">European data protection regulations</p>
+                </div>
+            </div>
+            <div class="security-item reveal reveal-delay-5">
+                <div class="security-icon">
+                    <svg width="20" height="20" fill="white">
+                        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1.8 15.2L6.4 12.4l1.4-1.4 2.4 2.4L16 7.6l1.4 1.4-6.2 6.2z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h4>SOC 2 Type II</h4>
+                    <p style="color: var(--color-text-muted); margin: 0;">Audited security and availability controls</p>
+                </div>
+            </div>
+            <div class="security-item reveal reveal-delay-6">
+                <div class="security-icon">
+                    <svg width="20" height="20" fill="white">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h4>Basel III Aligned</h4>
+                    <p style="color: var(--color-text-muted); margin: 0;">International banking regulations compliance</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content reveal">
+            <h2 class="section-title">Ready to Transform Your Financial Services?</h2>
+            <p class="hero-subtitle" style="margin-bottom: 2.5rem;">
+                Join leading financial institutions already leveraging NeuraTantra's AI agents to drive innovation and growth.
+            </p>
+            <div class="cta-buttons">
+                <button class="btn btn-primary" onclick="window.open('https://calendly.com/neuratantra', '_blank')">Schedule a Demo</button>
+                <button class="btn btn-secondary" onclick="window.location.href='/integration-guide'">Explore Integration</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Intersection Observer for reveal animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+            }
+        });
+    }, observerOptions);
+
+    // Observe all elements with reveal class
+    document.addEventListener('DOMContentLoaded', () => {
+        const revealElements = document.querySelectorAll('.reveal');
+        revealElements.forEach(el => observer.observe(el));
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Dynamic stats counter animation
+    function animateStats() {
+        const stats = document.querySelectorAll('.stat-number');
+        stats.forEach(stat => {
+            const target = parseInt(stat.textContent);
+            const isPercentage = stat.textContent.includes('%');
+            const is247 = stat.textContent.includes('24/7');
+
+            if (is247) return; // Skip 24/7 animation
+
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                stat.textContent = Math.floor(current) + (isPercentage ? '%' : '');
+            }, 40);
+        });
+    }
+
+    // Trigger stats animation when section comes into view
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateStats();
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+    });
+
+    // Load external navbar and footer
+    function loadExternalHTML() {
+        // Load navbar
+        fetch('/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.body.insertAdjacentHTML('afterbegin', data);
+            })
+            .catch(error => console.log('Navbar not found:', error));
+
+        // Load footer
+        fetch('/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.body.insertAdjacentHTML('beforeend', data);
+            })
+            .catch(error => console.log('Footer not found:', error));
+    }
+
+    // Load external components when DOM is ready
+    document.addEventListener('DOMContentLoaded', loadExternalHTML);
+</script>
+
+<style>
+    /* Reveal animation styles */
+    .reveal {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.8s ease;
+    }
+
+    .reveal.revealed {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .reveal-delay-1 {
+        transition-delay: 0.2s;
+    }
+
+    .reveal-delay-2 {
+        transition-delay: 0.4s;
+    }
+
+    .reveal-delay-3 {
+        transition-delay: 0.6s;
+    }
+
+    .reveal-delay-4 {
+        transition-delay: 0.8s;
+    }
+
+    .reveal-delay-5 {
+        transition-delay: 1s;
+    }
+
+    .reveal-delay-6 {
+        transition-delay: 1.2s;
+    }
+
+    /* Button hover effects */
+    .btn {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s;
+    }
+
+    .btn:hover::before {
+        left: 100%;
+    }
+
+    /* Enhanced card hover effects */
+    .challenge-card, .solution-card {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .challenge-card:hover, .solution-card:hover {
+        transform: translateY(-10px) scale(1.02);
+    }
+
+    /* Loading animation for external content */
+    .loading-placeholder {
+        height: 60px;
+        background: linear-gradient(90deg, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 75%);
+        background-size: 200% 100%;
+        animation: loading 2s infinite;
+    }
+
+    @keyframes loading {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+    }
+</style>
+</body>
+</html>

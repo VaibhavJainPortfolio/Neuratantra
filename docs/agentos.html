@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgentOS Lite - Enterprise Agent Orchestration Platform | NeuraTantraAI</title>
+    <meta name="description" content="Enterprise-grade agent orchestration platform with advanced security, compliance, and scalable workflows for modern businesses.">
+
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="stylu.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+    <style>
+        /* Page-specific styles */
+        body {
+            margin: 0;
+            padding-bottom: 0;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(ellipse at center, rgba(110, 84, 194, 0.1) 0%, transparent 70%);
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="grad1" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:rgba(110,84,194,0.1);stop-opacity:1" /><stop offset="100%" style="stop-color:rgba(110,84,194,0);stop-opacity:0" /></radialGradient></defs><circle cx="200" cy="200" r="3" fill="rgba(110,84,194,0.4)"><animate attributeName="opacity" values="0.4;1;0.4" dur="3s" repeatCount="indefinite"/></circle><circle cx="800" cy="300" r="2" fill="rgba(76,144,230,0.6)"><animate attributeName="opacity" values="0.6;1;0.6" dur="4s" repeatCount="indefinite"/></circle><circle cx="600" cy="700" r="2.5" fill="rgba(230,96,168,0.5)"><animate attributeName="opacity" values="0.5;1;0.5" dur="5s" repeatCount="indefinite"/></circle><circle cx="300" cy="600" r="2" fill="rgba(46,203,175,0.4)"><animate attributeName="opacity" values="0.4;1;0.4" dur="3.5s" repeatCount="indefinite"/></circle></svg>') center/cover no-repeat;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(110, 84, 194, 0.1);
+            border: 1px solid rgba(110, 84, 194, 0.3);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(110, 84, 194, 0.3); }
+            50% { box-shadow: 0 0 0 10px rgba(110, 84, 194, 0); }
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #f2f2f7 0%, rgba(110, 84, 194, 0.9) 50%, rgba(76, 144, 230, 0.8) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--color-text-muted);
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+            padding: 2rem;
+            background: rgba(22, 22, 45, 0.3);
+            border-radius: var(--border-radius-lg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--color-border);
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            display: block;
+        }
+
+        .hero-stat-label {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+            margin-top: 0.5rem;
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 2.5rem;
+            border: 1px solid var(--color-border);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-color: rgba(110, 84, 194, 0.4);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            border-radius: var(--border-radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--color-text);
+        }
+
+        .feature-description {
+            color: var(--color-text-muted);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            color: var(--color-text-muted);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent-2);
+            font-weight: bold;
+        }
+
+        /* Integration Workflows */
+        .workflow-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .workflow-item {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius-md);
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--color-border);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .workflow-item:hover {
+            transform: scale(1.05);
+            border-color: var(--color-primary);
+        }
+
+        .workflow-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--color-accent-1), var(--color-accent-2));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .workflow-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        /* Security Checklist */
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .security-item {
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius-md);
+            border: 1px solid var(--color-border);
+            transition: all 0.3s ease;
+        }
+
+        .security-item:hover {
+            border-color: var(--color-accent-2);
+            transform: translateX(5px);
+        }
+
+        .security-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--color-accent-2), var(--color-primary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.25rem;
+        }
+
+        /* Case Studies */
+        .case-studies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .case-study-card {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 2.5rem;
+            border: 1px solid var(--color-border);
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .case-study-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+        }
+
+        .case-study-logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            border-radius: var(--border-radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+
+        .case-study-results {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .case-study-metric {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(110, 84, 194, 0.1);
+            border-radius: var(--border-radius-sm);
+        }
+
+        .case-study-metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .case-study-metric-label {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(110, 84, 194, 0.1) 0%, rgba(76, 144, 230, 0.1) 100%);
+            border-radius: var(--border-radius-xl);
+            padding: 4rem 2rem;
+            text-align: center;
+            margin: 6rem 0;
+            border: 1px solid var(--color-border);
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-subtitle {
+            font-size: 1.125rem;
+            color: var(--color-text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-enterprise {
+            background: linear-gradient(135deg, var(--color-accent-1), var(--color-accent-2));
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius-md);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-enterprise:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(230, 96, 168, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                padding: 1.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Section spacing */
+        .section {
+            padding: 6rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 4rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Navigation will be loaded here -->
+<div id="navbar-placeholder"></div>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-background"></div>
+    <div class="container">
+        <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+            <div class="hero-badge">
+                🚀 Enterprise-Grade AI Platform
+            </div>
+            <h1 class="hero-title">
+                Agent Orchestration<br>
+                <span class="text-gradient">Redefined</span>
+            </h1>
+            <p class="hero-subtitle">
+                AgentOS Lite delivers enterprise-ready AI agent orchestration with unparalleled security,
+                scalability, and compliance for modern businesses.
+            </p>
+            <div class="cta-buttons">
+                <a href="demo.html" class="btn btn-primary">Start free trial</a>
+                <a href="demo.html" class="btn btn-secondary">Enterprise demo</a>
+            </div>
+
+            <div class="hero-stats" data-aos="fade-up" data-aos-delay="200">
+                <div class="hero-stat">
+                    <span class="hero-stat-number">99.9%</span>
+                    <span class="hero-stat-label">Uptime SLA</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">500K+</span>
+                    <span class="hero-stat-label">Agents Deployed</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">50ms</span>
+                    <span class="hero-stat-label">Response Time</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">24/7</span>
+                    <span class="hero-stat-label">Expert Support</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Key Features Section -->
+<section class="section">
+    <div class="container">
+        <div class="text-center" data-aos="fade-up">
+            <h2 class="section-title">Powerful Features</h2>
+            <p class="hero-subtitle">Everything you need to build, deploy, and scale AI agents</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-icon">🤖</div>
+                <h3 class="feature-title">Intelligent Agent Management</h3>
+                <p class="feature-description">
+                    Advanced orchestration engine with smart load balancing, automatic scaling,
+                    and real-time performance monitoring.
+                </p>
+                <ul class="feature-list">
+                    <li>Auto-scaling agent clusters</li>
+                    <li>Real-time performance analytics</li>
+                    <li>Intelligent task routing</li>
+                    <li>Resource optimization</li>
+                </ul>
+            </div>
+
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-icon">🔗</div>
+                <h3 class="feature-title">Seamless Integration Hub</h3>
+                <p class="feature-description">
+                    Connect with 200+ enterprise tools and platforms through pre-built connectors
+                    and custom API integrations.
+                </p>
+                <ul class="feature-list">
+                    <li>200+ pre-built connectors</li>
+                    <li>RESTful API framework</li>
+                    <li>Webhook support</li>
+                    <li>Custom integration builder</li>
+                </ul>
+            </div>
+
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature-icon">🛡️</div>
+                <h3 class="feature-title">Enterprise Security</h3>
+                <p class="feature-description">
+                    Bank-grade security with end-to-end encryption, role-based access control,
+                    and comprehensive audit trails.
+                </p>
+                <ul class="feature-list">
+                    <li>End-to-end encryption</li>
+                    <li>RBAC & SSO integration</li>
+                    <li>Compliance monitoring</li>
+                    <li>Audit trail logging</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Integration Workflows Section -->
+<section class="section" style="background: rgba(22, 22, 45, 0.3);">
+    <div class="container">
+        <div class="text-center" data-aos="fade-up">
+            <h2 class="section-title">Integration Workflows</h2>
+            <p class="hero-subtitle">Streamlined processes for every business need</p>
+        </div>
+
+        <div class="workflow-container">
+            <div class="workflow-item" data-aos="zoom-in" data-aos-delay="100">
+                <div class="workflow-icon">📊</div>
+                <h3 class="workflow-title">Data Processing</h3>
+                <p>Automated data ingestion, transformation, and analysis workflows with real-time processing capabilities.</p>
+            </div>
+
+            <div class="workflow-item" data-aos="zoom-in" data-aos-delay="200">
+                <div class="workflow-icon">💬</div>
+                <h3 class="workflow-title">Customer Support</h3>
+                <p>Intelligent ticket routing, sentiment analysis, and automated response generation for customer queries.</p>
+            </div>
+
+            <div class="workflow-item" data-aos="zoom-in" data-aos-delay="300">
+                <div class="workflow-icon">📈</div>
+                <h3 class="workflow-title">Business Intelligence</h3>
+                <p>Automated report generation, predictive analytics, and real-time dashboard updates for decision making.</p>
+            </div>
+
+            <div class="workflow-item" data-aos="zoom-in" data-aos-delay="400">
+                <div class="workflow-icon">🔄</div>
+                <h3 class="workflow-title">Process Automation</h3>
+                <p>End-to-end workflow automation with conditional logic, approval processes, and exception handling.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Security & Compliance Section -->
+<section class="section">
+    <div class="container">
+        <div class="text-center" data-aos="fade-up">
+            <h2 class="section-title">Security & Compliance</h2>
+            <p class="hero-subtitle">Enterprise-grade security that meets the highest standards</p>
+        </div>
+
+        <div class="security-grid">
+            <div class="security-item" data-aos="fade-right" data-aos-delay="100">
+                <div class="security-icon">🔐</div>
+                <div>
+                    <h4>SOC 2 Type II Certified</h4>
+                    <p style="color: var(--color-text-muted); margin: 0; font-size: 0.875rem;">Rigorous security controls and compliance</p>
+                </div>
+            </div>
+
+            <div class="security-item" data-aos="fade-right" data-aos-delay="200">
+                <div class="security-icon">🏛️</div>
+                <div>
+                    <h4>GDPR & CCPA Compliant</h4>
+                    <p style="color: var(--color-text-muted); margin: 0; font-size: 0.875rem;">Full data privacy protection</p>
+                </div>
+            </div>
+
+            <div class="security-item" data-aos="fade-right" data-aos-delay="300">
+                <div class="security-icon">🔒</div>
+                <div>
+                    <h4>256-bit AES Encryption</h4>
+                    <p style="color: var(--color-text-muted); margin: 0; font-size: 0.875rem;">Military-grade data protection</p>
+                </div>
+            </div>
+
+            <div class="security-item" data-aos="fade-right" data-aos-delay="400">
+                <div class="security-icon">👤</div>
+                <div>
+                    <h4>Multi-Factor Authentication</h4>
+                    <p style="color: var(--color-text-muted); margin: 0; font-size: 0.875rem;">Enhanced access security</p>
+                </div>
+            </div>
+
+            <div class="security-item" data-aos="fade-right" data-aos-delay="500">
+                <div class="security-icon">📋</div>
+                <div>
+                    <h4>Comprehensive Audit Logs</h4>
+                    <p style="color: var(--color-text-muted); margin: 0; font-size: 0.875rem;">Complete activity tracking</p>
+                </div>
+            </div>
+
+            <div class="security-item" data-aos="fade-right" data-aos-delay="600">
+                <div class="security-icon">🏢</div>
+                <div>
+                    <h4>Enterprise SSO Integration</h4>
+                    <p style="color: var(--color-text-muted); margin: 0; font-size: 0.875rem;">Seamless identity management</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Case Studies Section -->
+<section class="section" style="background: rgba(22, 22, 45, 0.3);">
+    <div class="container">
+        <div class="text-center" data-aos="fade-up">
+            <h2 class="section-title">Success Stories</h2>
+            <p class="hero-subtitle">See how leading enterprises transformed their operations</p>
+        </div>
+
+        <div class="case-studies-grid">
+            <div class="case-study-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="case-study-logo">FT</div>
+                <h3 style="margin-bottom: 1rem;">FinTech Solutions Corp</h3>
+                <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
+                    Global financial services company streamlined their customer onboarding process
+                    and reduced manual processing by 85%.
+                </p>
+                <div class="case-study-results">
+                    <div class="case-study-metric">
+                        <div class="case-study-metric-value">85%</div>
+                        <div class="case-study-metric-label">Process Reduction</div>
+                    </div>
+                    <div class="case-study-metric">
+                        <div class="case-study-metric-value">3.2x</div>
+                        <div class="case-study-metric-label">Faster Processing</div>
+                    </div>
+                </div>
+                <p style="color: var(--color-text-muted); font-size: 0.875rem; font-style: italic;">
+                    "AgentOS Lite transformed our operations. We've seen incredible efficiency gains
+                    while maintaining the highest security standards."
+                </p>
+            </div>
+
+            <div class="case-study-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="case-study-logo">MC</div>
+                <h3 style="margin-bottom: 1rem;">MedCare Systems</h3>
+                <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
+                    Healthcare provider automated patient scheduling and reduced wait times
+                    while improving patient satisfaction scores.
+                </p>
+                <div class="case-study-results">
+                    <div class="case-study-metric">
+                        <div class="case-study-metric-value">60%</div>
+                        <div class="case-study-metric-label">Reduced Wait Time</div>
+                    </div>
+                    <div class="case-study-metric">
+                        <div class="case-study-metric-value">94%</div>
+                        <div class="case-study-metric-label">Satisfaction Score</div>
+                    </div>
+                </div>
+                <p style="color: var(--color-text-muted); font-size: 0.875rem; font-style: italic;">
+                    "The platform's reliability and security features gave us confidence to
+                    handle sensitive healthcare data at scale."
+                </p>
+            </div>
+
+            <div class="case-study-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="case-study-logo">RT</div>
+                <h3 style="margin-bottom: 1rem;">RetailTech Innovations</h3>
+                <p style="color: var(--color-text-muted); margin-bottom: 1.5rem;">
+                    E-commerce platform integrated AI agents for inventory management and
+                    customer support, achieving significant operational improvements.
+                </p>
+                <div class="case-study-results">
+                    <div class="case-study-metric">
+                        <div class="case-study-metric-value">40%</div>
+                        <div class="case-study-metric-label">Cost Savings</div>
+                    </div>
+                    <div class="case-study-metric">
+                        <div class="case-study-metric-value">24/7</div>
+                        <div class="case-study-metric-label">Availability</div>
+                    </div>
+                </div>
+                <p style="color: var(--color-text-muted); font-size: 0.875rem; font-style: italic;">
+                    "AgentOS Lite enabled us to provide round-the-clock customer support
+                    while significantly reducing operational costs."
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section">
+    <div class="container">
+        <div class="cta-section" data-aos="zoom-in">
+            <h2 class="cta-title">Ready to Transform Your Business?</h2>
+            <p class="cta-subtitle">
+                Join thousands of enterprises already using AgentOS Lite to automate processes,
+                enhance customer experiences, and drive innovation.
+            </p>
+            <div class="cta-buttons">
+                <a href="demo.html" class="btn btn-primary">Trial</a>
+                <a href="demo.html" class="btn btn-secondary">Enterprise Demo</a>
+            </div>
+            <p style="margin-top: 1.5rem; font-size: 0.875rem; color: var(--color-text-muted);">
+                No credit card required • 30-day free trial • Enterprise support available
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Footer will be loaded here -->
+<div id="footer-placeholder"></div>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+    // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 200
+        });
+
+        // Load navbar and footer
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            })
+            .catch(error => console.log('Navbar loading error:', error));
+
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            })
+            .catch(error => console.log('Footer loading error:', error));
+
+        // Add smooth scrolling for CTA buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctaButtons = document.querySelectorAll('.btn, .btn-enterprise');
+            ctaButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (this.textContent.includes('Demo') || this.textContent.includes('Trial')) {
+                        e.preventDefault();
+                        // Add demo/trial functionality here
+                        console.log('CTA clicked:', this.textContent);
+                    }
+                });
+            });
+        });
+
+        // Add dynamic stats counter animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.hero-stat-number');
+            counters.forEach(counter => {
+                const target = counter.innerText;
+                const isPercentage = target.includes('%');
+                const isTime = target.includes('ms') || target.includes('/');
+                const isNumber = target.includes('K+') || target.includes('+');
+
+                if (!isPercentage && !isTime && !isNumber) return;
+
+                let current = 0;
+                const increment = isPercentage ? 1 : isTime ? 1 : 1000;
+                const maxValue = isPercentage ? parseFloat(target) :
+                                isTime ? parseFloat(target) :
+                                parseFloat(target.replace('K+', '')) * 1000;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= maxValue) {
+                        counter.innerText = target;
+                        clearInterval(timer);
+                    } else {
+                        if (isPercentage) {
+                            counter.innerText = current.toFixed(1) + '%';
+                        } else if (isTime) {
+                            counter.innerText = current + 'ms';
+                        } else {
+                            counter.innerText = Math.floor(current / 1000) + 'K+';
+                        }
+                    }
+                }, 50);
+            });
+        }
+
+        // Trigger counter animation when stats section is visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        const statsSection = document.querySelector('.hero-stats');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+</script>
+</body>
+</html>
