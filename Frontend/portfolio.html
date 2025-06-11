@@ -6,406 +6,613 @@
     <title>NeuraTantraAI - Agentic Intelligence by Domain</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        /* ---- CSS VARIABLES ---- */
+        :root {
+            /* Base Colors - Using your CSS scheme */
+            --color-bg: #0a0a17;
+            --color-bg-alt: #111124;
+            --color-text: #f2f2f7;
+            --color-text-muted: #a0a0bc;
+            --color-border: rgba(255, 255, 255, 0.1);
+
+            /* Gradient Colors */
+            --color-primary: #6e54c2;
+            --color-secondary: #4c90e6;
+            --color-accent-1: #e660a8;
+            --color-accent-2: #2ecbaf;
+
+            /* Component Colors */
+            --color-card-bg: rgba(22, 22, 45, 0.7);
+            --color-input-bg: rgba(255, 255, 255, 0.05);
+            --color-input-border: rgba(255, 255, 255, 0.1);
+
+            /* UI Elements */
+            --border-radius-sm: 6px;
+            --border-radius-md: 12px;
+            --border-radius-lg: 24px;
+            --border-radius-xl: 36px;
+            --box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            --box-shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.3);
+            --transition-fast: 0.2s ease;
+            --transition-medium: 0.3s ease;
+            --transition-slow: 0.5s ease;
+
+            /* Typography */
+            --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-md: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 2rem;
+            --font-size-4xl: 2.5rem;
+            --font-size-5xl: 3rem;
+
+            /* Layout */
+            --container-padding: 2rem;
+            --section-spacing: 6rem;
+            --header-height: 80px;
+        }
+
         * {
-       margin: 0;
-       padding: 0;
-       box-sizing: border-box;
-   }
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-   body {
-       font-family: 'Inter', sans-serif;
-       background: linear-gradient(135deg, #0a0a12 0%, #1a1a2e 50%, #16213e 100%);
-       color: #ffffff;
-       overflow-x: hidden;
-       line-height: 1.6;
-   }
+        body {
+            font-family: var(--font-family);
+            background: var(--color-bg);
+            color: var(--color-text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
-   /* Animated Background Particles */
-   .particles {
-       position: fixed;
-       top: 0;
-       left: 0;
-       width: 100%;
-       height: 100%;
-       pointer-events: none;
-       z-index: 1;
-   }
+        /* Animated Background Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
 
-   .particle {
-       position: absolute;
-       width: 2px;
-       height: 2px;
-       background: rgba(255, 215, 0, 0.6);
-       border-radius: 50%;
-       animation: float 6s ease-in-out infinite;
-   }
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--color-accent-2);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
 
-   @keyframes float {
-       0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
-       50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
-   }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+        }
 
-   /* Enhanced Hero Section with Proper Parallax */
-   .hero {
-       height: 100vh;
-       position: relative;
-       display: flex;
-       align-items: center;
-       justify-content: center;
-       text-align: center;
-       overflow: hidden;
-       background-image: url('b.png');
-       background-attachment: fixed;
-       background-position: center;
-       background-repeat: no-repeat;
-       background-size: cover;
-   }
+        /* Enhanced Hero Section with Geometric Parallax */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-alt) 50%, #16213e 100%);
+        }
 
-   /* Gradient Overlay for better readability */
-   .hero-overlay {
-       position: absolute;
-       top: 0;
-       left: 0;
-       width: 100%;
-       height: 100%;
-       background: linear-gradient(
-           135deg,
-           rgba(10, 10, 18, 0.7) 0%,
-           rgba(26, 26, 46, 0.6) 50%,
-           rgba(22, 33, 62, 0.8) 100%
-       );
-       z-index: 1;
-   }
+        /* Animated Geometric Background */
+        .hero-geometric-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120%;
+            background: radial-gradient(circle at 20% 50%, rgba(110, 84, 194, 0.1) 0%, transparent 50%),
+                       radial-gradient(circle at 80% 20%, rgba(76, 144, 230, 0.1) 0%, transparent 50%),
+                       radial-gradient(circle at 40% 80%, rgba(230, 96, 168, 0.08) 0%, transparent 50%),
+                       radial-gradient(circle at 60% 30%, rgba(46, 203, 175, 0.08) 0%, transparent 50%);
+            z-index: 1;
+            animation: geometricFloat 20s ease-in-out infinite;
+        }
 
-   .hero-content {
-       z-index: 2;
-       max-width: 900px;
-       padding: 2rem;
-       animation: fadeInUp 1.5s ease-out;
-   }
+        @keyframes geometricFloat {
+            0%, 100% { transform: translateY(0px) scale(1) rotate(0deg); }
+            50% { transform: translateY(-30px) scale(1.05) rotate(2deg); }
+        }
 
-   @keyframes fadeInUp {
-       from { opacity: 0; transform: translateY(60px); }
-       to { opacity: 1; transform: translateY(0); }
-   }
+        /* Floating Geometric Shapes */
+        .floating-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
 
-   .hero h1 {
-       font-size: clamp(2.5rem, 8vw, 5rem);
-       font-weight: 800;
-       margin-bottom: 1.5rem;
-       background: linear-gradient(135deg, #ffffff 0%, #ffd700 50%, #ff6600 100%);
-       -webkit-background-clip: text;
-       -webkit-text-fill-color: transparent;
-       background-clip: text;
-       text-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
-       letter-spacing: -0.02em;
-       animation: textGlow 3s ease-in-out infinite alternate;
-   }
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+        }
 
-   @keyframes textGlow {
-       from { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3)); }
-       to { filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.6)); }
-   }
+        .shape-1 {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            opacity: 0.1;
+            top: 20%;
+            left: 10%;
+            animation: shapeFloat1 15s ease-in-out infinite;
+        }
 
-   .hero p {
-       font-size: clamp(1.2rem, 4vw, 1.8rem);
-       font-weight: 400;
-       color: #e0e0e0;
-       margin-bottom: 3rem;
-       opacity: 0.9;
-       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-   }
+        .shape-2 {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(45deg, var(--color-accent-1), var(--color-accent-2));
+            opacity: 0.08;
+            top: 60%;
+            right: 15%;
+            animation: shapeFloat2 18s ease-in-out infinite reverse;
+        }
 
-   .hero-cta {
-       display: inline-block;
-       padding: 1rem 2.5rem;
-       background: linear-gradient(135deg, #ff6600, #ffcc33);
-       border: none;
-       border-radius: 50px;
-       color: #ffffff;
-       font-size: 1.1rem;
-       font-weight: 600;
-       cursor: pointer;
-       transition: all 0.4s ease;
-       text-decoration: none;
-       box-shadow: 0 10px 30px rgba(255, 102, 0, 0.3);
-       animation: pulse 2s ease-in-out infinite;
-   }
+        .shape-3 {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, var(--color-secondary), var(--color-accent-2));
+            opacity: 0.12;
+            top: 30%;
+            right: 25%;
+            animation: shapeFloat3 12s ease-in-out infinite;
+        }
 
-   @keyframes pulse {
-       0%, 100% { transform: scale(1); }
-       50% { transform: scale(1.05); }
-   }
+        @keyframes shapeFloat1 {
+            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            50% { transform: translateY(-40px) translateX(20px) rotate(180deg); }
+        }
 
-   .hero-cta:hover {
-       transform: translateY(-5px);
-       box-shadow: 0 20px 40px rgba(255, 102, 0, 0.5);
-   }
+        @keyframes shapeFloat2 {
+            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            50% { transform: translateY(30px) translateX(-30px) rotate(-180deg); }
+        }
 
-   /* Enhanced Portfolio Section */
-   .portfolio {
-       padding: 8rem 2rem;
-       position: relative;
-       z-index: 2;
-       background: linear-gradient(180deg, transparent 0%, rgba(16, 16, 32, 0.9) 100%);
-   }
+        @keyframes shapeFloat3 {
+            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            50% { transform: translateY(-25px) translateX(-15px) rotate(90deg); }
+        }
 
-   .container {
-       max-width: 1400px;
-       margin: 0 auto;
-   }
+        .hero-content {
+            z-index: 2;
+            max-width: 900px;
+            padding: 2rem;
+            animation: fadeInUp 1.5s ease-out;
+        }
 
-   .section-title {
-       text-align: center;
-       margin-bottom: 4rem;
-       animation: fadeInUp 1s ease-out 0.3s both;
-   }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(60px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-   .section-title h2 {
-       font-size: clamp(2rem, 6vw, 3.5rem);
-       font-weight: 700;
-       margin-bottom: 1rem;
-       background: linear-gradient(135deg, #1fc3aa, #ff6600);
-       -webkit-background-clip: text;
-       -webkit-text-fill-color: transparent;
-       background-clip: text;
-   }
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--color-text) 0%, var(--color-primary) 50%, var(--color-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
 
-   .section-title p {
-       font-size: 1.2rem;
-       color: #b0b0b0;
-       max-width: 600px;
-       margin: 0 auto;
-   }
+        @keyframes textGlow {
+            from { filter: drop-shadow(0 0 20px rgba(110, 84, 194, 0.3)); }
+            to { filter: drop-shadow(0 0 40px rgba(110, 84, 194, 0.6)); }
+        }
 
-   /* Enhanced Filter Buttons */
-   .filter-buttons {
-       display: flex;
-       justify-content: center;
-       flex-wrap: wrap;
-       gap: 1rem;
-       margin-bottom: 4rem;
-       animation: fadeInUp 1s ease-out 0.5s both;
-   }
+        .hero p {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            font-weight: 400;
+            color: var(--color-text-muted);
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
 
-   .filter-btn {
-       padding: 1rem 2rem;
-       background: rgba(255, 255, 255, 0.05);
-       border: 2px solid rgba(255, 255, 255, 0.1);
-       border-radius: 50px;
-       color: #ffffff;
-       cursor: pointer;
-       transition: all 0.4s ease;
-       backdrop-filter: blur(20px);
-       font-weight: 500;
-       font-size: 0.95rem;
-       position: relative;
-       overflow: hidden;
-   }
+        .hero-cta {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            border: none;
+            border-radius: var(--border-radius-xl);
+            color: var(--color-text);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-slow);
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(110, 84, 194, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
 
-   .filter-btn::before {
-       content: '';
-       position: absolute;
-       top: 0;
-       left: -100%;
-       width: 100%;
-       height: 100%;
-       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-       transition: left 0.5s ease;
-   }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
 
-   .filter-btn:hover::before {
-       left: 100%;
-   }
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
 
-   .filter-btn:hover,
-   .filter-btn.active {
-       background: linear-gradient(135deg, #ff6600, #ffcc33);
-       border-color: #ff6600;
-       box-shadow: 0 0 30px rgba(255, 102, 0, 0.4);
-       transform: translateY(-3px);
-   }
+        .hero-cta:hover::before {
+            left: 100%;
+        }
 
-   /* Enhanced Portfolio Grid */
-   .portfolio-grid {
-       display: grid;
-       grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-       gap: 2.5rem;
-       animation: fadeInUp 1s ease-out 0.7s both;
-   }
+        .hero-cta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(110, 84, 194, 0.5);
+            background: linear-gradient(135deg, var(--color-accent-1), var(--color-primary));
+        }
 
-   .portfolio-item {
-       background: rgba(255, 255, 255, 0.03);
-       border: 1px solid rgba(255, 255, 255, 0.1);
-       border-radius: 24px;
-       padding: 2.5rem;
-       backdrop-filter: blur(30px);
-       transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-       position: relative;
-       overflow: hidden;
-       cursor: pointer;
-   }
+        /* Enhanced Portfolio Section */
+        .portfolio {
+            padding: var(--section-spacing) var(--container-padding);
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(180deg, transparent 0%, rgba(17, 17, 36, 0.5) 100%);
+        }
 
-   .portfolio-item::before {
-       content: '';
-       position: absolute;
-       top: 0;
-       left: 0;
-       right: 0;
-       bottom: 0;
-       background: linear-gradient(135deg, rgba(255, 102, 0, 0.05), rgba(31, 195, 170, 0.05));
-       opacity: 0;
-       transition: opacity 0.5s ease;
-       z-index: 1;
-   }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
 
-   .portfolio-item::after {
-       content: '';
-       position: absolute;
-       top: -50%;
-       left: -50%;
-       width: 200%;
-       height: 200%;
-       background: radial-gradient(circle, rgba(255, 102, 0, 0.1) 0%, transparent 70%);
-       opacity: 0;
-       transition: all 0.6s ease;
-       z-index: 1;
-   }
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
 
-   .portfolio-item:hover::before {
-       opacity: 1;
-   }
+        .section-title h2 {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--color-accent-2), var(--color-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-   .portfolio-item:hover::after {
-       opacity: 1;
-       transform: rotate(45deg);
-   }
+        .section-title p {
+            font-size: var(--font-size-xl);
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
-   .portfolio-item:hover {
-       transform: translateY(-15px) scale(1.02);
-       box-shadow: 0 30px 60px rgba(255, 102, 0, 0.2);
-       border-color: rgba(255, 102, 0, 0.3);
-   }
+        /* Enhanced Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 4rem;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
 
-   .portfolio-item * {
-       position: relative;
-       z-index: 2;
-   }
+        .filter-btn {
+            padding: 1rem 2rem;
+            background: var(--color-input-bg);
+            border: 2px solid var(--color-input-border);
+            border-radius: var(--border-radius-xl);
+            color: var(--color-text);
+            cursor: pointer;
+            transition: all var(--transition-slow);
+            backdrop-filter: blur(20px);
+            font-weight: 500;
+            font-size: var(--font-size-sm);
+            position: relative;
+            overflow: hidden;
+        }
 
-   .portfolio-item-image {
-       width: 100%;
-       height: 200px;
-       object-fit: cover;
-       border-radius: 16px;
-       margin-bottom: 1.5rem;
-       transition: transform 0.3s ease;
-   }
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
 
-   .portfolio-item:hover .portfolio-item-image {
-       transform: scale(1.05);
-   }
+        .filter-btn:hover::before {
+            left: 100%;
+        }
 
-   .portfolio-item h3 {
-       font-size: 1.8rem;
-       font-weight: 700;
-       margin-bottom: 1rem;
-       color: #ffffff;
-       transition: color 0.3s ease;
-   }
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            border-color: var(--color-primary);
+            box-shadow: 0 0 30px rgba(110, 84, 194, 0.4);
+            transform: translateY(-3px);
+        }
 
-   .portfolio-item:hover h3 {
-       color: #ffd700;
-   }
+        /* Enhanced Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+            gap: 2.5rem;
+            animation: fadeInUp 1s ease-out 0.7s both;
+        }
 
-   .domain-badge {
-       display: inline-block;
-       padding: 0.6rem 1.2rem;
-       background: linear-gradient(135deg, #1fc3aa, #ff6600);
-       border-radius: 30px;
-       font-size: 0.85rem;
-       font-weight: 600;
-       margin-bottom: 1.5rem;
-       color: #ffffff;
-       text-transform: uppercase;
-       letter-spacing: 0.5px;
-       box-shadow: 0 4px 15px rgba(31, 195, 170, 0.3);
-   }
+        .portfolio-item {
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            backdrop-filter: blur(30px);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            cursor: pointer;
+        }
 
-   .description {
-       color: #c0c0c0;
-       margin-bottom: 2rem;
-       line-height: 1.7;
-       font-size: 1.05rem;
-   }
+        .portfolio-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(110, 84, 194, 0.05), rgba(46, 203, 175, 0.05));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+        }
 
-   .summary {
-       background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-       padding: 1.5rem;
-       border-radius: 16px;
-       border-left: 4px solid #1fc3aa;
-       font-style: italic;
-       color: #e0e0e0;
-       opacity: 0;
-       transform: translateY(30px);
-       transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-       font-size: 0.95rem;
-       line-height: 1.6;
-   }
+        .portfolio-item::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(110, 84, 194, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: all 0.6s ease;
+            z-index: 1;
+        }
 
-   .portfolio-item:hover .summary {
-       opacity: 1;
-       transform: translateY(0);
-   }
+        .portfolio-item:hover::before {
+            opacity: 1;
+        }
 
-   /* Scroll Progress Bar */
-   .scroll-progress {
-       position: fixed;
-       top: 0;
-       left: 0;
-       width: 0%;
-       height: 4px;
-       background: linear-gradient(90deg, #1fc3aa, #ff6600);
-       z-index: 1000;
-       transition: width 0.1s ease;
-   }
+        .portfolio-item:hover::after {
+            opacity: 1;
+            transform: rotate(45deg);
+        }
 
-   /* Responsive Design */
-   @media (max-width: 768px) {
-       .hero {
-           padding: 2rem 1rem;
-           background-attachment: scroll; /* Disable fixed background on mobile for better performance */
-       }
+        .portfolio-item:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: var(--box-shadow-hover);
+            border-color: rgba(110, 84, 194, 0.3);
+        }
 
-       .portfolio {
-           padding: 4rem 1rem;
-       }
+        .portfolio-item * {
+            position: relative;
+            z-index: 2;
+        }
 
-       .portfolio-grid {
-           grid-template-columns: 1fr;
-           gap: 2rem;
-       }
+        /* FIXED: Product Image Styles with proper image display */
+        .product-image {
+            width: 100%;
+            height: 250px; /* Increased height for better image display */
+            background: linear-gradient(135deg, var(--color-input-bg), rgba(255, 255, 255, 0.02));
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 1rem; /* Added padding for better spacing */
+        }
 
-       .filter-buttons {
-           flex-direction: column;
-           align-items: center;
-           gap: 0.8rem;
-       }
+        /* FIXED: Proper image styling for full display */
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* This ensures the full image is visible */
+            object-position: center;
+            border-radius: var(--border-radius-sm);
+            transition: all 0.5s ease;
+            max-width: 100%;
+            max-height: 100%;
+        }
 
-       .filter-btn {
-           width: 200px;
-           text-align: center;
-       }
-   }
+        .portfolio-item:hover .product-image img {
+            transform: scale(1.05); /* Reduced scale to prevent overflow */
+        }
 
-   /* Loading Animation */
-   .loading {
-       opacity: 0;
-       animation: fadeIn 0.8s ease-out forwards;
-   }
+        /* Fallback for SVG icons if images don't load */
+        .product-image svg {
+            width: 120px;
+            height: 120px;
+            transition: all 0.5s ease;
+        }
 
-   @keyframes fadeIn {
-       to { opacity: 1; }
-   }
+        .portfolio-item:hover .product-image svg {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                rgba(110, 84, 194, 0.1) 0%, 
+                rgba(76, 144, 230, 0.1) 25%, 
+                rgba(230, 96, 168, 0.1) 50%, 
+                rgba(46, 203, 175, 0.1) 75%, 
+                rgba(110, 84, 194, 0.1) 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 6s ease infinite;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .portfolio-item:hover .product-image::before {
+            opacity: 1;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .product-content {
+            padding: 2.5rem;
+        }
+
+        .portfolio-item h3 {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--color-text);
+            transition: color var(--transition-medium);
+        }
+
+        .portfolio-item:hover h3 {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .domain-badge {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background: linear-gradient(135deg, var(--color-accent-2), var(--color-primary));
+            border-radius: var(--border-radius-xl);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--color-text);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(46, 203, 175, 0.3);
+        }
+
+        .description {
+            color: var(--color-text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            font-size: var(--font-size-md);
+        }
+
+        .summary {
+            background: linear-gradient(135deg, var(--color-input-bg), rgba(255, 255, 255, 0.02));
+            padding: 1.5rem;
+            border-radius: var(--border-radius-md);
+            border-left: 4px solid var(--color-accent-2);
+            font-style: italic;
+            color: var(--color-text-muted);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: var(--font-size-sm);
+            line-height: 1.6;
+        }
+
+        .portfolio-item:hover .summary {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-accent-2), var(--color-primary));
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .portfolio {
+                padding: 4rem 1rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .filter-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.8rem;
+            }
+
+            .filter-btn {
+                width: 200px;
+                text-align: center;
+            }
+
+            .shape-1, .shape-2, .shape-3 {
+                display: none;
+            }
+
+            .product-image {
+                height: 200px; /* Adjusted for mobile */
+                padding: 0.8rem;
+            }
+
+            .product-image img {
+                width: 100%;
+                height: 100%;
+            }
+
+            .product-image svg {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
     </style>
 </head>
 <body>
@@ -417,8 +624,12 @@
 
 <!-- Hero Section -->
 <section class="hero">
-    <div class="hero-bg" id="heroBg"></div>
-    <div class="hero-overlay"></div>
+    <div class="hero-geometric-bg"></div>
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
     <div class="hero-content">
         <h1>Agentic Intelligence by Domain</h1>
         <p>Built with insight. Deployed with purpose.</p>
@@ -438,10 +649,10 @@
         <div class="filter-buttons">
             <button class="filter-btn active" data-filter="all">All Solutions</button>
             <button class="filter-btn" data-filter="Healthcare">Healthcare</button>
-            <button class="filter-btn" data-filter="FinTech">FinTech</button>
-            <button class="filter-btn" data-filter="EdTech">EdTech</button>
-            <button class="filter-btn" data-filter="Retail">Retail</button>
-            <button class="filter-btn" data-filter="Custom">Custom</button>
+            <button class="filter-btn" data-filter="Professional">Professional</button>
+            <button class="filter-btn" data-filter="Automotive">Automotive</button>
+            <button class="filter-btn" data-filter="Data">Data & Analytics</button>
+            <button class="filter-btn" data-filter="Wellness">Wellness</button>
         </div>
 
         <!-- Portfolio Grid -->
@@ -452,68 +663,140 @@
 </section>
 
 <script>
-    // Enhanced Portfolio Data
+    // Product Images for each product
+    const productImages = {
+        "CV Analyser and Recommendation Agent": "1.jpg",
+        "CyberFriend": "2.jpg",
+        "Astro AI": "3.jpg",
+        "MediCare AI": "4.jpg",
+        "LifeCare Assistant": "5.jpg",
+        "AutoCare AI": "6.jpg",
+        "DataSage Analytics": "7.jpg",
+        "WellnessBot": "8.jpg"
+    };
+
+    // Portfolio data
     const portfolioData = [
         {
-            name: "MedAgent Pro",
+            title: "CV Analyser and Recommendation Agent",
+            domain: "Professional",
+            description: "An intelligent CV analysis system that evaluates resumes, provides detailed feedback, and recommends improvements to enhance job application success rates.",
+            summary: "Leverages NLP and machine learning to analyze resume content, structure, and relevancy, providing actionable insights for career advancement."
+        },
+        {
+            title: "CyberFriend",
+            domain: "Wellness",
+            description: "A compassionate AI companion designed to provide emotional support, mental health guidance, and personalized wellness recommendations.",
+            summary: "Combines empathetic conversation with evidence-based therapeutic techniques to support mental wellbeing and personal growth."
+        },
+        {
+            title: "Astro AI",
+            domain: "Wellness",
+            description: "Advanced astrological analysis system that provides personalized horoscopes, compatibility assessments, and celestial guidance.",
+            summary: "Integrates astronomical data with traditional astrological principles to deliver accurate and meaningful cosmic insights."
+        },
+        {
+            title: "MediCare AI",
             domain: "Healthcare",
-            description: "Revolutionary AI-powered clinical decision support system that automates medical documentation and enhances diagnostic accuracy with real-time patient data analysis.",
-            summary: "Integrates advanced GPT models with Electronic Health Records to streamline patient documentation, reducing physician workload by 40% while improving diagnostic accuracy by 25%.",
-            image: "1.jpg"
+            description: "Comprehensive healthcare assistant that helps with symptom assessment, medication reminders, and health monitoring.",
+            summary: "Uses medical knowledge databases and AI diagnostics to provide preliminary health assessments and wellness tracking."
         },
         {
-            name: "FinRisk Sentinel",
-            domain: "FinTech",
-            description: "Next-generation fraud detection and intelligent underwriting platform designed for modern financial institutions seeking advanced risk management solutions.",
-            summary: "Leverages Large Language Models and graph neural networks to identify financial anomalies in real-time with 99.2% accuracy, processing over 1 million transactions per second.",
-            image: "2.jpg"
-        },
-        {
-            name: "EduPersona AI",
-            domain: "EdTech",
-            description: "Intelligent personalized learning companion that adapts to individual student needs, learning styles, and pace to maximize educational outcomes.",
-            summary: "AI-powered tutor that creates custom curricula and provides instant feedback, improving learning outcomes by 35% and student engagement by 60%.",
-            image: "3.jpg"
-        },
-        {
-            name: "RetailGenie Plus",
-            domain: "Retail",
-            description: "Comprehensive intelligent inventory management and customer experience optimization platform for modern retail operations.",
-            summary: "Predicts demand patterns with 92% accuracy and personalizes shopping experiences in real-time, increasing sales conversion by 28% and customer satisfaction by 45%.",
-            image: "4.jpg"
-        },
-        {
-            name: "CodeCraft Studio",
-            domain: "Custom",
-            description: "Advanced automated code generation and review system tailored for enterprise development teams seeking to accelerate their software development lifecycle.",
-            summary: "Generates production-ready code from natural language specifications, reducing development time by 50% and bug rates by 30% across multiple programming languages.",
-            image: "5.jpg"
-        },
-        {
-            name: "NeuroInsight Pro",
+            title: "LifeCare Assistant",
             domain: "Healthcare",
-            description: "Cutting-edge brain imaging analysis platform for early detection and monitoring of neurological conditions using advanced deep learning algorithms.",
-            summary: "Analyzes MRI and CT scans with 94% accuracy in detecting early-stage Alzheimer's disease, enabling earlier intervention and better patient outcomes.",
-            image: "6.jpg"
+            description: "Personalized healthcare companion that monitors vital signs, tracks health metrics, and provides lifestyle recommendations.",
+            summary: "Integrates with wearable devices and health apps to provide comprehensive health monitoring and preventive care guidance."
         },
         {
-            name: "CryptoSentinel",
-            domain: "FinTech",
-            description: "Advanced blockchain transaction monitoring and automated compliance system designed for cryptocurrency exchanges and financial institutions.",
-            summary: "Provides real-time analysis of crypto transactions for AML compliance, processing 1M+ transactions per second with advanced pattern recognition capabilities.",
-            image: "7.jpg"
+            title: "AutoCare AI",
+            domain: "Automotive",
+            description: "Intelligent vehicle maintenance system that predicts service needs, diagnoses issues, and optimizes vehicle performance.",
+            summary: "Utilizes vehicle data analytics and predictive maintenance algorithms to ensure optimal automotive care and performance."
         },
         {
-            name: "SkillForge Enterprise",
-            domain: "EdTech",
-            description: "Comprehensive corporate training platform with AI-driven skill assessment, personalized development paths, and performance analytics.",
-            summary: "Creates data-driven professional development plans and skill assessments, improving employee retention by 45% and productivity by 30%.",
-            image: "8.jpg"
+            title: "DataSage Analytics",
+            domain: "Data",
+            description: "Advanced data analytics platform that transforms raw data into actionable business insights through AI-powered analysis.",
+            summary: "Employs machine learning algorithms and statistical models to extract meaningful patterns and trends from complex datasets."
+        },
+        {
+            title: "WellnessBot",
+            domain: "Wellness",
+            description: "Holistic wellness assistant that provides fitness guidance, nutrition advice, and mental health support.",
+            summary: "Combines fitness tracking, nutritional analysis, and mindfulness practices to promote overall wellbeing and healthy lifestyle choices."
         }
     ];
 
-    // Create animated particles
-    function createParticles() {
+    // Generate portfolio items
+    function generatePortfolioItems(items = portfolioData) {
+        const portfolioGrid = document.getElementById('portfolioGrid');
+        portfolioGrid.innerHTML = '';
+
+        items.forEach((item, index) => {
+            const portfolioItem = document.createElement('div');
+            portfolioItem.className = 'portfolio-item loading';
+            portfolioItem.setAttribute('data-domain', item.domain);
+            
+            portfolioItem.innerHTML = `
+                <div class="product-image">
+                    <img src="${productImages[item.title]}" alt="${item.title}" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                    <svg style="display: none;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" stroke-width="2"/>
+                        <path d="M21 15l-5-5L5 21" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="product-content">
+                    <div class="domain-badge">${item.domain}</div>
+                    <h3>${item.title}</h3>
+                    <p class="description">${item.description}</p>
+                    <div class="summary">${item.summary}</div>
+                </div>
+            `;
+
+            portfolioGrid.appendChild(portfolioItem);
+
+            // Trigger loading animation
+            setTimeout(() => {
+                portfolioItem.classList.remove('loading');
+            }, index * 200);
+        });
+    }
+
+    // Filter functionality
+    function setupFilters() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-filter');
+                
+                if (filterValue === 'all') {
+                    generatePortfolioItems(portfolioData);
+                } else {
+                    const filteredItems = portfolioData.filter(item => item.domain === filterValue);
+                    generatePortfolioItems(filteredItems);
+                }
+            });
+        });
+    }
+
+    // Scroll progress bar
+    function updateScrollProgress() {
+        const scrollProgress = document.getElementById('scrollProgress');
+        const scrollTop = window.pageYOffset;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        scrollProgress.style.width = scrollPercent + '%';
+    }
+
+    // Generate floating particles
+    function generateParticles() {
         const particlesContainer = document.getElementById('particles');
         const particleCount = 50;
 
@@ -523,97 +806,9 @@
             particle.style.left = Math.random() * 100 + '%';
             particle.style.top = Math.random() * 100 + '%';
             particle.style.animationDelay = Math.random() * 6 + 's';
-            particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            particle.style.animationDuration = (6 + Math.random() * 4) + 's';
             particlesContainer.appendChild(particle);
         }
-    }
-
-    // Generate portfolio items with enhanced animations
-    function generatePortfolioItems(data) {
-        const grid = document.getElementById('portfolioGrid');
-        grid.innerHTML = '';
-
-        data.forEach((item, index) => {
-            const portfolioItem = document.createElement('div');
-            portfolioItem.className = 'portfolio-item loading';
-            portfolioItem.setAttribute('data-domain', item.domain);
-
-            portfolioItem.innerHTML = `
-                <img src="${item.image}" alt="${item.name}" class="portfolio-item-image">
-                <h3>${item.name}</h3>
-                <div class="domain-badge">${item.domain}</div>
-                <p class="description">${item.description}</p>
-                <div class="summary">${item.summary}</div>
-            `;
-
-            grid.appendChild(portfolioItem);
-
-            // Add staggered animation delay
-            setTimeout(() => {
-                portfolioItem.style.animationDelay = `${index * 0.1}s`;
-            }, index * 100);
-        });
-    }
-
-    // Enhanced filter functionality
-    function setupFilters() {
-        const filterButtons = document.querySelectorAll('.filter-btn');
-
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Remove active class from all buttons
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                // Add active class to clicked button
-                button.classList.add('active');
-
-                const filter = button.getAttribute('data-filter');
-
-                if (filter === 'all') {
-                    generatePortfolioItems(portfolioData);
-                } else {
-                    const filteredData = portfolioData.filter(item => item.domain === filter);
-                    generatePortfolioItems(filteredData);
-                }
-            });
-        });
-    }
-
-    // Scroll progress bar
-    function setupScrollProgress() {
-        const progressBar = document.getElementById('scrollProgress');
-
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset;
-            const docHeight = document.body.offsetHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            progressBar.style.width = scrollPercent + '%';
-        });
-    }
-
-    // Enhanced parallax effect with requestAnimationFrame
-    function setupParallax() {
-        const heroBg = document.getElementById('heroBg');
-        let ticking = false;
-
-        function updateParallax() {
-            const scrolled = window.pageYOffset;
-            const rate = scrolled * -0.5; // Adjust speed here
-
-            if (heroBg) {
-                heroBg.style.transform = `translate3d(0, ${rate}px, 0)`;
-            }
-
-            ticking = false;
-        }
-
-        function requestTick() {
-            if (!ticking) {
-                requestAnimationFrame(updateParallax);
-                ticking = true;
-            }
-        }
-
-        window.addEventListener('scroll', requestTick);
     }
 
     // Smooth scrolling for CTA button
@@ -627,13 +822,40 @@
         });
     }
 
-    // Enhanced scroll animations
-    function setupScrollAnimations() {
+    // Parallax effect for hero section
+    function setupParallax() {
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroGeometric = document.querySelector('.hero-geometric-bg');
+            const floatingShapes = document.querySelector('.floating-shapes');
+            
+            if (heroGeometric) {
+                heroGeometric.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+            
+            if (floatingShapes) {
+                floatingShapes.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+    }
+
+    // Initialize everything when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        generatePortfolioItems();
+        setupFilters();
+        generateParticles();
+        setupSmoothScroll();
+        setupParallax();
+        
+        // Setup scroll progress
+        window.addEventListener('scroll', updateScrollProgress);
+        
+        // Add intersection observer for portfolio items animation
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
-
+        
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -642,24 +864,31 @@
                 }
             });
         }, observerOptions);
-
-        // Observe portfolio items
+        
+        // Observe portfolio items after they're generated
         setTimeout(() => {
             document.querySelectorAll('.portfolio-item').forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(50px)';
+                item.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
                 observer.observe(item);
             });
-        }, 1000);
-    }
+        }, 500);
+    });
 
-    // Initialize everything
-    document.addEventListener('DOMContentLoaded', () => {
-        createParticles();
-        generatePortfolioItems(portfolioData);
-        setupFilters();
-        setupScrollProgress();
-        setupParallax();
-        setupSmoothScroll();
-        setupScrollAnimations();
+    // Add some interactive effects
+    document.addEventListener('mousemove', (e) => {
+        const shapes = document.querySelectorAll('.shape');
+        const mouseX = e.clientX / window.innerWidth;
+        const mouseY = e.clientY / window.innerHeight;
+        
+        shapes.forEach((shape, index) => {
+            const speed = (index + 1) * 0.5;
+            const x = (mouseX - 0.5) * speed * 20;
+            const y = (mouseY - 0.5) * speed * 20;
+            
+            shape.style.transform += ` translate(${x}px, ${y}px)`;
+        });
     });
 </script>
 </body>
