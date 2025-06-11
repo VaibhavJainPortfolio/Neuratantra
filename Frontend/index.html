@@ -10,6 +10,210 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <style>
+        /* Enhanced Integrations Section Styles */
+        .integrations-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .integrations-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(79, 209, 197, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .integrations-header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .integrations-title {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #4FD1C5 0%, #63B3ED 50%, #805AD5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .integrations-subtitle {
+            font-size: 1.25rem;
+            color: #94A3B8;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .scroll-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            mask-image: linear-gradient(90deg, transparent 0%, white 10%, white 90%, transparent 100%);
+            -webkit-mask-image: linear-gradient(90deg, transparent 0%, white 10%, white 90%, transparent 100%);
+        }
+
+        .scroll-row {
+            display: flex;
+            width: 100vw;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .scroll-content {
+            display: flex;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            width: max-content;
+        }
+
+        .row-1 .scroll-content {
+            animation: scrollLeft 40s linear infinite;
+        }
+
+        .row-2 .scroll-content {
+            animation: scrollRight 45s linear infinite;
+        }
+
+        .row-3 .scroll-content {
+            animation: scrollLeft 50s linear infinite;
+        }
+
+        .row-4 .scroll-content {
+            animation: scrollRight 35s linear infinite;
+        }
+
+        .integration-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            margin-right: 16px;
+            background: rgba(79, 209, 197, 0.1);
+            border: 1px solid rgba(79, 209, 197, 0.3);
+            border-radius: 25px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+            backdrop-filter: blur(15px);
+            transition: all 0.3s ease;
+            min-width: fit-content;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(79, 209, 197, 0.15);
+            flex-shrink: 0;
+        }
+
+        .integration-badge:hover {
+            background: rgba(79, 209, 197, 0.2);
+            border-color: rgba(79, 209, 197, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(79, 209, 197, 0.25), 0 0 60px rgba(79, 209, 197, 0.15);
+        }
+
+        .badge-icon {
+            width: 18px;
+            height: 18px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        /* Individual badge colors */
+        .composio .badge-icon { background: #6366f1; }
+        .confluence .badge-icon { background: #0052cc; }
+        .couchbase .badge-icon { background: #ea2328; }
+        .evernote .badge-icon { background: #00a82d; }
+        .github .badge-icon { background: #24292e; }
+        .glean .badge-icon { background: #7c3aed; }
+        .gmail .badge-icon { background: #ea4335; }
+        .google-cloud .badge-icon { background: #4285f4; }
+        .mistral .badge-icon { background: #ff7000; }
+        .mongodb .badge-icon { background: #47a248; }
+        .notion .badge-icon { background: #333; border: 1px solid #555; }
+        .nvidia .badge-icon { background: #76b900; }
+        .google-drive .badge-icon { background: #4285f4; }
+        .groq .badge-icon { background: #f55036; }
+        .supa .badge-icon { background: #3ecf8e; }
+        .huggingface .badge-icon { background: #ff9d00; }
+        .qdrant .badge-icon { background: #dc2626; }
+        .serp-api .badge-icon { background: #7c3aed; }
+        .slack .badge-icon { background: #4a154b; }
+        .datastax .badge-icon { background: #2563eb; }
+        .amazon-bedrock .badge-icon { background: #ff9900; }
+        .tavily .badge-icon { background: #10b981; }
+        .upstash .badge-icon { background: #00e9a3; }
+        .unstructured .badge-icon { background: #06b6d4; }
+        .openai .badge-icon { background: #10a37f; }
+        .crew-ai .badge-icon { background: #ff6b6b; }
+        .vectora .badge-icon { background: #8b5cf6; }
+        .wikipedia .badge-icon { background: #1f2937; border: 1px solid #374151; }
+        .wolfram .badge-icon { background: #dd1100; }
+        .yahoo-finance .badge-icon { background: #7b68ee; }
+        .anthropic .badge-icon { background: #d97706; }
+        .firebase .badge-icon { background: #ffca28; }
+        .docker .badge-icon { background: #2496ed; }
+        .kubernetes .badge-icon { background: #326ce5; }
+        .redis .badge-icon { background: #dc382d; }
+        .postgresql .badge-icon { background: #336791; }
+        .mysql .badge-icon { background: #4479a1; }
+        .azure .badge-icon { background: #0078d4; }
+        .aws .badge-icon { background: #ff9900; }
+        .vercel .badge-icon { background: #374151; }
+
+        @keyframes scrollLeft {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes scrollRight {
+            0% {
+                transform: translateX(-50%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .integrations-title {
+                font-size: 2.5rem;
+            }
+
+            .integrations-subtitle {
+                font-size: 1.125rem;
+                padding: 0 20px;
+            }
+
+            .integration-badge {
+                padding: 8px 14px;
+                font-size: 13px;
+            }
+
+            .badge-icon {
+                width: 16px;
+                height: 16px;
+                font-size: 11px;
+            }
+        }
+    </style>
 </head>
 <body>
 <!-- Navbar will be loaded here dynamically -->
@@ -133,29 +337,467 @@
         </div>
     </section>
 
-    <!-- Market & Opportunity Section -->
-    <section id="market" class="market-section">
-        <div class="container">
-            <h2 class="section-title">Market & Opportunity</h2>
-            <div class="market-stats">
-                <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="stat-value">$<span class="counter" data-target="50">0</span>B+</div>
-                    <div class="stat-label">Global TAM by 2030</div>
-                    <div class="stat-description">Agentic AI Market Potential</div>
-                </div>
-                <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="stat-value"><span class="counter" data-target="45">0</span>%</div>
-                    <div class="stat-label">CAGR</div>
-                    <div class="stat-description">Growth in Autonomous AI Systems</div>
-                </div>
-                <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="stat-value">₹<span class="counter" data-target="45000">0</span>Cr</div>
-                    <div class="stat-label">Indian Market Potential</div>
-                    <div class="stat-description">By 2027</div>
+    <!-- Integrations Section -->
+    <section id="integrations" class="integrations-section">
+        <div class="integrations-header" data-aos="fade-up">
+            <h2 class="integrations-title">Powerful Integrations</h2>
+            <p class="integrations-subtitle">Connect with 40+ leading platforms and services. Our AI agents seamlessly integrate with your existing tech stack.</p>
+        </div>
+
+        <div class="scroll-container">
+            <!-- Row 1 -->
+            <div class="scroll-row row-1">
+                <div class="scroll-content">
+                    <div class="integration-badge composio">
+                        <div class="badge-icon">🎭</div>
+                        <span>Composio</span>
+                    </div>
+                    <div class="integration-badge confluence">
+                        <div class="badge-icon">🌊</div>
+                        <span>Confluence</span>
+                    </div>
+                    <div class="integration-badge couchbase">
+                        <div class="badge-icon">🛋️</div>
+                        <span>Couchbase</span>
+                    </div>
+                    <div class="integration-badge evernote">
+                        <div class="badge-icon">🐘</div>
+                        <span>Evernote</span>
+                    </div>
+                    <div class="integration-badge github">
+                        <div class="badge-icon">🐙</div>
+                        <span>Github</span>
+                    </div>
+                    <div class="integration-badge glean">
+                        <div class="badge-icon">✨</div>
+                        <span>Glean</span>
+                    </div>
+                    <div class="integration-badge gmail">
+                        <div class="badge-icon">📧</div>
+                        <span>Gmail</span>
+                    </div>
+                    <div class="integration-badge google-cloud">
+                        <div class="badge-icon">☁️</div>
+                        <span>Google Cloud</span>
+                    </div>
+                    <div class="integration-badge anthropic">
+                        <div class="badge-icon">🤖</div>
+                        <span>Anthropic</span>
+                    </div>
+                    <div class="integration-badge firebase">
+                        <div class="badge-icon">🔥</div>
+                        <span>Firebase</span>
+                    </div>
+                    <div class="integration-badge docker">
+                        <div class="badge-icon">🐳</div>
+                        <span>Docker</span>
+                    </div>
+                    <div class="integration-badge kubernetes">
+                        <div class="badge-icon">⚙️</div>
+                        <span>Kubernetes</span>
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="integration-badge composio">
+                        <div class="badge-icon">🎭</div>
+                        <span>Composio</span>
+                    </div>
+                    <div class="integration-badge confluence">
+                        <div class="badge-icon">🌊</div>
+                        <span>Confluence</span>
+                    </div>
+                    <div class="integration-badge couchbase">
+                        <div class="badge-icon">🛋️</div>
+                        <span>Couchbase</span>
+                    </div>
+                    <div class="integration-badge evernote">
+                        <div class="badge-icon">🐘</div>
+                        <span>Evernote</span>
+                    </div>
+                    <div class="integration-badge github">
+                        <div class="badge-icon">🐙</div>
+                        <span>Github</span>
+                    </div>
+                    <div class="integration-badge glean">
+                        <div class="badge-icon">✨</div>
+                        <span>Glean</span>
+                    </div>
+                    <div class="integration-badge gmail">
+                        <div class="badge-icon">📧</div>
+                        <span>Gmail</span>
+                    </div>
+                    <div class="integration-badge google-cloud">
+                        <div class="badge-icon">☁️</div>
+                        <span>Google Cloud</span>
+                    </div>
+                    <div class="integration-badge anthropic">
+                        <div class="badge-icon">🤖</div>
+                        <span>Anthropic</span>
+                    </div>
+                    <div class="integration-badge firebase">
+                        <div class="badge-icon">🔥</div>
+                        <span>Firebase</span>
+                    </div>
+                    <div class="integration-badge docker">
+                        <div class="badge-icon">🐳</div>
+                        <span>Docker</span>
+                    </div>
+                    <div class="integration-badge kubernetes">
+                        <div class="badge-icon">⚙️</div>
+                        <span>Kubernetes</span>
+                    </div>
                 </div>
             </div>
-            <div class="market-insights" data-aos="fade-up">
-                <p>The market is rapidly transitioning toward agent-first solutions, with 78% of enterprises planning to implement multi-agent architectures by 2026. Asian enterprises are increasing adoption by 63% year-over-year, with tremendous growth potential in EdTech, FinTech, Healthcare, and LegalTech verticals.</p>
+
+            <!-- Row 2 -->
+            <div class="scroll-row row-2">
+                <div class="scroll-content">
+                    <div class="integration-badge mistral">
+                        <div class="badge-icon">🌪️</div>
+                        <span>Mistral</span>
+                    </div>
+                    <div class="integration-badge mongodb">
+                        <div class="badge-icon">🍃</div>
+                        <span>MongoDB</span>
+                    </div>
+                    <div class="integration-badge notion">
+                        <div class="badge-icon">📝</div>
+                        <span>Notion</span>
+                    </div>
+                    <div class="integration-badge nvidia">
+                        <div class="badge-icon">🎮</div>
+                        <span>NVIDIA</span>
+                    </div>
+                    <div class="integration-badge google-drive">
+                        <div class="badge-icon">📁</div>
+                        <span>Google Drive</span>
+                    </div>
+                    <div class="integration-badge groq">
+                        <div class="badge-icon">⚡</div>
+                        <span>Groq</span>
+                    </div>
+                    <div class="integration-badge supa">
+                        <div class="badge-icon">⚡</div>
+                        <span>Supa</span>
+                    </div>
+                    <div class="integration-badge huggingface">
+                        <div class="badge-icon">🤗</div>
+                        <span>HuggingFace</span>
+                    </div>
+                    <div class="integration-badge redis">
+                        <div class="badge-icon">🔴</div>
+                        <span>Redis</span>
+                    </div>
+                    <div class="integration-badge postgresql">
+                        <div class="badge-icon">🐘</div>
+                        <span>PostgreSQL</span>
+                    </div>
+                    <div class="integration-badge mysql">
+                        <div class="badge-icon">🐬</div>
+                        <span>MySQL</span>
+                    </div>
+                    <div class="integration-badge azure">
+                        <div class="badge-icon">☁️</div>
+                        <span>Azure</span>
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="integration-badge mistral">
+                        <div class="badge-icon">🌪️</div>
+                        <span>Mistral</span>
+                    </div>
+                    <div class="integration-badge mongodb">
+                        <div class="badge-icon">🍃</div>
+                        <span>MongoDB</span>
+                    </div>
+                    <div class="integration-badge notion">
+                        <div class="badge-icon">📝</div>
+                        <span>Notion</span>
+                    </div>
+                    <div class="integration-badge nvidia">
+                        <div class="badge-icon">🎮</div>
+                        <span>NVIDIA</span>
+                    </div>
+                    <div class="integration-badge google-drive">
+                        <div class="badge-icon">📁</div>
+                        <span>Google Drive</span>
+                    </div>
+                    <div class="integration-badge groq">
+                        <div class="badge-icon">⚡</div>
+                        <span>Groq</span>
+                    </div>
+                    <div class="integration-badge supa">
+                        <div class="badge-icon">⚡</div>
+                        <span>Supa</span>
+                    </div>
+                    <div class="integration-badge huggingface">
+                        <div class="badge-icon">🤗</div>
+                        <span>HuggingFace</span>
+                    </div>
+                    <div class="integration-badge redis">
+                        <div class="badge-icon">🔴</div>
+                        <span>Redis</span>
+                    </div>
+                    <div class="integration-badge postgresql">
+                        <div class="badge-icon">🐘</div>
+                        <span>PostgreSQL</span>
+                    </div>
+                    <div class="integration-badge mysql">
+                        <div class="badge-icon">🐬</div>
+                        <span>MySQL</span>
+                    </div>
+                    <div class="integration-badge azure">
+                        <div class="badge-icon">☁️</div>
+                        <span>Azure</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="scroll-row row-3">
+                <div class="scroll-content">
+                    <div class="integration-badge qdrant">
+                        <div class="badge-icon">🎯</div>
+                        <span>Qdrant</span>
+                    </div>
+                    <div class="integration-badge serp-api">
+                        <div class="badge-icon">🔍</div>
+                        <span>Serp API</span>
+                    </div>
+                    <div class="integration-badge slack">
+                        <div class="badge-icon">#</div>
+                        <span>Slack</span>
+                    </div>
+                    <div class="integration-badge datastax">
+                        <div class="badge-icon">⭐</div>
+                        <span>Datastax</span>
+                    </div>
+                    <div class="integration-badge amazon-bedrock">
+                        <div class="badge-icon">🪨</div>
+                        <span>Amazon Bedrock</span>
+                    </div>
+                    <div class="integration-badge tavily">
+                        <div class="badge-icon">🔬</div>
+                        <span>Tavily</span>
+                    </div>
+                    <div class="integration-badge upstash">
+                        <div class="badge-icon">🚀</div>
+                        <span>Upstash</span>
+                    </div>
+                    <div class="integration-badge unstructured">
+                        <div class="badge-icon">🔲</div>
+                        <span>Unstructured</span>
+                    </div>
+                    <div class="integration-badge openai">
+                        <div class="badge-icon">🤖</div>
+                        <span>OpenAI</span>
+                    </div>
+                    <div class="integration-badge crew-ai">
+                        <div class="badge-icon">👥</div>
+                        <span>Crew AI</span>
+                    </div>
+                    <div class="integration-badge aws">
+                        <div class="badge-icon">☁️</div>
+                        <span>AWS</span>
+                    </div>
+                    <div class="integration-badge vercel">
+                        <div class="badge-icon">▲</div>
+                        <span>Vercel</span>
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="integration-badge qdrant">
+                        <div class="badge-icon">🎯</div>
+                        <span>Qdrant</span>
+                    </div>
+                    <div class="integration-badge serp-api">
+                        <div class="badge-icon">🔍</div>
+                        <span>Serp API</span>
+                    </div>
+                    <div class="integration-badge slack">
+                        <div class="badge-icon">#</div>
+                        <span>Slack</span>
+                    </div>
+                    <div class="integration-badge datastax">
+                        <div class="badge-icon">⭐</div>
+                        <span>Datastax</span>
+                    </div>
+                    <div class="integration-badge amazon-bedrock">
+                        <div class="badge-icon">🪨</div>
+                        <span>Amazon Bedrock</span>
+                    </div>
+                    <div class="integration-badge tavily">
+                        <div class="badge-icon">🔬</div>
+                        <span>Tavily</span>
+                    </div>
+                    <div class="integration-badge upstash">
+                        <div class="badge-icon">🚀</div>
+                        <span>Upstash</span>
+                    </div>
+                    <div class="integration-badge unstructured">
+                        <div class="badge-icon">🔲</div>
+                        <span>Unstructured</span>
+                    </div>
+                    <div class="integration-badge openai">
+                        <div class="badge-icon">🤖</div>
+                        <span>OpenAI</span>
+                    </div>
+                    <div class="integration-badge crew-ai">
+                        <div class="badge-icon">👥</div>
+                        <span>Crew AI</span>
+                    </div>
+                    <div class="integration-badge aws">
+                        <div class="badge-icon">☁️</div>
+                        <span>AWS</span>
+                    </div>
+                    <div class="integration-badge vercel">
+                        <div class="badge-icon">▲</div>
+                        <span>Vercel</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 4 -->
+            <div class="scroll-row row-4">
+                <div class="scroll-content">
+                    <div class="integration-badge vectora">
+                        <div class="badge-icon">📊</div>
+                        <span>Vectora</span>
+                    </div>
+                    <div class="integration-badge wikipedia">
+                        <div class="badge-icon">📚</div>
+                        <span>Wikipedia</span>
+                    </div>
+                    <div class="integration-badge wolfram">
+                        <div class="badge-icon">∑</div>
+                        <span>Wolfram Alpha</span>
+                    </div>
+                    <div class="integration-badge yahoo-finance">
+                        <div class="badge-icon">💰</div>
+                        <span>Yahoo! Finance</span>
+                    </div>
+                    <div class="integration-badge composio">
+                        <div class="badge-icon">🎭</div>
+                        <span>Composio</span>
+                    </div>
+                    <div class="integration-badge confluence">
+                        <div class="badge-icon">🌊</div>
+                        <span>Confluence</span>
+                    </div>
+                    <div class="integration-badge couchbase">
+                        <div class="badge-icon">🛋️</div>
+                        <span>Couchbase</span>
+                    </div>
+                    <div class="integration-badge evernote">
+                        <div class="badge-icon">🐘</div>
+                        <span>Evernote</span>
+                    </div>
+                    <div class="integration-badge github">
+                        <div class="badge-icon">🐙</div>
+                        <span>Github</span>
+                    </div>
+                    <div class="integration-badge glean">
+                        <div class="badge-icon">✨</div>
+                        <span>Glean</span>
+                    </div>
+                    <div class="integration-badge gmail">
+                        <div class="badge-icon">📧</div>
+                        <span>Gmail</span>
+                    </div>
+                    <div class="integration-badge google-cloud">
+                        <div class="badge-icon">☁️</div>
+                        <span>Google Cloud</span>
+                    </div>
+                    <div class="integration-badge anthropic">
+                        <div class="badge-icon">🤖</div>
+                        <span>Anthropic</span>
+                    </div>
+                    <div class="integration-badge firebase">
+                        <div class="badge-icon">🔥</div>
+                        <span>Firebase</span>
+                    </div>
+                    <div class="integration-badge docker">
+                        <div class="badge-icon">🐳</div>
+                        <span>Docker</span>
+                    </div>
+                    <div class="integration-badge kubernetes">
+                        <div class="badge-icon">⚙️</div>
+                        <span>Kubernetes</span>
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="integration-badge composio">
+                        <div class="badge-icon">🎭</div>
+                        <span>Composio</span>
+                    </div>
+                    <div class="integration-badge confluence">
+                        <div class="badge-icon">🌊</div>
+                        <span>Confluence</span>
+                    </div>
+                    <div class="integration-badge couchbase">
+                        <div class="badge-icon">🛋️</div>
+                        <span>Couchbase</span>
+                    </div>
+                    <div class="integration-badge evernote">
+                        <div class="badge-icon">🐘</div>
+                        <span>Evernote</span>
+                    </div>
+                    <div class="integration-badge github">
+                        <div class="badge-icon">🐙</div>
+                        <span>Github</span>
+                    </div>
+                    <div class="integration-badge glean">
+                        <div class="badge-icon">✨</div>
+                        <span>Glean</span>
+                    </div>
+                    <div class="integration-badge gmail">
+                        <div class="badge-icon">📧</div>
+                        <span>Gmail</span>
+                    </div>
+                    <div class="integration-badge google-cloud">
+                        <div class="badge-icon">☁️</div>
+                        <span>Google Cloud</span>
+                    </div>
+                    <div class="integration-badge anthropic">
+                        <div class="badge-icon">🤖</div>
+                        <span>Anthropic</span>
+                    </div>
+                    <div class="integration-badge firebase">
+                        <div class="badge-icon">🔥</div>
+                        <span>Firebase</span>
+                    </div>
+                    <div class="integration-badge docker">
+                        <div class="badge-icon">🐳</div>
+                        <span>Docker</span>
+                    </div>
+                    <div class="integration-badge kubernetes">
+                        <div class="badge-icon">⚙️</div>
+                        <span>Kubernetes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market & Opportunity Section -->
+    <section id="market-opportunity" class="market-section">
+        <div class="container">
+            <h2 class="section-title">Market & Opportunity</h2>
+            <div class="stats-grid">
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-number" data-target="50">0</div>
+                    <div class="stat-unit">B+ USD</div>
+                    <div class="stat-label">Total Addressable Market by 2030</div>
+                </div>
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-number" data-target="45">0</div>
+                    <div class="stat-unit">%</div>
+                    <div class="stat-label">CAGR in Autonomous Systems</div>
+                </div>
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-number" data-target="45000">0</div>
+                    <div class="stat-unit">Cr INR</div>
+                    <div class="stat-label">Indian AI Market by 2027</div>
+                </div>
+            </div>
+            <div class="market-insight" data-aos="fade-up" data-aos-delay="400">
+                <p>The autonomous AI agent market is experiencing unprecedented growth, driven by enterprise demand for intelligent automation and contextual decision-making capabilities. NeuraTantra is positioned at the forefront of this transformation.</p>
             </div>
         </div>
     </section>
@@ -163,35 +805,31 @@
     <!-- Vision Section -->
     <section id="vision" class="vision-section">
         <div class="container">
+            <h2 class="section-title">Our Vision</h2>
             <div class="vision-content">
                 <div class="vision-text" data-aos="fade-right">
-                    <h2 class="section-title">Our Vision</h2>
-                    <p class="vision-description">We're establishing NeuraTantra as India's premier Agentic AI innovator, setting industry standards and driving technological advancement.</p>
-                    <ul class="vision-values">
-                        <li>
-                            <h4>Market Leadership</h4>
-                            <p>Setting industry standards and driving technological advancement in the AI ecosystem</p>
-                        </li>
-                        <li>
-                            <h4>Powering Autonomy</h4>
-                            <p>Delivering robust, enterprise-grade autonomous systems that transform decision-making</p>
-                        </li>
-                        <li>
-                            <h4>Unique Synthesis</h4>
-                            <p>Pioneering the integration of cutting-edge AI with neural frameworks and traditional Indian systems thinking</p>
-                        </li>
-                    </ul>
+                    <div class="vision-point">
+                        <h3>Market Leadership</h3>
+                        <p>Establishing NeuraTantra as India's premier agentic AI platform</p>
+                    </div>
+                    <div class="vision-point">
+                        <h3>Powering Autonomy</h3>
+                        <p>Enabling true autonomous decision-making at enterprise scale</p>
+                    </div>
+                    <div class="vision-point">
+                        <h3>Unique Synthesis</h3>
+                        <p>Blending cutting-edge AI with Indian systems thinking</p>
+                    </div>
                 </div>
                 <div class="vision-diagram" data-aos="fade-left">
-                    <!-- Visual diagram representing the synthesis -->
-                    <div class="diagram-container">
-                        <div class="diagram-circle modern-ai">
+                    <div class="venn-diagram">
+                        <div class="circle circle-1">
                             <span>Modern AI</span>
                         </div>
-                        <div class="diagram-circle indian-thinking">
+                        <div class="circle circle-2">
                             <span>Indian Systems Thinking</span>
                         </div>
-                        <div class="diagram-intersection">
+                        <div class="center-intersection">
                             <span>NeuraTantra AI</span>
                         </div>
                     </div>
@@ -200,36 +838,30 @@
         </div>
     </section>
 
-    <!-- Traction Section -->
+    <!-- Traction Timeline Section -->
     <section id="traction" class="traction-section">
         <div class="container">
             <h2 class="section-title">Our Traction</h2>
-            <div class="traction-timeline">
+            <div class="timeline">
                 <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
-                    <div class="timeline-marker">
-                        <div class="marker-inner">✓</div>
-                    </div>
+                    <div class="timeline-marker"></div>
                     <div class="timeline-content">
                         <h3>MVP Launch</h3>
-                        <p>Successfully deployed website and Streamlit prototype with core functionality validated by test users</p>
+                        <p>Successfully launched our minimum viable product with core agent orchestration capabilities</p>
                     </div>
                 </div>
                 <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
-                    <div class="timeline-marker">
-                        <div class="marker-inner">🚀</div>
-                    </div>
+                    <div class="timeline-marker"></div>
                     <div class="timeline-content">
                         <h3>Pilot Programs</h3>
-                        <p>Implemented two strategic use cases demonstrating market fit: automated lead generation and AI-powered research summarization</p>
+                        <p>Initiated strategic partnerships with leading enterprises for proof-of-concept implementations</p>
                     </div>
                 </div>
                 <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
-                    <div class="timeline-marker">
-                        <div class="marker-inner">📈</div>
-                    </div>
+                    <div class="timeline-marker"></div>
                     <div class="timeline-content">
                         <h3>Initial Reach</h3>
-                        <p>Established network of 500+ targeted industry connections on LinkedIn; commenced promising discussions with potential investors</p>
+                        <p>Built network of 500+ industry connections and early adopters across various sectors</p>
                     </div>
                 </div>
             </div>
@@ -241,29 +873,28 @@
         <div class="container">
             <h2 class="section-title">Our Team</h2>
             <div class="team-grid">
-                <div class="team-member founder" data-aos="fade-up">
+                <div class="team-member" data-aos="fade-up" data-aos-delay="100">
                     <div class="member-photo">
-                        <!-- Placeholder photo with glowing border -->
-                        <div class="photo-placeholder">VJ</div>
+                        <img src="https://via.placeholder.com/200x200" alt="Vaibhav Jain" class="member-image">
                     </div>
-                    <h3>Vaibhav Jain</h3>
-                    <p class="member-title">Founder & CEO</p>
-                    <p class="member-bio">12+ years pioneering AI solutions with deep expertise in strategic business analysis and enterprise transformation</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link">
-                            <svg class="social-icon" viewBox="0 0 24 24">
-                                <path d="M19,3H5C3.895,3,3,3.895,3,5v14c0,1.105,0.895,2,2,2h14c1.105,0,2-0.895,2-2V5C21,3.895,20.105,3,19,3z M9,17H6.477v-7H9V17z M7.694,8.717c-0.771,0-1.286-0.514-1.286-1.2s0.514-1.2,1.371-1.2c0.771,0,1.286,0.514,1.286,1.2S8.551,8.717,7.694,8.717z M18,17h-2.442v-3.826c0-1.058-0.651-1.302-0.895-1.302s-1.058,0.163-1.058,1.302c0,0.163,0,3.826,0,3.826h-2.523v-7h2.523v0.977C13.93,10.407,14.581,10,15.802,10C17.023,10,18,10.977,18,13.174V17z"/>
+                    <div class="member-info">
+                        <h3>Vaibhav Jain</h3>
+                        <p class="member-role">Founder & CEO</p>
+                        <p class="member-bio">Visionary leader with deep expertise in AI systems and enterprise architecture. Passionate about building the future of autonomous intelligence.</p>
+                        <a href="#" class="linkedin-link">
+                            <svg viewBox="0 0 24 24" class="linkedin-icon">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                             </svg>
                         </a>
                     </div>
                 </div>
-                <div class="team-group">
-                    <h3 class="team-group-title">Development Team</h3>
-                    <p>Elite contract developers & designers specializing in intelligent systems and intuitive user experiences</p>
+                <div class="team-role-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Development Team</h3>
+                    <p>World-class engineers specializing in AI, machine learning, and distributed systems</p>
                 </div>
-                <div class="team-group">
-                    <h3 class="team-group-title">Advisory Circle</h3>
-                    <p>Distinguished industry veterans providing strategic guidance in AI architecture, workflow automation, and human-centered design</p>
+                <div class="team-role-card" data-aos="fade-up" data-aos-delay="300">
+                    <h3>Advisory Circle</h3>
+                    <p>Industry veterans and thought leaders guiding our strategic direction</p>
                 </div>
             </div>
         </div>
@@ -272,46 +903,48 @@
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
         <div class="container">
-            <h2 class="section-title">Contact Us</h2>
+            <h2 class="section-title">Get In Touch</h2>
             <div class="contact-content">
                 <div class="contact-info" data-aos="fade-right">
-                    <h3>Get in Touch</h3>
-                    <p>Ready to transform your business with Agentic AI? Let's connect and explore the possibilities.</p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <svg class="contact-icon" viewBox="0 0 24 24">
-                                <path d="M20,4H4C2.895,4,2,4.895,2,6v12c0,1.105,0.895,2,2,2h16c1.105,0,2-0.895,2-2V6C22,4.895,21.105,4,20,4z M20,8l-8,5L4,8V6l8,5l8-5V8z"/>
-                            </svg>
-                            <a href="mailto:neuratantraai@gmail.com">neuratantraai@gmail.com</a>
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>hello@neuratantra.ai</p>
                         </div>
-                        <div class="contact-item">
-                            <svg class="contact-icon" viewBox="0 0 24 24">
-                                <path d="M20,15.5C18.8,15.5,17.5,15.3,16.4,14.9C16.3,14.9,16.2,14.9,16.1,14.9C15.8,14.9,15.6,15,15.4,15.2L13.2,17.4C10.4,15.9,8,13.6,6.6,10.8L8.8,8.6C9.1,8.3,9.2,7.9,9,7.6C8.7,6.5,8.5,5.2,8.5,4C8.5,3.5,8,3,7.5,3H4C3.5,3,3,3.5,3,4C3,13.4,10.6,21,20,21C20.5,21,21,20.5,21,20V16.5C21,16,20.5,15.5,20,15.5Z"/>
-                            </svg>
-                            <a href="tel:91 72080 59991">91 72080 59991</a>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-details">
+                            <h3>Phone</h3>
+                            <p>+91 98765 43210</p>
                         </div>
                     </div>
                 </div>
                 <div class="contact-form-container" data-aos="fade-left">
-                    <form class="contact-form">
+                    <form class="contact-form" id="contactForm">
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" placeholder="Your name" required>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="Your email" required>
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
                         </div>
                         <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" placeholder="How can we help you?" required></textarea>
+                            <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
                         </div>
                         <div class="form-group checkbox-group">
                             <input type="checkbox" id="newsletter" name="newsletter">
                             <label for="newsletter">Subscribe to our newsletter</label>
                         </div>
-                        <button type="submit" class="btn btn-primary">Schedule Demo</button>
+                        <button type="submit" class="submit-btn">Send Message</button>
                     </form>
+                    <div class="success-message" id="successMessage" style="display: none;">
+                        <div class="success-animation">
+                            <div class="checkmark">✓</div>
+                            <h3>Thank You!</h3>
+                            <p>Your message has been sent successfully. We'll get back to you soon.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -321,16 +954,19 @@
 <!-- Footer will be loaded here dynamically -->
 <div id="footer-placeholder"></div>
 
-<!-- Scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
-    // Load external HTML components
+    // Initialize AOS
+    AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true
+    });
+
+    // Dynamic component loading
     async function loadComponent(url, targetId) {
         try {
             const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
             const html = await response.text();
             document.getElementById(targetId).innerHTML = html;
         } catch (error) {
@@ -338,297 +974,134 @@
         }
     }
 
-    // Initialize everything when the DOM is loaded
-    document.addEventListener('DOMContentLoaded', async function() {
-        // Load navbar and footer
-        await loadComponent('navbar.html', 'navbar-placeholder');
-        await loadComponent('footer.html', 'footer-placeholder');
-
-        // Initialize navbar functionality after it's loaded
-        initNavbar();
-
-        // Initialize animations
-        AOS.init({
-            duration: 800,
-            once: true
-        });
-
-        // Initialize neural network animation
-        initNeuralNetwork();
-
-        // Initialize counters
-        initCounters();
-
-        // Initialize form submission
-        initContactForm();
+    // Load navbar and footer
+    document.addEventListener('DOMContentLoaded', function() {
+        loadComponent('navbar.html', 'navbar-placeholder');
+        loadComponent('footer.html', 'footer-placeholder');
     });
 
-    // Navbar functionality
-    function initNavbar() {
-        const header = document.getElementById('header');
-        const menuToggle = document.getElementById('menuToggle');
-        const navContainer = document.getElementById('navContainer');
-        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    // Neural Network Animation
+    function createNeuralNetwork() {
+        const svg = document.querySelector('.neural-network');
+        const nodes = [];
+        const connections = [];
 
-        // Handle scroll event to add scrolled class to header
-        window.addEventListener('scroll', function() {
-            if (header && window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else if (header) {
-                header.classList.remove('scrolled');
-            }
-        });
+        // Create nodes
+        for (let i = 0; i < 50; i++) {
+            const node = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            const x = Math.random() * 1200;
+            const y = Math.random() * 600;
 
-        // Toggle mobile menu
-        if (menuToggle) {
-            menuToggle.addEventListener('click', function() {
-                navContainer.classList.toggle('active');
-                menuToggle.classList.toggle('active');
-            });
+            node.setAttribute('cx', x);
+            node.setAttribute('cy', y);
+            node.setAttribute('r', Math.random() * 3 + 1);
+            node.setAttribute('fill', '#4FD1C5');
+            node.setAttribute('opacity', Math.random() * 0.5 + 0.3);
+
+            nodes.push({ element: node, x, y });
+            svg.appendChild(node);
         }
 
-        // Handle dropdown menus
-        dropdownToggles.forEach(toggle => {
-            toggle.addEventListener('click', function(e) {
-                // Prevent navigating to the products section when clicking the dropdown toggle
-                if (window.innerWidth < 992) {
-                    e.preventDefault();
-                    this.parentElement.classList.toggle('open');
+        // Create connections
+        nodes.forEach((node, i) => {
+            nodes.slice(i + 1).forEach(otherNode => {
+                const distance = Math.sqrt(
+                    Math.pow(node.x - otherNode.x, 2) +
+                    Math.pow(node.y - otherNode.y, 2)
+                );
+
+                if (distance < 150 && Math.random() > 0.7) {
+                    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                    line.setAttribute('x1', node.x);
+                    line.setAttribute('y1', node.y);
+                    line.setAttribute('x2', otherNode.x);
+                    line.setAttribute('y2', otherNode.y);
+                    line.setAttribute('stroke', '#4FD1C5');
+                    line.setAttribute('stroke-width', 0.5);
+                    line.setAttribute('opacity', 0.2);
+
+                    svg.insertBefore(line, svg.firstChild);
                 }
             });
         });
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (navContainer && menuToggle && !navContainer.contains(e.target) && !menuToggle.contains(e.target) && navContainer.classList.contains('active')) {
-                navContainer.classList.remove('active');
-                menuToggle.classList.remove('active');
-            }
-        });
-
-        // Handle window resize
-        window.addEventListener('resize', function() {
-            if (window.innerWidth >= 992 && navContainer && menuToggle) {
-                navContainer.classList.remove('active');
-                menuToggle.classList.remove('active');
-
-                // Close any open dropdowns
-                document.querySelectorAll('.dropdown.open').forEach(dropdown => {
-                    dropdown.classList.remove('open');
-                });
-            }
+        // Animate nodes
+        nodes.forEach(node => {
+            const animation = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+            animation.setAttribute('attributeName', 'opacity');
+            animation.setAttribute('values', '0.3;0.8;0.3');
+            animation.setAttribute('dur', (Math.random() * 3 + 2) + 's');
+            animation.setAttribute('repeatCount', 'indefinite');
+            node.element.appendChild(animation);
         });
     }
 
-    // Neural network animation
-    function initNeuralNetwork() {
-        const svg = document.querySelector('.neural-network');
-        if (!svg) return;
-
-        const width = 1200;
-        const height = 600;
-        const nodeCount = 30;
-        const connectionCount = 40;
-
-        // Create nodes
-        const nodes = [];
-        for (let i = 0; i < nodeCount; i++) {
-            const x = Math.random() * width;
-            const y = Math.random() * height;
-            const radius = Math.random() * 2 + 1;
-
-            const node = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-            node.setAttribute("cx", x);
-            node.setAttribute("cy", y);
-            node.setAttribute("r", radius);
-            node.setAttribute("fill", "#4FD1C5");
-            node.setAttribute("opacity", Math.random() * 0.5 + 0.3);
-            node.setAttribute("class", "neural-node");
-
-            svg.appendChild(node);
-            nodes.push({ x, y, element: node });
-        }
-
-        // Create connections
-        for (let i = 0; i < connectionCount; i++) {
-            const nodeA = nodes[Math.floor(Math.random() * nodes.length)];
-            const nodeB = nodes[Math.floor(Math.random() * nodes.length)];
-
-            const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-            line.setAttribute("x1", nodeA.x);
-            line.setAttribute("y1", nodeA.y);
-            line.setAttribute("x2", nodeB.x);
-            line.setAttribute("y2", nodeB.y);
-            line.setAttribute("stroke", "#4FD1C5");
-            line.setAttribute("stroke-width", "0.5");
-            line.setAttribute("opacity", "0.3");
-            line.setAttribute("class", "neural-connection");
-
-            svg.appendChild(line);
-        }
-
-        // Add subtle animation to nodes
-        const nodesElements = document.querySelectorAll('.neural-node');
-        nodesElements.forEach(node => {
-            const animationDuration = 3 + Math.random() * 5;
-            const animationDelay = Math.random() * 5;
-
-            node.style.animation = `pulse ${animationDuration}s ease-in-out ${animationDelay}s infinite alternate`;
-        });
-    }
-
-    // Counter animation for stats
+    // Counter Animation
     function initCounters() {
-        const counters = document.querySelectorAll('.counter');
-        const speed = 200; // The lower the slower
-
+        const counters = document.querySelectorAll('.stat-number');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const counter = entry.target;
-                    const target = parseInt(counter.getAttribute('data-target'));
-                    let count = 0;
+                    const target = parseInt(counter.dataset.target);
+                    let current = 0;
+                    const increment = target / 100;
 
-                    const updateCount = () => {
-                        const increment = target / speed;
-                        if (count < target) {
-                            count += increment;
-                            counter.innerText = Math.ceil(count);
-                            setTimeout(updateCount, 1);
+                    const updateCounter = () => {
+                        if (current < target) {
+                            current += increment;
+                            counter.textContent = Math.ceil(current);
+                            requestAnimationFrame(updateCounter);
                         } else {
-                            counter.innerText = target;
+                            counter.textContent = target;
                         }
                     };
 
-                    updateCount();
+                    updateCounter();
                     observer.unobserve(counter);
                 }
             });
-        }, { threshold: 0.3 });
-
-        counters.forEach(counter => {
-            observer.observe(counter);
         });
+
+        counters.forEach(counter => observer.observe(counter));
     }
 
-    // Contact form submission
-    function initContactForm() {
-        const form = document.querySelector('.contact-form');
-        if (!form) return;
+    // Contact Form Handling
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
 
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Simulate form submission
+        setTimeout(() => {
+            document.querySelector('.contact-form').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
 
-            // Get form data
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            const newsletter = document.getElementById('newsletter').checked;
-
-            // Here you would typically send data to a server
-            console.log('Form submitted:', { name, email, message, newsletter });
-
-            // Show success message (would be handled by your backend normally)
-            const formContainer = form.parentElement;
-
-            // Create success message
-            const successMessage = document.createElement('div');
-            successMessage.className = 'form-success';
-            successMessage.innerHTML = `
-                <svg class="success-icon" viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="10" class="success-circle"></circle>
-                    <path d="M8,12 L11,15 L16,9" class="success-check"></path>
-                </svg>
-                <h3>Thank you, ${name}!</h3>
-                <p>Your message has been received. We'll be in touch shortly to schedule your demo.</p>
-            `;
-
-            // Replace form with success message
-            form.style.opacity = '0';
+            // Add success animation
             setTimeout(() => {
-                form.style.display = 'none';
-                formContainer.appendChild(successMessage);
+                document.querySelector('.success-animation').style.transform = 'scale(1)';
+                document.querySelector('.success-animation').style.opacity = '1';
+            }, 100);
+        }, 1000);
+    });
 
-                // Animate success message
-                setTimeout(() => {
-                    successMessage.style.opacity = '1';
-                }, 50);
-            }, 300);
-        });
-    }
-
-    // Add smooth scrolling for anchor links
+    // Smooth scrolling for anchor links
     document.addEventListener('click', function(e) {
         if (e.target.matches('a[href^="#"]')) {
+            e.preventDefault();
             const target = document.querySelector(e.target.getAttribute('href'));
             if (target) {
-                e.preventDefault();
-
-                // Close mobile menu if open
-                const navContainer = document.getElementById('navContainer');
-                const menuToggle = document.getElementById('menuToggle');
-                if (navContainer && navContainer.classList.contains('active')) {
-                    navContainer.classList.remove('active');
-                    if (menuToggle) menuToggle.classList.remove('active');
-                }
-
-                // Smooth scroll to target
-                window.scrollTo({
-                    top: target.offsetTop - 80, // Offset for sticky header
-                    behavior: 'smooth'
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
                 });
             }
         }
     });
 
-    // Add CSS animations programmatically
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes pulse {
-            0% { opacity: 0.3; transform: scale(1); }
-            100% { opacity: 0.7; transform: scale(1.2); }
-        }
-
-        .form-success {
-            text-align: center;
-            padding: 2rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .success-icon {
-            width: 64px;
-            height: 64px;
-            margin-bottom: 1rem;
-        }
-
-        .success-circle {
-            fill: none;
-            stroke: #4FD1C5;
-            stroke-width: 2;
-            stroke-dasharray: 66;
-            stroke-dashoffset: 66;
-            animation: circle-animation 0.8s ease-in-out forwards;
-        }
-
-        .success-check {
-            fill: none;
-            stroke: #4FD1C5;
-            stroke-width: 2;
-            stroke-dasharray: 36;
-            stroke-dashoffset: 36;
-            animation: check-animation 0.8s ease-in-out 0.8s forwards;
-        }
-
-        @keyframes circle-animation {
-            to { stroke-dashoffset: 0; }
-        }
-
-        @keyframes check-animation {
-            to { stroke-dashoffset: 0; }
-        }
-    `;
-    document.head.appendChild(style);
+    // Initialize everything when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        createNeuralNetwork();
+        initCounters();
+    });
 </script>
 </body>
 </html>
