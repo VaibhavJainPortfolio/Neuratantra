@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - NeuraTantra AI</title>
+
+  <!-- External Styles -->
+  <link rel="stylesheet" href="stylu.css">
+
+  <!-- Additional page-specific styles -->
+  <style>
+    /* Signup Page Specific Styles */
+    .signup-section {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding-top: var(--header-height);
+        background: linear-gradient(135deg,
+            rgba(110, 84, 194, 0.1) 0%,
+            rgba(76, 144, 230, 0.05) 50%,
+            rgba(230, 96, 168, 0.1) 100%);
+    }
+
+    .signup-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 3rem 2rem;
+    }
+
+    .signup-card {
+        background: var(--color-card-bg);
+        border-radius: var(--border-radius-lg);
+        padding: 3rem;
+        box-shadow: var(--box-shadow-hover);
+        border: 1px solid rgba(110, 84, 194, 0.2);
+        backdrop-filter: blur(20px);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .signup-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-accent-1));
+    }
+
+    .signup-header {
+        text-align: center;
+        margin-bottom: 2.5rem;
+    }
+
+    .signup-title {
+        font-size: var(--font-size-3xl);
+        margin-bottom: 0.5rem;
+        background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .signup-subtitle {
+        color: var(--color-text-muted);
+        font-size: var(--font-size-lg);
+    }
+
+    .signup-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .form-step {
+        display: none;
+    }
+
+    .form-step.active {
+        display: block;
+        animation: fadeIn 0.5s ease;
+    }
+
+    .contact-method-selector {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .method-btn {
+        flex: 1;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid var(--color-input-border);
+        border-radius: var(--border-radius-md);
+        color: var(--color-text);
+        cursor: pointer;
+        transition: all var(--transition-medium);
+        text-align: center;
+        font-weight: 500;
+    }
+
+    .method-btn:hover {
+        border-color: var(--color-primary);
+        background: rgba(110, 84, 194, 0.1);
+    }
+
+    .method-btn.active {
+        border-color: var(--color-primary);
+        background: rgba(110, 84, 194, 0.2);
+        color: var(--color-primary);
+    }
+
+    .input-group {
+        position: relative;
+    }
+
+    .input-group input {
+        width: 100%;
+        padding: 1rem 1.2rem;
+        background: var(--color-input-bg);
+        border: 2px solid var(--color-input-border);
+        border-radius: var(--border-radius-md);
+        color: var(--color-text);
+        font-size: var(--font-size-md);
+        transition: all var(--transition-medium);
+    }
+
+    .input-group input:focus {
+        outline: none;
+        border-color: var(--color-primary);
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 0 0 3px rgba(110, 84, 194, 0.1);
+    }
+
+    .input-group label {
+        position: absolute;
+        top: 50%;
+        left: 1.2rem;
+        transform: translateY(-50%);
+        color: var(--color-text-muted);
+        font-size: var(--font-size-md);
+        pointer-events: none;
+        transition: all var(--transition-medium);
+    }
+
+    .input-group input:focus + label,
+    .input-group input:not(:placeholder-shown) + label {
+        top: -8px;
+        left: 1rem;
+        font-size: var(--font-size-sm);
+        background: var(--color-bg);
+        padding: 0 0.5rem;
+        color: var(--color-primary);
+    }
+
+    .otp-inputs {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin: 2rem 0;
+    }
+
+    .otp-input {
+        width: 60px;
+        height: 60px;
+        text-align: center;
+        font-size: var(--font-size-xl);
+        font-weight: 600;
+        background: var(--color-input-bg);
+        border: 2px solid var(--color-input-border);
+        border-radius: var(--border-radius-md);
+        color: var(--color-text);
+        transition: all var(--transition-medium);
+    }
+
+    .otp-input:focus {
+        outline: none;
+        border-color: var(--color-primary);
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 0 0 3px rgba(110, 84, 194, 0.1);
+    }
+
+    .resend-otp {
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    .resend-link {
+        color: var(--color-secondary);
+        cursor: pointer;
+        text-decoration: underline;
+        transition: color var(--transition-fast);
+    }
+
+    .resend-link:hover {
+        color: var(--color-primary);
+    }
+
+    .resend-link.disabled {
+        color: var(--color-text-muted);
+        cursor: not-allowed;
+        text-decoration: none;
+    }
+
+    .signup-btn {
+        width: 100%;
+        padding: 1.2rem;
+        font-size: var(--font-size-lg);
+        font-weight: 600;
+        margin-top: 1rem;
+    }
+
+    .step-indicator {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .step {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid var(--color-input-border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        transition: all var(--transition-medium);
+    }
+
+    .step.active {
+        background: var(--color-primary);
+        border-color: var(--color-primary);
+        color: white;
+    }
+
+    .step.completed {
+        background: var(--color-accent-2);
+        border-color: var(--color-accent-2);
+        color: white;
+    }
+
+    .step-line {
+        width: 50px;
+        height: 2px;
+        background: var(--color-input-border);
+        transition: background var(--transition-medium);
+    }
+
+    .step-line.completed {
+        background: var(--color-accent-2);
+    }
+
+    .success-message {
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .success-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 1.5rem;
+        background: linear-gradient(135deg, var(--color-accent-2), var(--color-secondary));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: white;
+    }
+
+    .login-link {
+        text-align: center;
+        margin-top: 2rem;
+    }
+
+    .login-link a {
+        color: var(--color-secondary);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color var(--transition-fast);
+    }
+
+    .login-link a:hover {
+        color: var(--color-primary);
+    }
+
+    .error-message {
+        color: #ff6b6b;
+        font-size: var(--font-size-sm);
+        margin-top: 0.5rem;
+        text-align: center;
+    }
+
+    .loading {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top-color: white;
+        animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    /* Responsive Design */
+    @media screen and (max-width: 768px) {
+        .signup-container {
+            padding: 2rem 1rem;
+        }
+
+        .signup-card {
+            padding: 2rem 1.5rem;
+        }
+
+        .signup-title {
+            font-size: var(--font-size-2xl);
+        }
+
+        .contact-method-selector {
+            flex-direction: column;
+        }
+
+        .otp-inputs {
+            gap: 0.5rem;
+        }
+
+        .otp-input {
+            width: 50px;
+            height: 50px;
+        }
+
+        .step-indicator {
+            gap: 0.5rem;
+        }
+
+        .step {
+            width: 35px;
+            height: 35px;
+            font-size: var(--font-size-sm);
+        }
+
+        .step-line {
+            width: 30px;
+        }
+    }
+  </style>
+</head>
+<body>
+
+
+<!-- Main Signup Section -->
+<section class="signup-section">
+  <div class="container">
+    <div class="signup-container">
+      <div class="signup-card">
+        <!-- Step Indicator -->
+        <div class="step-indicator">
+          <div class="step active" id="step-1">1</div>
+          <div class="step-line" id="line-1"></div>
+          <div class="step" id="step-2">2</div>
+          <div class="step-line" id="line-2"></div>
+          <div class="step" id="step-3">✓</div>
+        </div>
+
+        <!-- Signup Header -->
+        <div class="signup-header">
+          <h1 class="signup-title">Create Your Account</h1>
+          <p class="signup-subtitle">Join NeuraTantra AI and unlock the future of intelligence</p>
+        </div>
+
+        <!-- Signup Form -->
+        <form class="signup-form" id="signupForm">
+          <!-- Step 1: Contact Method Selection -->
+          <div class="form-step active" id="step1">
+            <div class="contact-method-selector">
+              <button type="button" class="method-btn active" data-method="email">
+                📧 Email
+              </button>
+              <button type="button" class="method-btn" data-method="phone">
+                📱 Phone
+              </button>
+            </div>
+
+            <div class="input-group">
+              <input type="email" id="emailInput" placeholder=" " required>
+              <label for="emailInput">Email Address</label>
+            </div>
+
+            <div class="input-group" style="display: none;" id="phoneGroup">
+              <input type="tel" id="phoneInput" placeholder=" ">
+              <label for="phoneInput">Phone Number</label>
+            </div>
+
+            <div class="input-group">
+              <input type="text" id="nameInput" placeholder=" " required>
+              <label for="nameInput">Full Name</label>
+            </div>
+
+            <div class="input-group">
+              <input type="password" id="passwordInput" placeholder=" " required>
+              <label for="passwordInput">Password</label>
+            </div>
+
+            <div class="input-group">
+              <input type="password" id="confirmPasswordInput" placeholder=" " required>
+              <label for="confirmPasswordInput">Confirm Password</label>
+            </div>
+
+            <button type="button" class="btn btn-primary signup-btn" id="sendOtpBtn">
+              Send OTP
+            </button>
+
+            <div class="error-message" id="step1Error" style="display: none;"></div>
+          </div>
+
+          <!-- Step 2: OTP Verification -->
+          <div class="form-step" id="step2">
+            <div class="signup-header">
+              <h2>Verify Your Account</h2>
+              <p id="otpSentMessage">We've sent a 6-digit code to your email</p>
+            </div>
+
+            <div class="otp-inputs">
+              <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+              <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+              <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+              <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+              <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+              <input type="text" class="otp-input" maxlength="1" pattern="[0-9]">
+            </div>
+
+            <div class="resend-otp">
+              <span>Didn't receive the code? </span>
+              <span class="resend-link" id="resendLink">Resend OTP</span>
+              <span id="resendTimer" style="display: none;">Resend in <span id="countdown">30</span>s</span>
+            </div>
+
+            <button type="button" class="btn btn-primary signup-btn" id="verifyOtpBtn">
+              Verify & Complete Signup
+            </button>
+
+            <div class="error-message" id="step2Error" style="display: none;"></div>
+          </div>
+
+          <!-- Step 3: Success -->
+          <div class="form-step" id="step3">
+            <div class="success-message">
+              <div class="success-icon">🎉</div>
+              <h2>Welcome to NeuraTantra AI!</h2>
+              <p>Your account has been created successfully. You can now access all our AI-powered features and services.</p>
+
+              <button type="button" class="btn btn-primary signup-btn" id="continueBtn">
+                Continue to Dashboard
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <!-- Login Link -->
+        <div class="login-link">
+          <p>Already have an account? <a href="login.html">Sign In</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- JavaScript for external loading and functionality -->
+<script>
+  // Load external components
+  async function loadComponent(elementId, filePath) {
+      try {
+          const response = await fetch(filePath);
+          if (response.ok) {
+              const content = await response.text();
+              document.getElementById(elementId).innerHTML = content;
+          } else {
+              console.warn(`Could not load ${filePath}. Using fallback.`);
+          }
+      } catch (error) {
+          console.warn(`Error loading ${filePath}:`, error);
+      }
+  }
+
+  // Load navbar and footer
+  document.addEventListener('DOMContentLoaded', function() {
+      loadComponent('navbar-placeholder', 'navbar.html');
+      loadComponent('footer-placeholder', 'footer.html');
+  });
+
+  // Signup functionality
+  class SignupManager {
+      constructor() {
+          this.currentStep = 1;
+          this.selectedMethod = 'email';
+          this.generatedOtp = '';
+          this.resendCountdown = 0;
+          this.init();
+      }
+
+      init() {
+          this.setupEventListeners();
+      }
+
+      setupEventListeners() {
+          // Method selection
+          document.querySelectorAll('.method-btn').forEach(btn => {
+              btn.addEventListener('click', (e) => {
+                  this.selectContactMethod(e.target.dataset.method);
+              });
+          });
+
+          // Send OTP
+          document.getElementById('sendOtpBtn').addEventListener('click', () => {
+              this.sendOtp();
+          });
+
+          // OTP input handling
+          this.setupOtpInputs();
+
+          // Verify OTP
+          document.getElementById('verifyOtpBtn').addEventListener('click', () => {
+              this.verifyOtp();
+          });
+
+          // Resend OTP
+          document.getElementById('resendLink').addEventListener('click', () => {
+              this.resendOtp();
+          });
+
+          // Continue button
+          document.getElementById('continueBtn').addEventListener('click', () => {
+              this.completeSignup();
+          });
+
+          // Form validation
+          this.setupFormValidation();
+      }
+
+      selectContactMethod(method) {
+          this.selectedMethod = method;
+
+          // Update UI
+          document.querySelectorAll('.method-btn').forEach(btn => {
+              btn.classList.remove('active');
+          });
+          document.querySelector(`[data-method="${method}"]`).classList.add('active');
+
+          // Show/hide input fields
+          const emailGroup = document.getElementById('emailInput').parentElement;
+          const phoneGroup = document.getElementById('phoneGroup');
+
+          if (method === 'email') {
+              emailGroup.style.display = 'block';
+              phoneGroup.style.display = 'none';
+              document.getElementById('emailInput').required = true;
+              document.getElementById('phoneInput').required = false;
+          } else {
+              emailGroup.style.display = 'none';
+              phoneGroup.style.display = 'block';
+              document.getElementById('emailInput').required = false;
+              document.getElementById('phoneInput').required = true;
+          }
+      }
+
+      setupOtpInputs() {
+          const otpInputs = document.querySelectorAll('.otp-input');
+
+          otpInputs.forEach((input, index) => {
+              input.addEventListener('input', (e) => {
+                  if (e.target.value.length === 1 && index < otpInputs.length - 1) {
+                      otpInputs[index + 1].focus();
+                  }
+              });
+
+              input.addEventListener('keydown', (e) => {
+                  if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                      otpInputs[index - 1].focus();
+                  }
+              });
+          });
+      }
+
+      setupFormValidation() {
+          const inputs = document.querySelectorAll('input');
+          inputs.forEach(input => {
+              input.addEventListener('blur', () => {
+                  this.validateField(input);
+              });
+          });
+      }
+
+      validateField(input) {
+          let isValid = true;
+          let errorMessage = '';
+
+          switch (input.id) {
+              case 'emailInput':
+                  if (this.selectedMethod === 'email' && !this.isValidEmail(input.value)) {
+                      isValid = false;
+                      errorMessage = 'Please enter a valid email address';
+                  }
+                  break;
+              case 'phoneInput':
+                  if (this.selectedMethod === 'phone' && !this.isValidPhone(input.value)) {
+                      isValid = false;
+                      errorMessage = 'Please enter a valid phone number';
+                  }
+                  break;
+              case 'passwordInput':
+                  if (input.value.length < 8) {
+                      isValid = false;
+                      errorMessage = 'Password must be at least 8 characters long';
+                  }
+                  break;
+              case 'confirmPasswordInput':
+                  if (input.value !== document.getElementById('passwordInput').value) {
+                      isValid = false;
+                      errorMessage = 'Passwords do not match';
+                  }
+                  break;
+          }
+
+          // Show/hide error message
+          if (errorMessage) {
+              this.showError('step1Error', errorMessage);
+          } else {
+              this.hideError('step1Error');
+          }
+
+          return isValid;
+      }
+
+      isValidEmail(email) {
+          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+
+      isValidPhone(phone) {
+          return /^[\+]?[1-9][\d]{0,15}$/.test(phone.replace(/\s/g, ''));
+      }
+
+      async sendOtp() {
+          if (!this.validateStep1()) return;
+
+          const btn = document.getElementById('sendOtpBtn');
+          const originalText = btn.innerHTML;
+          btn.innerHTML = '<span class="loading"></span> Sending...';
+          btn.disabled = true;
+
+          try {
+              // Simulate API call
+              await this.delay(2000);
+
+              // Generate OTP (in real app, this would be done on server)
+              this.generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
+              console.log('Generated OTP:', this.generatedOtp); // For demo purposes
+
+              // Update UI for OTP step
+              const contact = this.selectedMethod === 'email'
+                  ? document.getElementById('emailInput').value
+                  : document.getElementById('phoneInput').value;
+
+              document.getElementById('otpSentMessage').textContent =
+                  `We've sent a 6-digit code to your ${this.selectedMethod}: ${contact}`;
+
+              this.goToStep(2);
+              this.startResendTimer();
+
+          } catch (error) {
+              this.showError('step1Error', 'Failed to send OTP. Please try again.');
+          } finally {
+              btn.innerHTML = originalText;
+              btn.disabled = false;
+          }
+      }
+
+      validateStep1() {
+          const name = document.getElementById('nameInput').value.trim();
+          const password = document.getElementById('passwordInput').value;
+          const confirmPassword = document.getElementById('confirmPasswordInput').value;
+
+          if (!name) {
+              this.showError('step1Error', 'Please enter your full name');
+              return false;
+          }
+
+          if (this.selectedMethod === 'email') {
+              const email = document.getElementById('emailInput').value.trim();
+              if (!email || !this.isValidEmail(email)) {
+                  this.showError('step1Error', 'Please enter a valid email address');
+                  return false;
+              }
+          } else {
+              const phone = document.getElementById('phoneInput').value.trim();
+              if (!phone || !this.isValidPhone(phone)) {
+                  this.showError('step1Error', 'Please enter a valid phone number');
+                  return false;
+              }
+          }
+
+          if (password.length < 8) {
+              this.showError('step1Error', 'Password must be at least 8 characters long');
+              return false;
+          }
+
+          if (password !== confirmPassword) {
+              this.showError('step1Error', 'Passwords do not match');
+              return false;
+          }
+
+          this.hideError('step1Error');
+          return true;
+      }
+
+      async verifyOtp() {
+          const enteredOtp = this.getEnteredOtp();
+
+          if (enteredOtp.length !== 6) {
+              this.showError('step2Error', 'Please enter the complete 6-digit code');
+              return;
+          }
+
+          const btn = document.getElementById('verifyOtpBtn');
+          const originalText = btn.innerHTML;
+          btn.innerHTML = '<span class="loading"></span> Verifying...';
+          btn.disabled = true;
+
+          try {
+              // Simulate API call
+              await this.delay(1500);
+
+              if (enteredOtp === this.generatedOtp) {
+                  this.hideError('step2Error');
+                  this.goToStep(3);
+                  // Here you would typically create the user account
+                  await this.createUserAccount();
+              } else {
+                  this.showError('step2Error', 'Invalid OTP. Please try again.');
+                  this.clearOtpInputs();
+              }
+
+          } catch (error) {
+              this.showError('step2Error', 'Verification failed. Please try again.');
+          } finally {
+              btn.innerHTML = originalText;
+              btn.disabled = false;
+          }
+      }
+
+      getEnteredOtp() {
+          const otpInputs = document.querySelectorAll('.otp-input');
+          return Array.from(otpInputs).map(input => input.value).join('');
+      }
+
+      clearOtpInputs() {
+          document.querySelectorAll('.otp-input').forEach(input => {
+              input.value = '';
+          });
+          document.querySelector('.otp-input').focus();
+      }
+
+      async resendOtp() {
+          if (this.resendCountdown > 0) return;
+
+          try {
+              await this.delay(1000);
+              this.generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
+              console.log('New OTP:', this.generatedOtp); // For demo purposes
+
+              this.startResendTimer();
+              this.clearOtpInputs();
+
+          } catch (error) {
+              this.showError('step2Error', 'Failed to resend OTP. Please try again.');
+          }
+      }
+
+      startResendTimer() {
+          this.resendCountdown = 30;
+          const resendLink = document.getElementById('resendLink');
+          const resendTimer = document.getElementById('resendTimer');
+          const countdown = document.getElementById('countdown');
+
+          resendLink.style.display = 'none';
+          resendTimer.style.display = 'inline';
+          resendLink.classList.add('disabled');
+
+          const timer = setInterval(() => {
+              this.resendCountdown--;
+              countdown.textContent = this.resendCountdown;
+
+              if (this.resendCountdown <= 0) {
+                  clearInterval(timer);
+                  resendLink.style.display = 'inline';
+                  resendTimer.style.display = 'none';
+                  resendLink.classList.remove('disabled');
+              }
+          }, 1000);
+      }
+
+      async createUserAccount() {
+          // Simulate account creation
+          const userData = {
+              name: document.getElementById('nameInput').value,
+              email: this.selectedMethod === 'email' ? document.getElementById('emailInput').value : null,
+              phone: this.selectedMethod === 'phone' ? document.getElementById('phoneInput').value : null,
+              password: document.getElementById('passwordInput').value
+          };
+
+          // In a real application, you would send this data to your backend
+          console.log('Creating user account:', userData);
+
+          // Store user session (in real app, you'd get this from your backend)
+          sessionStorage.setItem('userLoggedIn', 'true');
+          sessionStorage.setItem('userName', userData.name);
+      }
+
+      goToStep(stepNumber) {
+          // Hide all steps
+          document.querySelectorAll('.form-step').forEach(step => {
+              step.classList.remove('active');
+          });
+
+          // Show current step
+          document.getElementById(`step${stepNumber}`).classList.add('active');
+
+          // Update step indicator
+          this.updateStepIndicator(stepNumber);
+          this.currentStep = stepNumber;
+      }
+
+      updateStepIndicator(activeStep) {
+          for (let i = 1; i <= 3; i++) {
+              const step = document.getElementById(`step-${i}`);
+              const line = document.getElementById(`line-${i}`);
+
+              if (i < activeStep) {
+                  step.classList.add('completed');
+                  step.classList.remove('active');
+                  if (line) line.classList.add('completed');
+              } else if (i === activeStep) {
+                  step.classList.add('active');
+                  step.classList.remove('completed');
+              } else {
+                  step.classList.remove('active', 'completed');
+                  if (line) line.classList.remove('completed');
+              }
+          }
+      }
+
+      completeSignup() {
+          // Redirect to dashboard or home page
+          window.location.href = 'dashboard.html';
+      }
+
+      showError(elementId, message) {
+          const errorElement = document.getElementById(elementId);
+          errorElement.textContent = message;
+          errorElement.style.display = 'block';
+      }
+
+      hideError(elementId) {
+          const errorElement = document.getElementById(elementId);
+          errorElement.style.display = 'none';
+      }
+
+      delay(ms) {
+          return new Promise(resolve => setTimeout(resolve, ms));
+      }
+  }
+
+  // Initialize signup manager when DOM is loaded
+  document.addEventListener('DOMContentLoaded', function() {
+      new SignupManager();
+  });
+
+  // Header scroll effect (loaded after navbar)
+  window.addEventListener('scroll', function() {
+      const header = document.querySelector('.site-header');
+      if (header) {
+          if (window.scrollY > 50) {
+              header.classList.add('scrolled');
+          } else {
+              header.classList.remove('scrolled');
+          }
+      }
+  });
+</script>
+</body>
+</html>
