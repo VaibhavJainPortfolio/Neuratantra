@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuraTantraAI - Agentic Intelligence by Domain</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
+   }
+
+   body {
+       font-family: 'Inter', sans-serif;
+       background: linear-gradient(135deg, #0a0a12 0%, #1a1a2e 50%, #16213e 100%);
+       color: #ffffff;
+       overflow-x: hidden;
+       line-height: 1.6;
+   }
+
+   /* Animated Background Particles */
+   .particles {
+       position: fixed;
+       top: 0;
+       left: 0;
+       width: 100%;
+       height: 100%;
+       pointer-events: none;
+       z-index: 1;
+   }
+
+   .particle {
+       position: absolute;
+       width: 2px;
+       height: 2px;
+       background: rgba(255, 215, 0, 0.6);
+       border-radius: 50%;
+       animation: float 6s ease-in-out infinite;
+   }
+
+   @keyframes float {
+       0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+       50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+   }
+
+   /* Enhanced Hero Section with Proper Parallax */
+   .hero {
+       height: 100vh;
+       position: relative;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       text-align: center;
+       overflow: hidden;
+       background-image: url('b.png');
+       background-attachment: fixed;
+       background-position: center;
+       background-repeat: no-repeat;
+       background-size: cover;
+   }
+
+   /* Gradient Overlay for better readability */
+   .hero-overlay {
+       position: absolute;
+       top: 0;
+       left: 0;
+       width: 100%;
+       height: 100%;
+       background: linear-gradient(
+           135deg,
+           rgba(10, 10, 18, 0.7) 0%,
+           rgba(26, 26, 46, 0.6) 50%,
+           rgba(22, 33, 62, 0.8) 100%
+       );
+       z-index: 1;
+   }
+
+   .hero-content {
+       z-index: 2;
+       max-width: 900px;
+       padding: 2rem;
+       animation: fadeInUp 1.5s ease-out;
+   }
+
+   @keyframes fadeInUp {
+       from { opacity: 0; transform: translateY(60px); }
+       to { opacity: 1; transform: translateY(0); }
+   }
+
+   .hero h1 {
+       font-size: clamp(2.5rem, 8vw, 5rem);
+       font-weight: 800;
+       margin-bottom: 1.5rem;
+       background: linear-gradient(135deg, #ffffff 0%, #ffd700 50%, #ff6600 100%);
+       -webkit-background-clip: text;
+       -webkit-text-fill-color: transparent;
+       background-clip: text;
+       text-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+       letter-spacing: -0.02em;
+       animation: textGlow 3s ease-in-out infinite alternate;
+   }
+
+   @keyframes textGlow {
+       from { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3)); }
+       to { filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.6)); }
+   }
+
+   .hero p {
+       font-size: clamp(1.2rem, 4vw, 1.8rem);
+       font-weight: 400;
+       color: #e0e0e0;
+       margin-bottom: 3rem;
+       opacity: 0.9;
+       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+   }
+
+   .hero-cta {
+       display: inline-block;
+       padding: 1rem 2.5rem;
+       background: linear-gradient(135deg, #ff6600, #ffcc33);
+       border: none;
+       border-radius: 50px;
+       color: #ffffff;
+       font-size: 1.1rem;
+       font-weight: 600;
+       cursor: pointer;
+       transition: all 0.4s ease;
+       text-decoration: none;
+       box-shadow: 0 10px 30px rgba(255, 102, 0, 0.3);
+       animation: pulse 2s ease-in-out infinite;
+   }
+
+   @keyframes pulse {
+       0%, 100% { transform: scale(1); }
+       50% { transform: scale(1.05); }
+   }
+
+   .hero-cta:hover {
+       transform: translateY(-5px);
+       box-shadow: 0 20px 40px rgba(255, 102, 0, 0.5);
+   }
+
+   /* Enhanced Portfolio Section */
+   .portfolio {
+       padding: 8rem 2rem;
+       position: relative;
+       z-index: 2;
+       background: linear-gradient(180deg, transparent 0%, rgba(16, 16, 32, 0.9) 100%);
+   }
+
+   .container {
+       max-width: 1400px;
+       margin: 0 auto;
+   }
+
+   .section-title {
+       text-align: center;
+       margin-bottom: 4rem;
+       animation: fadeInUp 1s ease-out 0.3s both;
+   }
+
+   .section-title h2 {
+       font-size: clamp(2rem, 6vw, 3.5rem);
+       font-weight: 700;
+       margin-bottom: 1rem;
+       background: linear-gradient(135deg, #1fc3aa, #ff6600);
+       -webkit-background-clip: text;
+       -webkit-text-fill-color: transparent;
+       background-clip: text;
+   }
+
+   .section-title p {
+       font-size: 1.2rem;
+       color: #b0b0b0;
+       max-width: 600px;
+       margin: 0 auto;
+   }
+
+   /* Enhanced Filter Buttons */
+   .filter-buttons {
+       display: flex;
+       justify-content: center;
+       flex-wrap: wrap;
+       gap: 1rem;
+       margin-bottom: 4rem;
+       animation: fadeInUp 1s ease-out 0.5s both;
+   }
+
+   .filter-btn {
+       padding: 1rem 2rem;
+       background: rgba(255, 255, 255, 0.05);
+       border: 2px solid rgba(255, 255, 255, 0.1);
+       border-radius: 50px;
+       color: #ffffff;
+       cursor: pointer;
+       transition: all 0.4s ease;
+       backdrop-filter: blur(20px);
+       font-weight: 500;
+       font-size: 0.95rem;
+       position: relative;
+       overflow: hidden;
+   }
+
+   .filter-btn::before {
+       content: '';
+       position: absolute;
+       top: 0;
+       left: -100%;
+       width: 100%;
+       height: 100%;
+       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+       transition: left 0.5s ease;
+   }
+
+   .filter-btn:hover::before {
+       left: 100%;
+   }
+
+   .filter-btn:hover,
+   .filter-btn.active {
+       background: linear-gradient(135deg, #ff6600, #ffcc33);
+       border-color: #ff6600;
+       box-shadow: 0 0 30px rgba(255, 102, 0, 0.4);
+       transform: translateY(-3px);
+   }
+
+   /* Enhanced Portfolio Grid */
+   .portfolio-grid {
+       display: grid;
+       grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+       gap: 2.5rem;
+       animation: fadeInUp 1s ease-out 0.7s both;
+   }
+
+   .portfolio-item {
+       background: rgba(255, 255, 255, 0.03);
+       border: 1px solid rgba(255, 255, 255, 0.1);
+       border-radius: 24px;
+       padding: 2.5rem;
+       backdrop-filter: blur(30px);
+       transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+       position: relative;
+       overflow: hidden;
+       cursor: pointer;
+   }
+
+   .portfolio-item::before {
+       content: '';
+       position: absolute;
+       top: 0;
+       left: 0;
+       right: 0;
+       bottom: 0;
+       background: linear-gradient(135deg, rgba(255, 102, 0, 0.05), rgba(31, 195, 170, 0.05));
+       opacity: 0;
+       transition: opacity 0.5s ease;
+       z-index: 1;
+   }
+
+   .portfolio-item::after {
+       content: '';
+       position: absolute;
+       top: -50%;
+       left: -50%;
+       width: 200%;
+       height: 200%;
+       background: radial-gradient(circle, rgba(255, 102, 0, 0.1) 0%, transparent 70%);
+       opacity: 0;
+       transition: all 0.6s ease;
+       z-index: 1;
+   }
+
+   .portfolio-item:hover::before {
+       opacity: 1;
+   }
+
+   .portfolio-item:hover::after {
+       opacity: 1;
+       transform: rotate(45deg);
+   }
+
+   .portfolio-item:hover {
+       transform: translateY(-15px) scale(1.02);
+       box-shadow: 0 30px 60px rgba(255, 102, 0, 0.2);
+       border-color: rgba(255, 102, 0, 0.3);
+   }
+
+   .portfolio-item * {
+       position: relative;
+       z-index: 2;
+   }
+
+   .portfolio-item-image {
+       width: 100%;
+       height: 200px;
+       object-fit: cover;
+       border-radius: 16px;
+       margin-bottom: 1.5rem;
+       transition: transform 0.3s ease;
+   }
+
+   .portfolio-item:hover .portfolio-item-image {
+       transform: scale(1.05);
+   }
+
+   .portfolio-item h3 {
+       font-size: 1.8rem;
+       font-weight: 700;
+       margin-bottom: 1rem;
+       color: #ffffff;
+       transition: color 0.3s ease;
+   }
+
+   .portfolio-item:hover h3 {
+       color: #ffd700;
+   }
+
+   .domain-badge {
+       display: inline-block;
+       padding: 0.6rem 1.2rem;
+       background: linear-gradient(135deg, #1fc3aa, #ff6600);
+       border-radius: 30px;
+       font-size: 0.85rem;
+       font-weight: 600;
+       margin-bottom: 1.5rem;
+       color: #ffffff;
+       text-transform: uppercase;
+       letter-spacing: 0.5px;
+       box-shadow: 0 4px 15px rgba(31, 195, 170, 0.3);
+   }
+
+   .description {
+       color: #c0c0c0;
+       margin-bottom: 2rem;
+       line-height: 1.7;
+       font-size: 1.05rem;
+   }
+
+   .summary {
+       background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+       padding: 1.5rem;
+       border-radius: 16px;
+       border-left: 4px solid #1fc3aa;
+       font-style: italic;
+       color: #e0e0e0;
+       opacity: 0;
+       transform: translateY(30px);
+       transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+       font-size: 0.95rem;
+       line-height: 1.6;
+   }
+
+   .portfolio-item:hover .summary {
+       opacity: 1;
+       transform: translateY(0);
+   }
+
+   /* Scroll Progress Bar */
+   .scroll-progress {
+       position: fixed;
+       top: 0;
+       left: 0;
+       width: 0%;
+       height: 4px;
+       background: linear-gradient(90deg, #1fc3aa, #ff6600);
+       z-index: 1000;
+       transition: width 0.1s ease;
+   }
+
+   /* Responsive Design */
+   @media (max-width: 768px) {
+       .hero {
+           padding: 2rem 1rem;
+           background-attachment: scroll; /* Disable fixed background on mobile for better performance */
+       }
+
+       .portfolio {
+           padding: 4rem 1rem;
+       }
+
+       .portfolio-grid {
+           grid-template-columns: 1fr;
+           gap: 2rem;
+       }
+
+       .filter-buttons {
+           flex-direction: column;
+           align-items: center;
+           gap: 0.8rem;
+       }
+
+       .filter-btn {
+           width: 200px;
+           text-align: center;
+       }
+   }
+
+   /* Loading Animation */
+   .loading {
+       opacity: 0;
+       animation: fadeIn 0.8s ease-out forwards;
+   }
+
+   @keyframes fadeIn {
+       to { opacity: 1; }
+   }
+    </style>
+</head>
+<body>
+<!-- Scroll Progress Bar -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Animated Particles -->
+<div class="particles" id="particles"></div>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1>Agentic Intelligence by Domain</h1>
+        <p>Built with insight. Deployed with purpose.</p>
+        <a href="#portfolio" class="hero-cta">Explore Our Solutions</a>
+    </div>
+</section>
+
+<!-- Portfolio Section -->
+<section class="portfolio" id="portfolio">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our AI Solutions</h2>
+            <p>Transforming industries with intelligent automation and domain-specific AI agents</p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All Solutions</button>
+            <button class="filter-btn" data-filter="Healthcare">Healthcare</button>
+            <button class="filter-btn" data-filter="FinTech">FinTech</button>
+            <button class="filter-btn" data-filter="EdTech">EdTech</button>
+            <button class="filter-btn" data-filter="Retail">Retail</button>
+            <button class="filter-btn" data-filter="Custom">Custom</button>
+        </div>
+
+        <!-- Portfolio Grid -->
+        <div class="portfolio-grid" id="portfolioGrid">
+            <!-- Portfolio items will be generated by JavaScript -->
+        </div>
+    </div>
+</section>
+
+<script>
+    // Enhanced Portfolio Data
+    const portfolioData = [
+        {
+            name: "MedAgent Pro",
+            domain: "Healthcare",
+            description: "Revolutionary AI-powered clinical decision support system that automates medical documentation and enhances diagnostic accuracy with real-time patient data analysis.",
+            summary: "Integrates advanced GPT models with Electronic Health Records to streamline patient documentation, reducing physician workload by 40% while improving diagnostic accuracy by 25%.",
+            image: "1.jpg"
+        },
+        {
+            name: "FinRisk Sentinel",
+            domain: "FinTech",
+            description: "Next-generation fraud detection and intelligent underwriting platform designed for modern financial institutions seeking advanced risk management solutions.",
+            summary: "Leverages Large Language Models and graph neural networks to identify financial anomalies in real-time with 99.2% accuracy, processing over 1 million transactions per second.",
+            image: "2.jpg"
+        },
+        {
+            name: "EduPersona AI",
+            domain: "EdTech",
+            description: "Intelligent personalized learning companion that adapts to individual student needs, learning styles, and pace to maximize educational outcomes.",
+            summary: "AI-powered tutor that creates custom curricula and provides instant feedback, improving learning outcomes by 35% and student engagement by 60%.",
+            image: "3.jpg"
+        },
+        {
+            name: "RetailGenie Plus",
+            domain: "Retail",
+            description: "Comprehensive intelligent inventory management and customer experience optimization platform for modern retail operations.",
+            summary: "Predicts demand patterns with 92% accuracy and personalizes shopping experiences in real-time, increasing sales conversion by 28% and customer satisfaction by 45%.",
+            image: "4.jpg"
+        },
+        {
+            name: "CodeCraft Studio",
+            domain: "Custom",
+            description: "Advanced automated code generation and review system tailored for enterprise development teams seeking to accelerate their software development lifecycle.",
+            summary: "Generates production-ready code from natural language specifications, reducing development time by 50% and bug rates by 30% across multiple programming languages.",
+            image: "5.jpg"
+        },
+        {
+            name: "NeuroInsight Pro",
+            domain: "Healthcare",
+            description: "Cutting-edge brain imaging analysis platform for early detection and monitoring of neurological conditions using advanced deep learning algorithms.",
+            summary: "Analyzes MRI and CT scans with 94% accuracy in detecting early-stage Alzheimer's disease, enabling earlier intervention and better patient outcomes.",
+            image: "6.jpg"
+        },
+        {
+            name: "CryptoSentinel",
+            domain: "FinTech",
+            description: "Advanced blockchain transaction monitoring and automated compliance system designed for cryptocurrency exchanges and financial institutions.",
+            summary: "Provides real-time analysis of crypto transactions for AML compliance, processing 1M+ transactions per second with advanced pattern recognition capabilities.",
+            image: "7.jpg"
+        },
+        {
+            name: "SkillForge Enterprise",
+            domain: "EdTech",
+            description: "Comprehensive corporate training platform with AI-driven skill assessment, personalized development paths, and performance analytics.",
+            summary: "Creates data-driven professional development plans and skill assessments, improving employee retention by 45% and productivity by 30%.",
+            image: "8.jpg"
+        }
+    ];
+
+    // Create animated particles
+    function createParticles() {
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 50;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 6 + 's';
+            particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            particlesContainer.appendChild(particle);
+        }
+    }
+
+    // Generate portfolio items with enhanced animations
+    function generatePortfolioItems(data) {
+        const grid = document.getElementById('portfolioGrid');
+        grid.innerHTML = '';
+
+        data.forEach((item, index) => {
+            const portfolioItem = document.createElement('div');
+            portfolioItem.className = 'portfolio-item loading';
+            portfolioItem.setAttribute('data-domain', item.domain);
+
+            portfolioItem.innerHTML = `
+                <img src="${item.image}" alt="${item.name}" class="portfolio-item-image">
+                <h3>${item.name}</h3>
+                <div class="domain-badge">${item.domain}</div>
+                <p class="description">${item.description}</p>
+                <div class="summary">${item.summary}</div>
+            `;
+
+            grid.appendChild(portfolioItem);
+
+            // Add staggered animation delay
+            setTimeout(() => {
+                portfolioItem.style.animationDelay = `${index * 0.1}s`;
+            }, index * 100);
+        });
+    }
+
+    // Enhanced filter functionality
+    function setupFilters() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                const filter = button.getAttribute('data-filter');
+
+                if (filter === 'all') {
+                    generatePortfolioItems(portfolioData);
+                } else {
+                    const filteredData = portfolioData.filter(item => item.domain === filter);
+                    generatePortfolioItems(filteredData);
+                }
+            });
+        });
+    }
+
+    // Scroll progress bar
+    function setupScrollProgress() {
+        const progressBar = document.getElementById('scrollProgress');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.offsetHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            progressBar.style.width = scrollPercent + '%';
+        });
+    }
+
+    // Enhanced parallax effect with requestAnimationFrame
+    function setupParallax() {
+        const heroBg = document.getElementById('heroBg');
+        let ticking = false;
+
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5; // Adjust speed here
+
+            if (heroBg) {
+                heroBg.style.transform = `translate3d(0, ${rate}px, 0)`;
+            }
+
+            ticking = false;
+        }
+
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', requestTick);
+    }
+
+    // Smooth scrolling for CTA button
+    function setupSmoothScroll() {
+        const ctaButton = document.querySelector('.hero-cta');
+        ctaButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('portfolio').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    // Enhanced scroll animations
+    function setupScrollAnimations() {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe portfolio items
+        setTimeout(() => {
+            document.querySelectorAll('.portfolio-item').forEach(item => {
+                observer.observe(item);
+            });
+        }, 1000);
+    }
+
+    // Initialize everything
+    document.addEventListener('DOMContentLoaded', () => {
+        createParticles();
+        generatePortfolioItems(portfolioData);
+        setupFilters();
+        setupScrollProgress();
+        setupParallax();
+        setupSmoothScroll();
+        setupScrollAnimations();
+    });
+</script>
+</body>
+</html>
