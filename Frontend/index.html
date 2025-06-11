@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>NeuraTantra AI - Building the Fabric of Future Intelligence</title>
-    <meta name="description" content="India's pioneering Agentic AI platform providing enterprise-grade autonomous agent orchestration">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="India's pioneering Agentic AI platform providing enterprise-grade autonomous agent orchestration" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
     <style>
         /* Enhanced Integrations Section Styles */
@@ -213,6 +213,452 @@
                 font-size: 11px;
             }
         }
+
+
+
+        /* Added styles for inserted Multi Agents & Chat Assistants section from working.html */
+        .container-working {
+            display: flex;
+            min-height: 50vh;
+            flex-wrap: wrap;
+            background: #0a0a17;
+            margin-top: 80px;
+            border-radius: 16px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.9);
+            padding: 40px 20px;
+        }
+        @media (max-width: 1024px) {
+            .container-working {
+                flex-direction: column;
+                padding: 20px 10px;
+                min-height: auto;
+            }
+        }
+
+        .left-section-working,
+        .right-section-working {
+            flex: 1;
+            min-width: 50px;
+            padding: 60px 40px;
+            background: #111124;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            border-radius: 16px;
+            box-shadow: 0 0 30px #0a0a17;
+            margin: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .left-section-working,
+            .right-section-working {
+                min-width: 100%;
+                padding: 40px 20px;
+                margin: 16px 0;
+            }
+        }
+
+        .brand-working {
+            font-size: 24px;
+            font-weight: 600;
+            color: #4f9cf9;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #4f9cf9, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .purple-brand-working {
+            color: #8b5cf6;
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .title-working {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #ffffff, #e5e7eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @media (max-width: 768px) {
+            .title-working {
+                font-size: 36px;
+            }
+        }
+
+        .description-working {
+            font-size: 18px;
+            color: #9ca3af;
+            line-height: 1.6;
+            margin-bottom: 60px;
+            max-width: 450px;
+        }
+
+        .workflow-diagram {
+            position: relative;
+            margin-top: 40px;
+            height: 300px;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .node {
+            position: absolute;
+            padding: 14px 28px;
+            border-radius: 16px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+
+        .node:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .start-node {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            top: 120px;
+            left: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        .search-node {
+            background: linear-gradient(135deg, #0ea5e9, #0284c7);
+            color: white;
+            top: 40px;
+            left: 280px;
+        }
+
+        .summarize-node {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            top: 120px;
+            left: 350px;
+        }
+
+        .request-node {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            top: 200px;
+            left: 280px;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .node-icon {
+            width: 18px;
+            height: 18px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+        }
+
+        .connector-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .line {
+            position: absolute;
+            height: 3px;
+            background: linear-gradient(90deg, #333, #555, #333);
+            transform-origin: left center;
+            border-radius: 2px;
+            opacity: 0.6;
+        }
+
+        .line1 {
+            top: 134px;
+            left: 140px;
+            width: 160px;
+            transform: rotate(-20deg);
+        }
+
+        .line2 {
+            top: 134px;
+            left: 140px;
+            width: 230px;
+            transform: rotate(0deg);
+        }
+
+        .line3 {
+            top: 134px;
+            left: 140px;
+            width: 160px;
+            transform: rotate(35deg);
+        }
+
+        /* Add arrow indicators */
+        .line::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: -3px;
+            width: 0;
+            height: 0;
+            border-left: 6px solid #555;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+        }
+
+        .chat-section {
+            margin-top: 40px;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .chat-container {
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            border-radius: 20px;
+            padding: 28px;
+            max-width: 520px;
+            width: 100%;
+            border: 1px solid #333;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .chat-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+
+        .chat-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #4f9cf9, #3b82f6);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 4px 12px rgba(79, 156, 249, 0.3);
+        }
+
+        .chat-title {
+            font-weight: 600;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .refresh-icon {
+            margin-left: auto;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .refresh-icon:hover {
+            opacity: 1;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .chat-messages {
+            max-height: 280px;
+            overflow-y: auto;
+            margin-bottom: 24px;
+            scrollbar-width: thin;
+            scrollbar-color: #444 transparent;
+        }
+
+        .chat-messages::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: #444;
+            border-radius: 4px;
+        }
+
+        .message {
+            margin-bottom: 20px;
+        }
+
+        .user-message {
+            color: #9ca3af;
+            font-size: 14px;
+            margin-bottom: 8px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px 12px 4px 12px;
+            display: inline-block;
+            max-width: 80%;
+            margin-left: auto;
+            display: block;
+            text-align: right;
+        }
+
+        .bot-message {
+            color: #fff;
+            font-size: 10px;
+            line-height: 1.5;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
+            border-radius: 4px 12px 12px 12px;
+            display: inline-block;
+            max-width: 85%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .file-types {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        .file-type {
+            width: 100%;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .file-type:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .pdf { background: linear-gradient(135deg, #dc2626, #b91c1c); }
+        .txt { background: linear-gradient(135deg, #059669, #047857); }
+        .css { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
+        .html { background: linear-gradient(135deg, #ea580c, #c2410c); }
+        .csv { background: linear-gradient(135deg, #16a34a, #15803d); }
+        .xml { background: linear-gradient(135deg, #7c3aed, #6d28d9); }
+
+        .chat-input {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+        }
+
+        .input-container {
+            flex: 1;
+            background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
+            border-radius: 16px;
+            padding: 14px 18px;
+            border: 1px solid #444;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .input-container:focus-within {
+            border-color: #4f9cf9;
+            box-shadow: 0 0 0 3px rgba(79, 156, 249, 0.1);
+        }
+
+        .input-field {
+            flex: 1;
+            background: none;
+            border: none;
+            outline: none;
+            color: #e5e7eb;
+            font-size: 14px;
+        }
+
+        .input-field::placeholder {
+            color: #6b7280;
+        }
+
+        .input-icon {
+            width: 18px;
+            height: 18px;
+            opacity: 0.6;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .input-icon:hover {
+            opacity: 1;
+        }
+
+        .send-button {
+            background: linear-gradient(135deg, #4f9cf9, #3b82f6);
+            border: none;
+            border-radius: 12px;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(79, 156, 249, 0.3);
+        }
+
+        .send-button:hover {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            transform: translateY(-1px) scale(1.02);
+            box-shadow: 0 6px 16px rgba(79, 156, 249, 0.4);
+        }
+
+        .send-button:active {
+            transform: translateY(0) scale(0.98);
+        }
     </style>
 </head>
 <body>
@@ -223,11 +669,39 @@
     <!-- Hero Section -->
     <section id="hero" class="hero-section">
         <div class="neural-network-bg" aria-hidden="true">
-            <!-- SVG Background with animated nodes and connections -->
-            <svg class="neural-network" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
-                <!-- Neural network paths and nodes will be added with JS -->
-            </svg>
+            <!-- Animated particles and connections -->
+            <canvas id="neural-canvas" class="neural-canvas"></canvas>
+
+            <!-- Floating particles -->
+            <div class="particle-container">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+
+            <!-- Glowing orbs -->
+            <div class="glow-orb glow-orb-1"></div>
+            <div class="glow-orb glow-orb-2"></div>
+            <div class="glow-orb glow-orb-3"></div>
         </div>
+
         <div class="container">
             <div class="hero-content">
                 <h1 class="headline">Building the Fabric of Future Intelligence</h1>
@@ -240,6 +714,317 @@
         </div>
     </section>
 
+    <style>
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a0f1c 0%, #1a1a2e 25%, #16213e 50%, #0f1729 75%, #0a0a1a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .neural-network-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .neural-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .particle-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #6366f1;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: float 15s infinite linear;
+        }
+
+        .particle:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; animation-duration: 12s; }
+        .particle:nth-child(2) { left: 20%; top: 80%; animation-delay: 2s; animation-duration: 16s; }
+        .particle:nth-child(3) { left: 30%; top: 40%; animation-delay: 4s; animation-duration: 14s; }
+        .particle:nth-child(4) { left: 40%; top: 60%; animation-delay: 1s; animation-duration: 18s; }
+        .particle:nth-child(5) { left: 50%; top: 30%; animation-delay: 3s; animation-duration: 13s; }
+        .particle:nth-child(6) { left: 60%; top: 70%; animation-delay: 5s; animation-duration: 15s; }
+        .particle:nth-child(7) { left: 70%; top: 50%; animation-delay: 0.5s; animation-duration: 17s; }
+        .particle:nth-child(8) { left: 80%; top: 25%; animation-delay: 2.5s; animation-duration: 11s; }
+        .particle:nth-child(9) { left: 90%; top: 75%; animation-delay: 4.5s; animation-duration: 19s; }
+        .particle:nth-child(10) { left: 15%; top: 10%; animation-delay: 1.5s; animation-duration: 14s; }
+        .particle:nth-child(11) { left: 25%; top: 90%; animation-delay: 3.5s; animation-duration: 16s; }
+        .particle:nth-child(12) { left: 35%; top: 15%; animation-delay: 0.8s; animation-duration: 12s; }
+        .particle:nth-child(13) { left: 45%; top: 85%; animation-delay: 2.8s; animation-duration: 18s; }
+        .particle:nth-child(14) { left: 55%; top: 35%; animation-delay: 4.8s; animation-duration: 13s; }
+        .particle:nth-child(15) { left: 65%; top: 65%; animation-delay: 1.2s; animation-duration: 15s; }
+        .particle:nth-child(16) { left: 75%; top: 45%; animation-delay: 3.2s; animation-duration: 17s; }
+        .particle:nth-child(17) { left: 85%; top: 55%; animation-delay: 0.3s; animation-duration: 11s; }
+        .particle:nth-child(18) { left: 95%; top: 5%; animation-delay: 2.3s; animation-duration: 19s; background: #8b5cf6; }
+        .particle:nth-child(19) { left: 5%; top: 95%; animation-delay: 4.3s; animation-duration: 14s; background: #8b5cf6; }
+        .particle:nth-child(20) { left: 50%; top: 10%; animation-delay: 1.7s; animation-duration: 16s; background: #8b5cf6; }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.6;
+            }
+            25% {
+                transform: translate(20px, -30px) scale(1.2);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translate(-15px, -60px) scale(0.8);
+                opacity: 1;
+            }
+            75% {
+                transform: translate(30px, -40px) scale(1.1);
+                opacity: 0.7;
+            }
+        }
+
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(1px);
+        }
+
+        .glow-orb-1 {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+            top: 20%;
+            left: 80%;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        .glow-orb-2 {
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+            bottom: 30%;
+            left: 10%;
+            animation: pulse 10s ease-in-out infinite reverse;
+        }
+
+        .glow-orb-3 {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.06) 0%, transparent 50%);
+            top: 60%;
+            right: 20%;
+            animation: pulse 12s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.6;
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .hero-content {
+            color: white;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .headline {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subheadline {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            color: #cbd5e1;
+            font-weight: 300;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .headline {
+                font-size: 2.5rem;
+            }
+
+            .subheadline {
+                font-size: 1.2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                min-width: 250px;
+            }
+        }
+    </style>
+
+    <script>
+        // Neural network canvas animation
+        const canvas = document.getElementById('neural-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        const nodes = [];
+        const maxNodes = 80;
+        const maxDistance = 150;
+
+        // Create nodes
+        for (let i = 0; i < maxNodes; i++) {
+            nodes.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+                radius: Math.random() * 2 + 1
+            });
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+
+            // Update and draw nodes
+            nodes.forEach((node, i) => {
+                // Update position
+                node.x += node.vx;
+                node.y += node.vy;
+
+                // Bounce off edges
+                if (node.x < 0 || node.x > width) node.vx *= -1;
+                if (node.y < 0 || node.y > height) node.vy *= -1;
+
+                // Keep nodes in bounds
+                node.x = Math.max(0, Math.min(width, node.x));
+                node.y = Math.max(0, Math.min(height, node.y));
+
+                // Draw node
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(99, 102, 241, 0.6)`;
+                ctx.fill();
+
+                // Draw connections
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const dx = nodes[j].x - node.x;
+                    const dy = nodes[j].y - node.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < maxDistance) {
+                        const opacity = (maxDistance - distance) / maxDistance * 0.3;
+                        ctx.beginPath();
+                        ctx.moveTo(node.x, node.y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.strokeStyle = `rgba(99, 102, 241, ${opacity})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        // Handle resize
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+
+            // Redistribute nodes
+            nodes.forEach(node => {
+                if (node.x > width) node.x = width;
+                if (node.y > height) node.y = height;
+            });
+        });
+
+        // Start animation
+        animate();
+    </script>
     <!-- Problem & Solution Section -->
     <section id="problem-solution" class="problem-solution-section">
         <div class="container">
@@ -779,57 +1564,61 @@
     <section id="market-opportunity" class="market-section">
         <div class="container">
             <h2 class="section-title">Market & Opportunity</h2>
-            <div class="stats-grid">
+            <div class="market-stats">
                 <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="stat-number" data-target="50">0</div>
-                    <div class="stat-unit">B+ USD</div>
-                    <div class="stat-label">Total Addressable Market by 2030</div>
+                    <div class="stat-value">$<span class="counter" data-target="50">0</span>B+</div>
+                    <div class="stat-label">Global TAM by 2030</div>
+                    <div class="stat-description">Agentic AI Market Potential</div>
                 </div>
                 <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="stat-number" data-target="45">0</div>
-                    <div class="stat-unit">%</div>
-                    <div class="stat-label">CAGR in Autonomous Systems</div>
+                    <div class="stat-value"><span class="counter" data-target="45">0</span>%</div>
+                    <div class="stat-label">CAGR</div>
+                    <div class="stat-description">Growth in Autonomous AI Systems</div>
                 </div>
                 <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="stat-number" data-target="45000">0</div>
-                    <div class="stat-unit">Cr INR</div>
-                    <div class="stat-label">Indian AI Market by 2027</div>
+                    <div class="stat-value">₹<span class="counter" data-target="45000">0</span>Cr</div>
+                    <div class="stat-label">Indian Market Potential</div>
+                    <div class="stat-description">By 2027</div>
                 </div>
             </div>
-            <div class="market-insight" data-aos="fade-up" data-aos-delay="400">
-                <p>The autonomous AI agent market is experiencing unprecedented growth, driven by enterprise demand for intelligent automation and contextual decision-making capabilities. NeuraTantra is positioned at the forefront of this transformation.</p>
+            <div class="market-insights" data-aos="fade-up">
+                <p>The market is rapidly transitioning toward agent-first solutions, with 78% of enterprises planning to implement multi-agent architectures by 2026. Asian enterprises are increasing adoption by 63% year-over-year, with tremendous growth potential in EdTech, FinTech, Healthcare, and LegalTech verticals.</p>
             </div>
         </div>
     </section>
 
     <!-- Vision Section -->
-    <section id="vision" class="vision-section">
+     <section id="vision" class="vision-section">
         <div class="container">
-            <h2 class="section-title">Our Vision</h2>
             <div class="vision-content">
                 <div class="vision-text" data-aos="fade-right">
-                    <div class="vision-point">
-                        <h3>Market Leadership</h3>
-                        <p>Establishing NeuraTantra as India's premier agentic AI platform</p>
-                    </div>
-                    <div class="vision-point">
-                        <h3>Powering Autonomy</h3>
-                        <p>Enabling true autonomous decision-making at enterprise scale</p>
-                    </div>
-                    <div class="vision-point">
-                        <h3>Unique Synthesis</h3>
-                        <p>Blending cutting-edge AI with Indian systems thinking</p>
-                    </div>
+                    <h2 class="section-title">Our Vision</h2>
+                    <p class="vision-description">We're establishing NeuraTantra as India's premier Agentic AI innovator, setting industry standards and driving technological advancement.</p>
+                    <ul class="vision-values">
+                        <li>
+                            <h4>Market Leadership</h4>
+                            <p>Setting industry standards and driving technological advancement in the AI ecosystem</p>
+                        </li>
+                        <li>
+                            <h4>Powering Autonomy</h4>
+                            <p>Delivering robust, enterprise-grade autonomous systems that transform decision-making</p>
+                        </li>
+                        <li>
+                            <h4>Unique Synthesis</h4>
+                            <p>Pioneering the integration of cutting-edge AI with neural frameworks and traditional Indian systems thinking</p>
+                        </li>
+                    </ul>
                 </div>
                 <div class="vision-diagram" data-aos="fade-left">
-                    <div class="venn-diagram">
-                        <div class="circle circle-1">
+                    <!-- Visual diagram representing the synthesis -->
+                    <div class="diagram-container">
+                        <div class="diagram-circle modern-ai">
                             <span>Modern AI</span>
                         </div>
-                        <div class="circle circle-2">
+                        <div class="diagram-circle indian-thinking">
                             <span>Indian Systems Thinking</span>
                         </div>
-                        <div class="center-intersection">
+                        <div class="diagram-intersection">
                             <span>NeuraTantra AI</span>
                         </div>
                     </div>
@@ -838,30 +1627,37 @@
         </div>
     </section>
 
+
     <!-- Traction Timeline Section -->
     <section id="traction" class="traction-section">
         <div class="container">
             <h2 class="section-title">Our Traction</h2>
-            <div class="timeline">
+            <div class="traction-timeline">
                 <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
-                    <div class="timeline-marker"></div>
+                    <div class="timeline-marker">
+                        <div class="marker-inner">✓</div>
+                    </div>
                     <div class="timeline-content">
                         <h3>MVP Launch</h3>
-                        <p>Successfully launched our minimum viable product with core agent orchestration capabilities</p>
+                        <p>Successfully deployed website and Streamlit prototype with core functionality validated by test users</p>
                     </div>
                 </div>
                 <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
-                    <div class="timeline-marker"></div>
+                    <div class="timeline-marker">
+                        <div class="marker-inner">🚀</div>
+                    </div>
                     <div class="timeline-content">
                         <h3>Pilot Programs</h3>
-                        <p>Initiated strategic partnerships with leading enterprises for proof-of-concept implementations</p>
+                        <p>Implemented two strategic use cases demonstrating market fit: automated lead generation and AI-powered research summarization</p>
                     </div>
                 </div>
                 <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
-                    <div class="timeline-marker"></div>
+                    <div class="timeline-marker">
+                        <div class="marker-inner">📈</div>
+                    </div>
                     <div class="timeline-content">
                         <h3>Initial Reach</h3>
-                        <p>Built network of 500+ industry connections and early adopters across various sectors</p>
+                        <p>Established network of 500+ targeted industry connections on LinkedIn; commenced promising discussions with potential investors</p>
                     </div>
                 </div>
             </div>
@@ -875,13 +1671,13 @@
             <div class="team-grid">
                 <div class="team-member" data-aos="fade-up" data-aos-delay="100">
                     <div class="member-photo">
-                        <img src="vaibhav.jpg" alt="Vaibhav Jain" class="member-image">
+                        <img src="vaibhav.jpg" alt="Vaibhav Jain" class="member-image" />
                     </div>
                     <div class="member-info">
                         <h3>Vaibhav Jain</h3>
-                        <p class="member-role">Founder & CEO</p>
+                        <p class="member-role">Founder &amp; CEO</p>
                         <p class="member-bio">Visionary leader with deep expertise in AI systems and enterprise architecture. Passionate about building the future of autonomous intelligence.</p>
-                        <a href="#" class="linkedin-link">
+                        <a href="https://www.linkedin.com/in/vaibhavjaindatascientist/" class="linkedin-link" aria-label="Vaibhav Jain LinkedIn Profile">
                             <svg viewBox="0 0 24 24" class="linkedin-icon" style="width: 25px; height: 25px;">
                                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                             </svg>
@@ -900,55 +1696,154 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+  <!-- Contact Section -->
     <section id="contact" class="contact-section">
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
+            <h2 class="section-title">Contact Us</h2>
             <div class="contact-content">
                 <div class="contact-info" data-aos="fade-right">
-                    <div class="contact-item">
-                        <div class="contact-icon">📧</div>
-                        <div class="contact-details">
-                            <h3>Email</h3>
-                            <p>neuratantraai@gmail.com</p>
+                    <h3>Get in Touch</h3>
+                    <p>Ready to transform your business with Agentic AI? Let's connect and explore the possibilities.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <svg class="contact-icon" viewBox="0 0 24 24">
+                                <path d="M20,4H4C2.895,4,2,4.895,2,6v12c0,1.105,0.895,2,2,2h16c1.105,0,2-0.895,2-2V6C22,4.895,21.105,4,20,4z M20,8l-8,5L4,8V6l8,5l8-5V8z"/>
+                            </svg>
+                            <a href="mailto:vaibhav@neuratantra.ai">vaibhav@neuratantra.ai</a>
                         </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📞</div>
-                        <div class="contact-details">
-                            <h3>Phone</h3>
-                            <p>+91 98765 43210</p>
+                        <div class="contact-item">
+                            <svg class="contact-icon" viewBox="0 0 24 24">
+                                <path d="M20,15.5C18.8,15.5,17.5,15.3,16.4,14.9C16.3,14.9,16.2,14.9,16.1,14.9C15.8,14.9,15.6,15,15.4,15.2L13.2,17.4C10.4,15.9,8,13.6,6.6,10.8L8.8,8.6C9.1,8.3,9.2,7.9,9,7.6C8.7,6.5,8.5,5.2,8.5,4C8.5,3.5,8,3,7.5,3H4C3.5,3,3,3.5,3,4C3,13.4,10.6,21,20,21C20.5,21,21,20.5,21,20V16.5C21,16,20.5,15.5,20,15.5Z"/>
+                            </svg>
+                            <a href="tel:+ 98765 43210"> 98765 43210</a>
                         </div>
                     </div>
                 </div>
                 <div class="contact-form-container" data-aos="fade-left">
-                    <form class="contact-form" id="contactForm">
+                    <form class="contact-form">
                         <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Your email" required>
                         </div>
                         <div class="form-group">
-                            <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="How can we help you?" required></textarea>
                         </div>
                         <div class="form-group checkbox-group">
                             <input type="checkbox" id="newsletter" name="newsletter">
                             <label for="newsletter">Subscribe to our newsletter</label>
                         </div>
-                        <button type="submit" class="submit-btn">Send Message</button>
+                        <button type="submit" class="btn btn-primary">Send Message </button>
                     </form>
-                    <div class="success-message" id="successMessage" style="display: none;">
-                        <div class="success-animation">
-                            <div class="checkmark">✓</div>
-                            <h3>Thank You!</h3>
-                            <p>Your message has been sent successfully. We'll get back to you soon.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+    <!-- START inserted working.html content as new section -->
+    <section id="multi-agents-chat" class="container-working" aria-label="Multi Agents and Chat Assistants Section">
+        <!-- Left Section - Multi Agents -->
+        <div class="left-section-working">
+            <div class="brand-working">AgentFlow</div>
+            <h5 class="title-working">Multi Agents</h5>
+            <p class="description-working">
+                Build multi-agent systems with workflow orchestration distributed across multiple coordinated agents
+            </p>
+
+            <div class="workflow-diagram" aria-label="Multi Agents Workflow Diagram">
+                <div class="connector-lines">
+                    <div class="line line1"></div>
+                    <div class="line line2"></div>
+                    <div class="line line3"></div>
+                </div>
+
+                <div class="node start-node" role="button" tabindex="0">
+                    <div class="node-icon" aria-hidden="true">▶</div>
+                    Start
+                </div>
+
+                <div class="node search-node" role="button" tabindex="0">
+                    <div class="node-icon" aria-hidden="true">🔍</div>
+                    Search Agent
+                </div>
+
+                <div class="node summarize-node" role="button" tabindex="0">
+                    <div class="node-icon" aria-hidden="true">✨</div>
+                    Summarize
+                </div>
+
+                <div class="node request-node" role="button" tabindex="0">
+                    <div class="node-icon" aria-hidden="true">🌐</div>
+                    Get Request
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Section - Chat Assistants -->
+        <div class="right-section-working">
+            <div class="brand-working purple-brand-working">ChatFlow</div>
+            <h5 class="title-working">Chat Assistants</h5>
+            <p class="description-working">
+                Build single-agent systems and chatbots with support for tool calling and knowledge retrieval (RAG) from various data sources
+            </p>
+
+            <div class="chat-section" aria-label="Chat Assistants Example">
+                <div class="chat-container" role="region" aria-live="polite" aria-atomic="true" aria-relevant="additions">
+                    <div class="chat-header">
+                        <div class="chat-icon" aria-hidden="true">AI</div>
+                        <span class="chat-title">Assistant</span>
+                        <button type="button" class="refresh-icon" aria-label="Refresh chat messages">⟲</button>
+                    </div>
+
+                    <div class="chat-messages" tabindex="0" aria-live="polite" aria-relevant="additions">
+                        <div class="message">
+                            <div class="bot-message">Hi there! How can I help?</div>
                         </div>
+
+                        <div class="message">
+                            <div class="user-message">Hello! how is your day?</div>
+                            <div class="bot-message">Hello! I'm just a program, so I don't have days like you do, but I'm here and ready to help you with whatever you need. How can I assist you today?</div>
+                        </div>
+
+                        <div class="message">
+                            <div class="user-message">Tell me a joke!</div>
+                            <div class="bot-message">Sure! Here you go:</div>
+                        </div>
+
+                        <div class="message">
+                            <div class="user-message">Why don't scientists trust atoms?</div>
+                            <div class="bot-message">Because they make up everything!</div>
+                        </div>
+                    </div>
+
+                    <div class="file-types" role="list">
+                        <div class="file-type pdf" role="listitem" tabindex="0">PDF</div>
+                        <div class="file-type txt" role="listitem" tabindex="0">TXT</div>
+                        <div class="file-type css" role="listitem" tabindex="0">CSS</div>
+                        <div class="file-type html" role="listitem" tabindex="0">HTML</div>
+                        <div class="file-type csv" role="listitem" tabindex="0">CSV</div>
+                        <div class="file-type xml" role="listitem" tabindex="0">XML</div>
+                    </div>
+
+                    <div class="chat-input" role="form" aria-label="Send a message">
+                        <div class="input-container">
+                            <div class="input-icon" aria-hidden="true">📎</div>
+                            <input type="text" class="input-field" placeholder="Type your question" aria-label="Message input" />
+                            <div class="input-icon" aria-hidden="true">🎤</div>
+                        </div>
+                        <button class="send-button" aria-label="Send message">→</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <!-- END inserted working.html content -->
+
 </main>
 
 <!-- Footer will be loaded here dynamically -->
@@ -1101,7 +1996,80 @@
     document.addEventListener('DOMContentLoaded', function() {
         createNeuralNetwork();
         initCounters();
+
+        // Inserted working.html JS enhancements:
+
+        // Interactive node scaling on click
+        document.querySelectorAll('#multi-agents-chat .node').forEach(node => {
+            node.addEventListener('click', () => {
+                node.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    node.style.transform = 'translateY(-4px) scale(1.02)';
+                }, 150);
+            });
+            node.addEventListener('keydown', e => {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    node.click();
+                }
+            });
+        });
+
+        // File-type badge scaling on click
+        document.querySelectorAll('#multi-agents-chat .file-type').forEach(file => {
+            file.addEventListener('click', () => {
+                file.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    file.style.transform = 'translateY(-2px) scale(1.02)';
+                }, 150);
+            });
+            file.addEventListener('keydown', e => {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    file.click();
+                }
+            });
+        });
+
+        // Send button functionality for chat input
+        const sendButton = document.querySelector('#multi-agents-chat .send-button');
+        const inputField = document.querySelector('#multi-agents-chat .input-field');
+        const messagesContainer = document.querySelector('#multi-agents-chat .chat-messages');
+
+        function sendMessage() {
+            if (inputField.value.trim()) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message';
+                messageDiv.innerHTML = `<div class="user-message">${inputField.value.trim()}</div>`;
+                messagesContainer.appendChild(messageDiv);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                inputField.value = '';
+                inputField.focus();
+            }
+        }
+
+        sendButton.addEventListener('click', sendMessage);
+        inputField.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        // Smooth scroll for chat messages
+        messagesContainer.style.scrollBehavior = 'smooth';
+
+        // Hover effects for refresh-icon and input-icon
+        document.querySelectorAll('#multi-agents-chat .refresh-icon, #multi-agents-chat .input-icon').forEach(icon => {
+            icon.addEventListener('mouseenter', () => {
+                icon.style.transform = 'scale(1.1)';
+            });
+            icon.addEventListener('mouseleave', () => {
+                icon.style.transform = 'scale(1)';
+            });
+        });
     });
 </script>
 </body>
 </html>
+
