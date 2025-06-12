@@ -3,548 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NeuraTantraAI - Agentic Intelligence by Domain</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>NeuraTantra - AI Product Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="stylu.css">
     <style>
-        /* ---- CSS VARIABLES ---- */
-        :root {
-            /* Base Colors - Using your CSS scheme */
-            --color-bg: #0a0a17;
-            --color-bg-alt: #111124;
-            --color-text: #f2f2f7;
-            --color-text-muted: #a0a0bc;
-            --color-border: rgba(255, 255, 255, 0.1);
-
-            /* Gradient Colors */
-            --color-primary: #6e54c2;
-            --color-secondary: #4c90e6;
-            --color-accent-1: #e660a8;
-            --color-accent-2: #2ecbaf;
-
-            /* Component Colors */
-            --color-card-bg: rgba(22, 22, 45, 0.7);
-            --color-input-bg: rgba(255, 255, 255, 0.05);
-            --color-input-border: rgba(255, 255, 255, 0.1);
-
-            /* UI Elements */
-            --border-radius-sm: 6px;
-            --border-radius-md: 12px;
-            --border-radius-lg: 24px;
-            --border-radius-xl: 36px;
-            --box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            --box-shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.3);
-            --transition-fast: 0.2s ease;
-            --transition-medium: 0.3s ease;
-            --transition-slow: 0.5s ease;
-
-            /* Typography */
-            --font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            --font-size-xs: 0.75rem;
-            --font-size-sm: 0.875rem;
-            --font-size-md: 1rem;
-            --font-size-lg: 1.125rem;
-            --font-size-xl: 1.25rem;
-            --font-size-2xl: 1.5rem;
-            --font-size-3xl: 2rem;
-            --font-size-4xl: 2.5rem;
-            --font-size-5xl: 3rem;
-
-            /* Layout */
-            --container-padding: 2rem;
-            --section-spacing: 6rem;
-            --header-height: 80px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: var(--font-family);
-            background: var(--color-bg);
-            color: var(--color-text);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* Animated Background Particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: var(--color-accent-2);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
-            50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
-        }
-
-        /* Enhanced Hero Section with Geometric Parallax */
-        .hero {
-            height: 100vh;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            overflow: hidden;
-            background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-alt) 50%, #16213e 100%);
-        }
-
-        /* Animated Geometric Background */
-        .hero-geometric-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 120%;
-            background: radial-gradient(circle at 20% 50%, rgba(110, 84, 194, 0.1) 0%, transparent 50%),
-                       radial-gradient(circle at 80% 20%, rgba(76, 144, 230, 0.1) 0%, transparent 50%),
-                       radial-gradient(circle at 40% 80%, rgba(230, 96, 168, 0.08) 0%, transparent 50%),
-                       radial-gradient(circle at 60% 30%, rgba(46, 203, 175, 0.08) 0%, transparent 50%);
-            z-index: 1;
-            animation: geometricFloat 20s ease-in-out infinite;
-        }
-
-        @keyframes geometricFloat {
-            0%, 100% { transform: translateY(0px) scale(1) rotate(0deg); }
-            50% { transform: translateY(-30px) scale(1.05) rotate(2deg); }
-        }
-
-        /* Floating Geometric Shapes */
-        .floating-shapes {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-        }
-
-        .shape-1 {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
-            opacity: 0.1;
-            top: 20%;
-            left: 10%;
-            animation: shapeFloat1 15s ease-in-out infinite;
-        }
-
-        .shape-2 {
-            width: 150px;
-            height: 150px;
-            background: linear-gradient(45deg, var(--color-accent-1), var(--color-accent-2));
-            opacity: 0.08;
-            top: 60%;
-            right: 15%;
-            animation: shapeFloat2 18s ease-in-out infinite reverse;
-        }
-
-        .shape-3 {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(45deg, var(--color-secondary), var(--color-accent-2));
-            opacity: 0.12;
-            top: 30%;
-            right: 25%;
-            animation: shapeFloat3 12s ease-in-out infinite;
-        }
-
-        @keyframes shapeFloat1 {
-            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-            50% { transform: translateY(-40px) translateX(20px) rotate(180deg); }
-        }
-
-        @keyframes shapeFloat2 {
-            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-            50% { transform: translateY(30px) translateX(-30px) rotate(-180deg); }
-        }
-
-        @keyframes shapeFloat3 {
-            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-            50% { transform: translateY(-25px) translateX(-15px) rotate(90deg); }
-        }
-
-        .hero-content {
-            z-index: 2;
-            max-width: 900px;
-            padding: 2rem;
-            animation: fadeInUp 1.5s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(60px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--color-text) 0%, var(--color-primary) 50%, var(--color-secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.02em;
-            animation: textGlow 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes textGlow {
-            from { filter: drop-shadow(0 0 20px rgba(110, 84, 194, 0.3)); }
-            to { filter: drop-shadow(0 0 40px rgba(110, 84, 194, 0.6)); }
-        }
-
-        .hero p {
-            font-size: clamp(1.2rem, 4vw, 1.8rem);
-            font-weight: 400;
-            color: var(--color-text-muted);
-            margin-bottom: 3rem;
-            opacity: 0.9;
-        }
-
-        .hero-cta {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-            border: none;
-            border-radius: var(--border-radius-xl);
-            color: var(--color-text);
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all var(--transition-slow);
-            text-decoration: none;
-            box-shadow: 0 10px 30px rgba(110, 84, 194, 0.3);
-            animation: pulse 2s ease-in-out infinite;
-            position: relative;
-            overflow: hidden;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .hero-cta::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .hero-cta:hover::before {
-            left: 100%;
-        }
-
-        .hero-cta:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(110, 84, 194, 0.5);
-            background: linear-gradient(135deg, var(--color-accent-1), var(--color-primary));
-        }
-
-        /* Enhanced Portfolio Section */
-        .portfolio {
-            padding: var(--section-spacing) var(--container-padding);
-            position: relative;
-            z-index: 2;
-            background: linear-gradient(180deg, transparent 0%, rgba(17, 17, 36, 0.5) 100%);
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 4rem;
-            animation: fadeInUp 1s ease-out 0.3s both;
-        }
-
-        .section-title h2 {
-            font-size: clamp(2rem, 6vw, 3.5rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--color-accent-2), var(--color-primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .section-title p {
-            font-size: var(--font-size-xl);
-            color: var(--color-text-muted);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Enhanced Filter Buttons */
-        .filter-buttons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 4rem;
-            animation: fadeInUp 1s ease-out 0.5s both;
-        }
-
-        .filter-btn {
-            padding: 1rem 2rem;
-            background: var(--color-input-bg);
-            border: 2px solid var(--color-input-border);
-            border-radius: var(--border-radius-xl);
-            color: var(--color-text);
-            cursor: pointer;
-            transition: all var(--transition-slow);
-            backdrop-filter: blur(20px);
-            font-weight: 500;
-            font-size: var(--font-size-sm);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .filter-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .filter-btn:hover::before {
-            left: 100%;
-        }
-
-        .filter-btn:hover,
-        .filter-btn.active {
-            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-            border-color: var(--color-primary);
-            box-shadow: 0 0 30px rgba(110, 84, 194, 0.4);
-            transform: translateY(-3px);
-        }
-
-        /* Enhanced Portfolio Grid */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-            gap: 2.5rem;
-            animation: fadeInUp 1s ease-out 0.7s both;
-        }
-
-        .portfolio-item {
-            background: var(--color-card-bg);
-            border: 1px solid var(--color-border);
-            border-radius: var(--border-radius-lg);
-            overflow: hidden;
-            backdrop-filter: blur(30px);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            cursor: pointer;
-        }
-
-        .portfolio-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(110, 84, 194, 0.05), rgba(46, 203, 175, 0.05));
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            z-index: 1;
-        }
-
-        .portfolio-item::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(110, 84, 194, 0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: all 0.6s ease;
-            z-index: 1;
-        }
-
-        .portfolio-item:hover::before {
-            opacity: 1;
-        }
-
-        .portfolio-item:hover::after {
-            opacity: 1;
-            transform: rotate(45deg);
-        }
-
-        .portfolio-item:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: var(--box-shadow-hover);
-            border-color: rgba(110, 84, 194, 0.3);
-        }
-
-        .portfolio-item * {
-            position: relative;
-            z-index: 2;
-        }
-
-        /* FIXED: Product Image Styles with proper image display */
-        .product-image {
-            width: 100%;
-            height: 250px; /* Increased height for better image display */
-            background: linear-gradient(135deg, var(--color-input-bg), rgba(255, 255, 255, 0.02));
-            border-bottom: 1px solid var(--color-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            padding: 1rem; /* Added padding for better spacing */
-        }
-
-        /* FIXED: Proper image styling for full display */
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* This ensures the full image is visible */
-            object-position: center;
-            border-radius: var(--border-radius-sm);
-            transition: all 0.5s ease;
-            max-width: 100%;
-            max-height: 100%;
-        }
-
-        .portfolio-item:hover .product-image img {
-            transform: scale(1.05); /* Reduced scale to prevent overflow */
-        }
-
-        /* Fallback for SVG icons if images don't load */
-        .product-image svg {
-            width: 120px;
-            height: 120px;
-            transition: all 0.5s ease;
-        }
-
-        .portfolio-item:hover .product-image svg {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .product-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, 
-                rgba(110, 84, 194, 0.1) 0%, 
-                rgba(76, 144, 230, 0.1) 25%, 
-                rgba(230, 96, 168, 0.1) 50%, 
-                rgba(46, 203, 175, 0.1) 75%, 
-                rgba(110, 84, 194, 0.1) 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 6s ease infinite;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .portfolio-item:hover .product-image::before {
-            opacity: 1;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .product-content {
-            padding: 2.5rem;
-        }
-
-        .portfolio-item h3 {
-            font-size: var(--font-size-2xl);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--color-text);
-            transition: color var(--transition-medium);
-        }
-
-        .portfolio-item:hover h3 {
-            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .domain-badge {
-            display: inline-block;
-            padding: 0.6rem 1.2rem;
-            background: linear-gradient(135deg, var(--color-accent-2), var(--color-primary));
-            border-radius: var(--border-radius-xl);
-            font-size: var(--font-size-xs);
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            color: var(--color-text);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 15px rgba(46, 203, 175, 0.3);
-        }
-
-        .description {
-            color: var(--color-text-muted);
-            margin-bottom: 2rem;
-            line-height: 1.7;
-            font-size: var(--font-size-md);
-        }
-
-        .summary {
-            background: linear-gradient(135deg, var(--color-input-bg), rgba(255, 255, 255, 0.02));
-            padding: 1.5rem;
-            border-radius: var(--border-radius-md);
-            border-left: 4px solid var(--color-accent-2);
-            font-style: italic;
-            color: var(--color-text-muted);
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            font-size: var(--font-size-sm);
-            line-height: 1.6;
-        }
-
-        .portfolio-item:hover .summary {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* =============================================
+           Portfolio-Specific Styles
+           ============================================= */
 
         /* Scroll Progress Bar */
         .scroll-progress {
@@ -553,71 +18,450 @@
             left: 0;
             width: 0%;
             height: 4px;
-            background: linear-gradient(90deg, var(--color-accent-2), var(--color-primary));
-            z-index: 1000;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            z-index: 1001;
             transition: width 0.1s ease;
         }
 
+        /* Animated Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(110, 84, 194, 0.3);
+            border-radius: 50%;
+            animation: particleFloat 8s linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: radial-gradient(ellipse at center, rgba(110, 84, 194, 0.1) 0%, transparent 70%);
+        }
+
+        .hero-geometric-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120%;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(230, 96, 168, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(76, 144, 230, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(46, 203, 175, 0.08) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(1px);
+            animation: floatShapes 10s ease-in-out infinite;
+        }
+
+        .shape-1 {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, rgba(110, 84, 194, 0.2), rgba(76, 144, 230, 0.2));
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, rgba(230, 96, 168, 0.3), rgba(46, 203, 175, 0.3));
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .shape-3 {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, rgba(76, 144, 230, 0.25), rgba(110, 84, 194, 0.25));
+            bottom: 20%;
+            left: 70%;
+            animation-delay: 4s;
+        }
+
+        @keyframes floatShapes {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            33% {
+                transform: translateY(-20px) rotate(120deg);
+            }
+            66% {
+                transform: translateY(10px) rotate(240deg);
+            }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--color-text) 0%, var(--color-primary) 50%, var(--color-secondary) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.1;
+        }
+
+        .hero-content p {
+            font-size: var(--font-size-xl);
+            color: var(--color-text-muted);
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            color: white;
+            font-weight: 600;
+            border-radius: var(--border-radius-xl);
+            text-decoration: none;
+            transition: all var(--transition-medium);
+            box-shadow: 0 8px 32px rgba(110, 84, 194, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 48px rgba(110, 84, 194, 0.4);
+            background: linear-gradient(45deg, var(--color-accent-1), var(--color-primary));
+        }
+
+        /* Portfolio Section - Add more space and center the title */
+        .portfolio {
+            padding: var(--section-spacing) 0;
+            position: relative;
+            min-height: 50vh; /* Add minimum height for proper spacing */
+        }
+
+        /* Section Title - Perfectly centered with proper spacing */
+        .portfolio .section-title {
+            text-align: center;
+            margin-bottom: 6rem; /* Increased spacing before filter buttons */
+            padding-top: 4rem; /* Add space after hero section */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .portfolio .section-title h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem; /* Space between heading and underline */
+            background: linear-gradient(135deg, var(--color-text) 0%, var(--color-primary) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Underline directly under the heading */
+        .portfolio .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            border-radius: 2px;
+        }
+
+        .portfolio .section-title p {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin: 2rem auto 0; /* Top margin to create space after underline */
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius-xl);
+            color: var(--color-text-muted);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition-medium);
+            backdrop-filter: blur(10px);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(110, 84, 194, 0.3);
+        }
+
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .portfolio-item {
+            background: var(--color-card-bg);
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+            transition: all var(--transition-medium);
+            backdrop-filter: blur(20px);
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .portfolio-item:not(.loading) {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-color: rgba(110, 84, 194, 0.5);
+        }
+
+        .product-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(110, 84, 194, 0.1), rgba(76, 144, 230, 0.1));
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 1rem;
+            transition: transform var(--transition-medium);
+        }
+
+        .portfolio-item:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .image-fallback {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(110, 84, 194, 0.1), rgba(76, 144, 230, 0.1));
+        }
+
+        .image-fallback svg {
+            width: 60px;
+            height: 60px;
+            color: var(--color-text-muted);
+            opacity: 0.5;
+        }
+
+        .product-content {
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .category-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            color: white;
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            border-radius: var(--border-radius-md);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .product-content h3 {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--color-text);
+            line-height: 1.3;
+        }
+
+        .description {
+            color: var(--color-text-muted);
+            font-size: var(--font-size-md);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .summary {
+            color: var(--color-text);
+            font-size: var(--font-size-sm);
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1rem;
+            border-radius: var(--border-radius-sm);
+            border-left: 3px solid var(--color-primary);
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all var(--transition-medium);
+        }
+
+        .portfolio-item:hover .summary {
+            opacity: 1;
+            max-height: 100px;
+            margin-top: 1rem;
+        }
+
+        /* Animation Classes */
+        .animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .loading {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
         /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero {
-                padding: 2rem 1rem;
+        @media screen and (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
             }
 
-            .portfolio {
-                padding: 4rem 1rem;
+            .filter-buttons {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+            }
+
+            .filter-btn {
+                white-space: nowrap;
+                flex-shrink: 0;
             }
 
             .portfolio-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 1.5rem;
             }
 
-            .filter-buttons {
-                flex-direction: column;
-                align-items: center;
-                gap: 0.8rem;
+            .portfolio-item {
+                margin: 0 0.5rem;
             }
 
-            .filter-btn {
-                width: 200px;
-                text-align: center;
+            .portfolio .section-title {
+                padding-top: 2rem;
+                margin-bottom: 4rem;
             }
 
-            .shape-1, .shape-2, .shape-3 {
-                display: none;
+            .portfolio .section-title p {
+                margin: 1.5rem auto 0;
+                padding: 0 1rem;
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .hero {
+                min-height: 80vh;
+                padding-top: var(--header-height);
+            }
+
+            .hero-content {
+                padding: 0 1rem;
+            }
+
+            .hero-cta {
+                padding: 0.8rem 2rem;
+                font-size: var(--font-size-md);
             }
 
             .product-image {
-                height: 200px; /* Adjusted for mobile */
-                padding: 0.8rem;
+                height: 180px;
             }
-
-            .product-image img {
-                width: 100%;
-                height: 100%;
-            }
-
-            .product-image svg {
-                width: 100px;
-                height: 100px;
-            }
-        }
-
-        /* Loading Animation */
-        .loading {
-            opacity: 0;
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            to { opacity: 1; }
         }
     </style>
 </head>
 <body>
 <!-- Scroll Progress Bar -->
 <div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Navigation Bar (External) -->
+<div id="navbar-container"></div>
 
 <!-- Animated Particles -->
 <div class="particles" id="particles"></div>
@@ -651,7 +495,7 @@
             <button class="filter-btn" data-filter="Healthcare">Healthcare</button>
             <button class="filter-btn" data-filter="Professional">Professional</button>
             <button class="filter-btn" data-filter="Automotive">Automotive</button>
-            <button class="filter-btn" data-filter="Data">Data & Analytics</button>
+            <button class="filter-btn" data-filter="Data & Analytics">Data & Analytics</button>
             <button class="filter-btn" data-filter="Wellness">Wellness</button>
         </div>
 
@@ -662,70 +506,202 @@
     </div>
 </section>
 
-<script>
-    // Product Images for each product
-    const productImages = {
-        "CV Analyser and Recommendation Agent": "1.jpg",
-        "CyberFriend": "2.jpg",
-        "Astro AI": "3.jpg",
-        "MediCare AI": "4.jpg",
-        "LifeCare Assistant": "5.jpg",
-        "AutoCare AI": "6.jpg",
-        "DataSage Analytics": "7.jpg",
-        "WellnessBot": "8.jpg"
-    };
+<!-- Footer (External) -->
+<div id="footer-container"></div>
 
-    // Portfolio data
+<script>
+    // Global product data - can be moved to JSON file
     const portfolioData = [
         {
             title: "CV Analyser and Recommendation Agent",
-            domain: "Professional",
+            category: "Professional",
             description: "An intelligent CV analysis system that evaluates resumes, provides detailed feedback, and recommends improvements to enhance job application success rates.",
-            summary: "Leverages NLP and machine learning to analyze resume content, structure, and relevancy, providing actionable insights for career advancement."
+            summary: "Leverages NLP and machine learning to analyze resume content, structure, and relevancy, providing actionable insights for career advancement.",
+            image: "1.jpg"
         },
         {
             title: "CyberFriend",
-            domain: "Wellness",
+            category: "Wellness",
             description: "A compassionate AI companion designed to provide emotional support, mental health guidance, and personalized wellness recommendations.",
-            summary: "Combines empathetic conversation with evidence-based therapeutic techniques to support mental wellbeing and personal growth."
+            summary: "Combines empathetic conversation with evidence-based therapeutic techniques to support mental wellbeing and personal growth.",
+            image: "2.jpg"
         },
         {
             title: "Astro AI",
-            domain: "Wellness",
+            category: "Wellness",
             description: "Advanced astrological analysis system that provides personalized horoscopes, compatibility assessments, and celestial guidance.",
-            summary: "Integrates astronomical data with traditional astrological principles to deliver accurate and meaningful cosmic insights."
+            summary: "Integrates astronomical data with traditional astrological principles to deliver accurate and meaningful cosmic insights.",
+            image: "3.jpg"
         },
         {
             title: "MediCare AI",
-            domain: "Healthcare",
+            category: "Healthcare",
             description: "Comprehensive healthcare assistant that helps with symptom assessment, medication reminders, and health monitoring.",
-            summary: "Uses medical knowledge databases and AI diagnostics to provide preliminary health assessments and wellness tracking."
+            summary: "Uses medical knowledge databases and AI diagnostics to provide preliminary health assessments and wellness tracking.",
+            image: "4.jpg"
         },
         {
             title: "LifeCare Assistant",
-            domain: "Healthcare",
+            category: "Healthcare",
             description: "Personalized healthcare companion that monitors vital signs, tracks health metrics, and provides lifestyle recommendations.",
-            summary: "Integrates with wearable devices and health apps to provide comprehensive health monitoring and preventive care guidance."
+            summary: "Integrates with wearable devices and health apps to provide comprehensive health monitoring and preventive care guidance.",
+            image: "5.jpg"
         },
         {
             title: "AutoCare AI",
-            domain: "Automotive",
+            category: "Automotive",
             description: "Intelligent vehicle maintenance system that predicts service needs, diagnoses issues, and optimizes vehicle performance.",
-            summary: "Utilizes vehicle data analytics and predictive maintenance algorithms to ensure optimal automotive care and performance."
+            summary: "Utilizes vehicle data analytics and predictive maintenance algorithms to ensure optimal automotive care and performance.",
+            image: "6.jpg"
         },
         {
             title: "DataSage Analytics",
-            domain: "Data",
+            category: "Data & Analytics",
             description: "Advanced data analytics platform that transforms raw data into actionable business insights through AI-powered analysis.",
-            summary: "Employs machine learning algorithms and statistical models to extract meaningful patterns and trends from complex datasets."
+            summary: "Employs machine learning algorithms and statistical models to extract meaningful patterns and trends from complex datasets.",
+            image: "7.jpg"
         },
         {
             title: "WellnessBot",
-            domain: "Wellness",
+            category: "Wellness",
             description: "Holistic wellness assistant that provides fitness guidance, nutrition advice, and mental health support.",
-            summary: "Combines fitness tracking, nutritional analysis, and mindfulness practices to promote overall wellbeing and healthy lifestyle choices."
+            summary: "Combines fitness tracking, nutritional analysis, and mindfulness practices to promote overall wellbeing and healthy lifestyle choices.",
+            image: "8.jpg"
+        },
+        {
+            title: "Natural Language Queries",
+            category: "Data & Analytics",
+            description: "Ask questions in plain English and get instant SQL results. No technical expertise required.",
+            summary: "Bridges the gap between natural language and databases using AI-based query generation and smart parsing.",
+            image: "9.jpg"
+        },
+        {
+            title: "Lightning Fast",
+            category: "Data & Analytics",
+            description: "Get answers in seconds with our optimized query engine and intelligent caching system.",
+            summary: "Accelerates data access and processing with advanced caching layers and low-latency pipelines.",
+            image: "10.jpg"
+        },
+        {
+            title: "AI-Powered Intelligence",
+            category: "Professional",
+            description: "Advanced machine learning algorithms understand context and deliver precise results every time.",
+            summary: "Context-aware AI that refines results using historical queries, business context, and active learning.",
+            image: "11.jpg"
+        },
+        {
+            title: "Enterprise Security",
+            category: "Healthcare",
+            description: "Bank-level security with encryption, audit logs, and compliance with industry standards.",
+            summary: "Fortified with role-based access, zero-trust architecture, and full audit compliance for AI data workflows.",
+            image: "12.jpg"
+        },
+        {
+            title: "Visual Analytics",
+            category: "Data & Analytics",
+            description: "Transform query results into beautiful charts and graphs automatically.",
+            summary: "Converts raw data to dashboards instantly with intelligent chart suggestion and layout tools.",
+            image: "13.jpg"
+        },
+        {
+            title: "Multi-Database Support",
+            category: "Data & Analytics",
+            description: "Connect to MySQL, PostgreSQL, MongoDB, Snowflake, and 20+ other databases.",
+            summary: "One-click connectivity for multiple databases through unified drivers and schema adapters.",
+            image: "14.jpg"
         }
     ];
+
+    // Load external navbar and footer
+    async function loadExternalComponents() {
+        try {
+            // Load navbar
+            const navbarResponse = await fetch('navbar.html');
+            if (navbarResponse.ok) {
+                const navbarHTML = await navbarResponse.text();
+                document.getElementById('navbar-container').innerHTML = navbarHTML;
+                // Initialize navbar functionality if needed
+                initializeNavbar();
+            }
+
+            // Load footer
+            const footerResponse = await fetch('footer.html');
+            if (footerResponse.ok) {
+                const footerHTML = await footerResponse.text();
+                document.getElementById('footer-container').innerHTML = footerHTML;
+            }
+        } catch (error) {
+            console.log('External components not found - continuing without them');
+            // Fallback: create simple inline navbar
+            createFallbackNavbar();
+        }
+    }
+
+    // Fallback navbar creation
+    function createFallbackNavbar() {
+        const navbarHTML = `
+            <header class="site-header">
+                <div class="container">
+                    <nav class="navbar">
+                        <div class="logo">
+                            <a href="/">
+                                <div class="logo-icon">
+                                    <svg class="logo-svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2L2 7L12 12L22 7L12 2Z"/>
+                                        <path d="M2 17L12 22L22 17"/>
+                                        <path d="M2 12L12 17L22 12"/>
+                                    </svg>
+                                </div>
+                                Neura<span class="accent">Tantra</span>
+                            </a>
+                        </div>
+                        <div class="nav-container">
+                            <nav class="main-nav">
+                                <ul class="nav-links">
+                                    <li><a href="#home">Home</a></li>
+                                    <li><a href="#portfolio">Portfolio</a></li>
+                                    <li><a href="#about">About</a></li>
+                                    <li><a href="#contact">Contact</a></li>
+                                </ul>
+                            </nav>
+                            <div class="nav-cta">
+                                <a href="#contact" class="btn btn-primary">Get Started</a>
+                            </div>
+                        </div>
+                        <button class="menu-toggle" id="menuToggle">
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                        </button>
+                    </nav>
+                </div>
+            </header>
+        `;
+        document.getElementById('navbar-container').innerHTML = navbarHTML;
+        initializeNavbar();
+    }
+
+    // Initialize navbar functionality
+    function initializeNavbar() {
+        const header = document.querySelector('.site-header');
+        const menuToggle = document.getElementById('menuToggle');
+        const navContainer = document.querySelector('.nav-container');
+
+        // Scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header?.classList.add('scrolled');
+            } else {
+                header?.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        menuToggle?.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navContainer?.classList.toggle('active');
+        });
+    }
 
     // Generate portfolio items
     function generatePortfolioItems(items = portfolioData) {
@@ -735,19 +711,21 @@
         items.forEach((item, index) => {
             const portfolioItem = document.createElement('div');
             portfolioItem.className = 'portfolio-item loading';
-            portfolioItem.setAttribute('data-domain', item.domain);
-            
+            portfolioItem.setAttribute('data-category', item.category);
+
             portfolioItem.innerHTML = `
                 <div class="product-image">
-                    <img src="${productImages[item.title]}" alt="${item.title}" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-                    <svg style="display: none;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
-                        <circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" stroke-width="2"/>
-                        <path d="M21 15l-5-5L5 21" stroke="currentColor" stroke-width="2"/>
-                    </svg>
+                    <img src="${item.image}" alt="${item.title}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                    <div class="image-fallback" style="display: none;">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" stroke-width="2"/>
+                            <path d="M21 15l-5-5L5 21" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
                 </div>
                 <div class="product-content">
-                    <div class="domain-badge">${item.domain}</div>
+                    <div class="category-badge">${item.category}</div>
                     <h3>${item.title}</h3>
                     <p class="description">${item.description}</p>
                     <div class="summary">${item.summary}</div>
@@ -756,30 +734,30 @@
 
             portfolioGrid.appendChild(portfolioItem);
 
-            // Trigger loading animation
+            // Trigger loading animation with stagger
             setTimeout(() => {
                 portfolioItem.classList.remove('loading');
-            }, index * 200);
+            }, index * 150);
         });
     }
 
     // Filter functionality
     function setupFilters() {
         const filterButtons = document.querySelectorAll('.filter-btn');
-        
+
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
                 // Remove active class from all buttons
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 // Add active class to clicked button
                 button.classList.add('active');
-                
+
                 const filterValue = button.getAttribute('data-filter');
-                
+
                 if (filterValue === 'all') {
                     generatePortfolioItems(portfolioData);
                 } else {
-                    const filteredItems = portfolioData.filter(item => item.domain === filterValue);
+                    const filteredItems = portfolioData.filter(item => item.category === filterValue);
                     generatePortfolioItems(filteredItems);
                 }
             });
@@ -791,22 +769,22 @@
         const scrollProgress = document.getElementById('scrollProgress');
         const scrollTop = window.pageYOffset;
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPercent = (scrollTop / docHeight) * 100;
+        const scrollPercent = Math.max(0, Math.min(100, (scrollTop / docHeight) * 100));
         scrollProgress.style.width = scrollPercent + '%';
     }
 
     // Generate floating particles
     function generateParticles() {
         const particlesContainer = document.getElementById('particles');
-        const particleCount = 50;
+        const particleCount = window.innerWidth < 768 ? 20 : 40;
 
         for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
             particle.className = 'particle';
             particle.style.left = Math.random() * 100 + '%';
             particle.style.top = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 6 + 's';
-            particle.style.animationDuration = (6 + Math.random() * 4) + 's';
+            particle.style.animationDelay = Math.random() * 8 + 's';
+            particle.style.animationDuration = (8 + Math.random() * 6) + 's';
             particlesContainer.appendChild(particle);
         }
     }
@@ -814,82 +792,170 @@
     // Smooth scrolling for CTA button
     function setupSmoothScroll() {
         const ctaButton = document.querySelector('.hero-cta');
-        ctaButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            document.getElementById('portfolio').scrollIntoView({
-                behavior: 'smooth'
+        if (ctaButton) {
+            ctaButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                const portfolioSection = document.getElementById('portfolio');
+                if (portfolioSection) {
+                    portfolioSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
-        });
+        }
     }
 
     // Parallax effect for hero section
     function setupParallax() {
-        window.addEventListener('scroll', () => {
+        let ticking = false;
+
+        function updateParallax() {
             const scrolled = window.pageYOffset;
             const heroGeometric = document.querySelector('.hero-geometric-bg');
             const floatingShapes = document.querySelector('.floating-shapes');
-            
+
             if (heroGeometric) {
                 heroGeometric.style.transform = `translateY(${scrolled * 0.5}px)`;
             }
-            
+
             if (floatingShapes) {
                 floatingShapes.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
             }
         });
     }
 
-    // Initialize everything when DOM is loaded
-    document.addEventListener('DOMContentLoaded', () => {
-        generatePortfolioItems();
-        setupFilters();
-        generateParticles();
-        setupSmoothScroll();
-        setupParallax();
-        
-        // Setup scroll progress
-        window.addEventListener('scroll', updateScrollProgress);
-        
-        // Add intersection observer for portfolio items animation
+    // Mouse interaction effects
+    function setupMouseEffects() {
+        let mouseX = 0;
+        let mouseY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX / window.innerWidth;
+            mouseY = e.clientY / window.innerHeight;
+
+            const shapes = document.querySelectorAll('.shape');
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 0.5;
+                const x = (mouseX - 0.5) * speed * 20;
+                const y = (mouseY - 0.5) * speed * 20;
+
+                shape.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+    }
+
+    // Intersection Observer for animations
+    function setupIntersectionObserver() {
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
-        
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('animate-in');
                 }
             });
         }, observerOptions);
-        
-        // Observe portfolio items after they're generated
+
+        // Observe portfolio items and section titles
         setTimeout(() => {
-            document.querySelectorAll('.portfolio-item').forEach(item => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(50px)';
-                item.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            document.querySelectorAll('.portfolio-item, .section-title').forEach(item => {
                 observer.observe(item);
             });
         }, 500);
+    }
+
+    // Initialize everything when DOM is loaded
+    document.addEventListener('DOMContentLoaded', async () => {
+        // Load external components first
+        await loadExternalComponents();
+
+        // Initialize portfolio
+        generatePortfolioItems();
+        setupFilters();
+
+        // Setup effects and interactions
+        generateParticles();
+        setupSmoothScroll();
+        setupParallax();
+        setupMouseEffects();
+        setupIntersectionObserver();
+
+        // Setup scroll progress
+        window.addEventListener('scroll', updateScrollProgress);
+
+        // Handle window resize (completing the cut-off line)
+        window.addEventListener('resize', () => {
+            // Regenerate particles on resize
+            document.getElementById('particles').innerHTML = '';
+            generateParticles();
+        });
+
+        // Add loading animation to the page
+        document.body.style.opacity = '0';
+        setTimeout(() => {
+            document.body.style.transition = 'opacity 0.5s ease';
+            document.body.style.opacity = '1';
+        }, 100);
+
+        console.log('NeuraTantra Portfolio initialized successfully');
     });
 
-    // Add some interactive effects
-    document.addEventListener('mousemove', (e) => {
-        const shapes = document.querySelectorAll('.shape');
-        const mouseX = e.clientX / window.innerWidth;
-        const mouseY = e.clientY / window.innerHeight;
-        
-        shapes.forEach((shape, index) => {
-            const speed = (index + 1) * 0.5;
-            const x = (mouseX - 0.5) * speed * 20;
-            const y = (mouseY - 0.5) * speed * 20;
-            
-            shape.style.transform += ` translate(${x}px, ${y}px)`;
-        });
+    // Additional utility functions
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    // Optimized scroll handler
+    const optimizedScrollHandler = debounce(() => {
+        updateScrollProgress();
+    }, 10);
+
+    // Add scroll listener with optimization
+    window.addEventListener('scroll', optimizedScrollHandler);
+
+    // Handle page visibility changes
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            // Pause animations when page is not visible
+            document.querySelectorAll('.particle').forEach(particle => {
+                particle.style.animationPlayState = 'paused';
+            });
+        } else {
+            // Resume animations when page becomes visible
+            document.querySelectorAll('.particle').forEach(particle => {
+                particle.style.animationPlayState = 'running';
+            });
+        }
     });
+
+    // Export functions for potential external use
+    window.NeuraTantraPortfolio = {
+        generatePortfolioItems,
+        setupFilters,
+        portfolioData
+    };
 </script>
+
 </body>
 </html>
