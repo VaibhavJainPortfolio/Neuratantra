@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
     <style>
-        /* Enhanced Integrations Section Styles */
+        /* Enhanced Integrations Section Styles Final */
         .integrations-section {
             padding: 80px 0;
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
@@ -1561,32 +1561,31 @@
     </section>
 
     <!-- Market & Opportunity Section -->
-    <section id="market-opportunity" class="market-section">
-        <div class="container">
-            <h2 class="section-title">Market & Opportunity</h2>
-            <div class="market-stats">
-                <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="stat-value">$<span class="counter" data-target="50">0</span>B+</div>
-                    <div class="stat-label">Global TAM by 2030</div>
-                    <div class="stat-description">Agentic AI Market Potential</div>
-                </div>
-                <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="stat-value"><span class="counter" data-target="45">0</span>%</div>
-                    <div class="stat-label">CAGR</div>
-                    <div class="stat-description">Growth in Autonomous AI Systems</div>
-                </div>
-                <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="stat-value">₹<span class="counter" data-target="45000">0</span>Cr</div>
-                    <div class="stat-label">Indian Market Potential</div>
-                    <div class="stat-description">By 2027</div>
-                </div>
-            </div>
-            <div class="market-insights" data-aos="fade-up">
-                <p>The market is rapidly transitioning toward agent-first solutions, with 78% of enterprises planning to implement multi-agent architectures by 2026. Asian enterprises are increasing adoption by 63% year-over-year, with tremendous growth potential in EdTech, FinTech, Healthcare, and LegalTech verticals.</p>
-            </div>
-        </div>
-    </section>
-
+   <section id="market-opportunity" class="market-section">
+      <div class="container">
+          <h2 class="section-title">Market & Opportunity</h2>
+          <div class="market-stats">
+              <div class="stat-card" >
+                  <div class="stat-value">$<span class="counter" data-target="50" data-suffix="B+">0</span></div>
+                  <div class="stat-label">Global TAM by 2030</div>
+                  <div class="stat-description">Agentic AI Market Potential</div>
+              </div>
+              <div class="stat-card" >
+                  <div class="stat-value"><span class="counter" data-target="45" data-suffix="%">0</span></div>
+                  <div class="stat-label">CAGR</div>
+                  <div class="stat-description">Growth in Autonomous AI Systems</div>
+              </div>
+              <div class="stat-card" >
+                  <div class="stat-value">₹<span class="counter" data-target="45000" data-suffix="Cr">0</span></div>
+                  <div class="stat-label">Indian Market Potential</div>
+                  <div class="stat-description">By 2027</div>
+              </div>
+          </div>
+          <div class="market-insights">
+              <p>The market is rapidly transitioning toward agent-first solutions, with 78% of enterprises planning to implement multi-agent architectures by 2026. Asian enterprises are increasing adoption by 63% year-over-year, with tremendous growth potential in EdTech, FinTech, Healthcare, and LegalTech verticals.</p>
+          </div>
+      </div>
+  </section>
     <!-- Vision Section -->
      <section id="vision" class="vision-section">
         <div class="container">
@@ -1932,34 +1931,61 @@
     }
 
     // Counter Animation
-    function initCounters() {
-        const counters = document.querySelectorAll('.stat-number');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const counter = entry.target;
-                    const target = parseInt(counter.dataset.target);
-                    let current = 0;
-                    const increment = target / 100;
+   // Counter Animation
+ function initCounters() {
+    const counters = document.querySelectorAll('.counter');
+    const duration = 2000; // Animation duration in ms
 
-                    const updateCounter = () => {
-                        if (current < target) {
-                            current += increment;
-                            counter.textContent = Math.ceil(current);
-                            requestAnimationFrame(updateCounter);
-                        } else {
-                            counter.textContent = target;
-                        }
-                    };
+    counters.forEach(counter => {
+      let start = 0;
+      const target = parseFloat(counter.getAttribute('data-target'));
+      const suffix = counter.getAttribute('data-suffix') || '';
+      let startTimestamp = null;
 
-                    updateCounter();
-                    observer.unobserve(counter);
-                }
-            });
-        });
+      function step(timestamp) {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = timestamp - startTimestamp;
+        const progressRatio = Math.min(progress / duration, 1);
+        const value = Math.floor(progressRatio * target);
 
-        counters.forEach(counter => observer.observe(counter));
-    }
+        if (value !== start) {
+          counter.textContent = value.toLocaleString() + suffix;
+          start = value;
+        }
+
+        if (progress < duration) {
+          window.requestAnimationFrame(step);
+        } else {
+          counter.textContent = target.toLocaleString() + suffix;
+        }
+      }
+
+      window.requestAnimationFrame(step);
+    });
+  }
+
+  // IntersectionObserver to trigger animation when counters enter viewport
+  function observeCounters() {
+    const counters = document.querySelectorAll('.counter');
+    const options = { threshold: 0.3 };
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          initCounters();
+          observer.disconnect(); // We only need to run once when any counter appears
+        }
+      });
+    }, options);
+
+    counters.forEach(counter => observer.observe(counter));
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    observeCounters();
+  });
+// Call the function to initialize counters
+document.addEventListener("DOMContentLoaded", initCounters);
+
 
     // Contact Form Handling
     document.getElementById('contactForm').addEventListener('submit', function(e) {
@@ -2072,4 +2098,3 @@
 </script>
 </body>
 </html>
-
