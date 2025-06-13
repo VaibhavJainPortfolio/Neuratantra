@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="stylu.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Legal-specific animations and effects fianl*/
+        /* Legal-specific animations and effects */
        
 
         .hero-content {
@@ -234,7 +234,7 @@
     </style>
 </head>
 <body style="margin: 0;">
-    <!-- Navigation placeholder - will be loaded from navbar.html -->
+    <!-- Navigation -->
    <header class="site-header" id="header">
     <div class="container">
         <div class="navbar">
@@ -257,11 +257,13 @@
                     <span>NeuraTantra<span class="accent">AI</span></span>
                 </a>
             </div>
+
             <div class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
             </div>
+
             <div class="nav-container" id="navContainer">
                 <nav class="main-nav">
                     <ul class="nav-links">
@@ -283,9 +285,8 @@
                                 <li><a href="legal.html">LegalTech</a></li>
                             </ul>
                         </li>
-                        <li><a href="portfolio.html">Portfolio</a></li>
                         <li><a href="about.html">Company</a></li>
-                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="about.html">Resources</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </nav>
@@ -296,6 +297,7 @@
         </div>
     </div>
 </header>
+
 
     <!-- Hero Section -->
     <section class="legal-hero"><br>
@@ -333,7 +335,7 @@
                 </div>
                 <div class="cta-buttons">
                     <a href="demo.html" class="btn btn-primary">Request Demo</a>
-                   
+                    <a href="contact.html" class="btn btn-secondary">Talk to Specialist</a>
                 </div>
             </div>
         </div>
@@ -620,57 +622,10 @@
     </section>
 
 
-    <!-- Footer -->
-   <footer class="footer">
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-logo">
-                <h2>NeuraTantra AI</h2>
-                <p>Building the Fabric of Future Intelligence</p>
-            </div>
-            <div class="footer-links">
-                <div class="footer-links-group">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="products.html">Products</a></li>
-                        <li><a href="solutions.html">Solutions</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links-group">
-                    <h3>Resources</h3>
-                    <ul>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="documentation.html">Documentation</a></li>
-                        <li><a href="case-studies.html">Case Studies</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links-group">
-                    <h3>Legal</h3>
-                    <ul>
-                        <li><a href="/privacy-policy/">Privacy Policy</a></li>
-                        <li><a href="/terms/">Terms of Service</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-social">
-                <h3>Connect With Us</h3>
-                <div class="social-icons">
-                    <a href="#" class="social-icon">
-                        <svg viewBox="0 0 24 24"><path d="..."/></svg>
-                    </a>
-                    <a href="#" class="social-icon">
-                        <svg viewBox="0 0 24 24"><path d="..."/></svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 NeuraTantra AI. All rights reserved.</p>
-        </div>
-    </div>
-</footer>
+    <footer class="footer" id="footer-container">
+        <!-- Footer will be loaded here dynamically -->
+    </footer>
+
 
     <script>
         // CSS Variables (matching the external stylesheet)
@@ -683,7 +638,7 @@
         document.documentElement.style.setProperty('--color-text', '#FFFFFF');
         document.documentElement.style.setProperty('--color-text-muted', '#9CA3AF');
         document.documentElement.style.setProperty('--border-radius-sm', '0.375rem');
-                document.documentElement.style.setProperty('--border-radius-md', '0.5rem');
+        document.documentElement.style.setProperty('--border-radius-md', '0.5rem');
         document.documentElement.style.setProperty('--border-radius-lg', '0.75rem');
         document.documentElement.style.setProperty('--border-radius-xl', '1rem');
         document.documentElement.style.setProperty('--transition-fast', '0.15s ease');
@@ -695,22 +650,15 @@
         document.documentElement.style.setProperty('--font-size-4xl', '2.25rem');
         document.documentElement.style.setProperty('--font-size-5xl', '3rem');
 
-        // Function to load external HTML into a specified element
-        async function loadHTML(elementId, url) {
-            const element = document.getElementById(elementId);
-            try {
-                const response = await fetch(url);
-                if (!response.ok) throw new Error('Network response was not ok');
-                const html = await response.text();
-                element.innerHTML = html;
-            } catch (error) {
-                console.error('Error loading HTML:', error);
-                element.innerHTML = '<p style="color: red;">Failed to load navigation.</p>';
-            }
-        }
+        // Navigation functionality
+        const menuToggle = document.getElementById('menuToggle');
+        const navContainer = document.getElementById('navContainer');
 
-        // Load the navbar
-        loadHTML('navbar-container', 'navbar.html');
+        menuToggle.addEventListener('click', () => {
+            navContainer.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
         // Animation on scroll
         const observerOptions = {
             threshold: 0.1,
@@ -761,6 +709,55 @@
                 padding: 0 2rem;
             }
             
+            .site-header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 23, 0.95);
+                backdrop-filter: blur(10px);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                z-index: 1000;
+            }
+            
+            .navbar {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 1rem 2rem;
+            }
+            
+            .logo {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-weight: 700;
+                font-size: 1.25rem;
+            }
+            
+            .logo a {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                text-decoration: none;
+                color: inherit;
+            }
+            
+            .logo-icon {
+                width: 32px;
+                height: 32px;
+                background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .logo-svg {
+                width: 20px;
+                height: 20px;
+                color: white;
+            }
             
             .gradient-text {
                 background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
@@ -788,7 +785,35 @@
                 background: var(--color-text);
                 transition: all var(--transition-medium);
             }
-           
+            
+            .nav-container {
+                display: flex;
+                align-items: center;
+                gap: 2rem;
+            }
+            
+            .main-nav {
+                display: flex;
+            }
+            
+            .nav-links {
+                display: flex;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                gap: 2rem;
+            }
+            
+            .nav-links a {
+                color: var(--color-text);
+                text-decoration: none;
+                font-weight: 500;
+                transition: color var(--transition-fast);
+            }
+            
+            .nav-links a:hover {
+                color: var(--color-primary);
+            }
             
             .dropdown {
                 position: relative;
@@ -910,7 +935,33 @@
                     display: flex;
                 }
                 
-               
+                .nav-container {
+                    position: fixed;
+                    top: 100%;
+                    left: 0;
+                    right: 0;
+                    background: rgba(10, 10, 23, 0.98);
+                    backdrop-filter: blur(20px);
+                    flex-direction: column;
+                    gap: 1rem;
+                    padding: 2rem;
+                    opacity: 0;
+                    visibility: hidden;
+                    transform: translateY(-20px);
+                    transition: all var(--transition-medium);
+                }
+                
+                .nav-container.active {
+                    opacity: 1;
+                    visibility: visible;
+                    transform: translateY(0);
+                }
+                
+                .nav-links {
+                    flex-direction: column;
+                    gap: 1rem;
+                    text-align: center;
+                }
                 
                 .cta-buttons {
                     flex-direction: column;
@@ -927,6 +978,124 @@
             }
         `;
         document.head.appendChild(style);
+        // External Navigation and Footer Loader
+// Add this code to your existing JavaScript section or create a separate JS file
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Function to load external HTML content
+    async function loadExternalHTML(url, targetSelector, insertMethod = 'replace') {
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`Failed to load ${url}: ${response.status}`);
+            }
+            const html = await response.text();
+            const targetElement = document.querySelector(targetSelector);
+
+            if (!targetElement) {
+                console.error(`Target element not found: ${targetSelector}`);
+                return;
+            }
+
+            if (insertMethod === 'prepend') {
+                targetElement.insertAdjacentHTML('afterbegin', html);
+            } else if (insertMethod === 'append') {
+                targetElement.insertAdjacentHTML('beforeend', html);
+            } else {
+                targetElement.innerHTML = html;
+            }
+
+            // Reinitialize navigation functionality after loading
+            if (url.includes('navbar')) {
+                initializeNavigation();
+            }
+
+        } catch (error) {
+            console.error(`Error loading external HTML from ${url}:`, error);
+        }
+    }
+
+    // Function to initialize navigation functionality
+    function initializeNavigation() {
+        const menuToggle = document.getElementById('menuToggle');
+        const navContainer = document.getElementById('navContainer');
+
+        if (menuToggle && navContainer) {
+            // Remove existing event listeners to prevent duplicates
+            menuToggle.removeEventListener('click', toggleMenu);
+
+            // Add event listener
+            menuToggle.addEventListener('click', toggleMenu);
+
+            function toggleMenu() {
+                navContainer.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+            }
+        }
+    }
+
+    // Load navbar and footer
+    loadExternalHTML('navbar.html', 'body', 'prepend');
+    loadExternalHTML('footer.html', 'body', 'append');
+});
+
+// CSS Variables and existing functionality (keep this part)
+document.documentElement.style.setProperty('--color-primary', '#6E54C2');
+document.documentElement.style.setProperty('--color-secondary', '#4C90E6');
+document.documentElement.style.setProperty('--color-accent-1', '#DC267F');
+document.documentElement.style.setProperty('--color-accent-2', '#FF6B35');
+document.documentElement.style.setProperty('--color-background', '#0A0A17');
+document.documentElement.style.setProperty('--color-surface', '#161124');
+document.documentElement.style.setProperty('--color-text', '#FFFFFF');
+document.documentElement.style.setProperty('--color-text-muted', '#9CA3AF');
+document.documentElement.style.setProperty('--border-radius-sm', '0.375rem');
+document.documentElement.style.setProperty('--border-radius-md', '0.5rem');
+document.documentElement.style.setProperty('--border-radius-lg', '0.75rem');
+document.documentElement.style.setProperty('--border-radius-xl', '1rem');
+document.documentElement.style.setProperty('--transition-fast', '0.15s ease');
+document.documentElement.style.setProperty('--transition-medium', '0.3s ease');
+document.documentElement.style.setProperty('--section-spacing', '5rem');
+document.documentElement.style.setProperty('--font-size-sm', '0.875rem');
+document.documentElement.style.setProperty('--font-size-lg', '1.125rem');
+document.documentElement.style.setProperty('--font-size-xl', '1.25rem');
+document.documentElement.style.setProperty('--font-size-4xl', '2.25rem');
+document.documentElement.style.setProperty('--font-size-5xl', '3rem');
+
+// Animation on scroll
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+// Apply reveal animations
+document.addEventListener('DOMContentLoaded', () => {
+    const revealElements = document.querySelectorAll('.reveal');
+
+    revealElements.forEach((element, index) => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px)';
+        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+
+        if (element.classList.contains('reveal-delay-1')) {
+            element.style.transitionDelay = '0.2s';
+        } else if (element.classList.contains('reveal-delay-2')) {
+            element.style.transitionDelay = '0.4s';
+        } else if (element.classList.contains('reveal-delay-3')) {
+            element.style.transitionDelay = '0.6s';
+        }
+
+        observer.observe(element);
+    });
+});
     </script>
 </body>
 </html>
