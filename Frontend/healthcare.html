@@ -8,404 +8,495 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
+ /* Reset any unwanted spacing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+/* Healthcare-specific styles */
+.healthcare-hero {
+    background: linear-gradient(135deg, rgba(110, 84, 194, 0.1), rgba(76, 144, 230, 0.1), rgba(46, 203, 175, 0.1));
+    position: relative;
+    overflow: hidden;
+    padding-top: 80px; /* Account for fixed navbar */
+    min-height: 100vh; /* Add full viewport height */
+    display: flex; /* Add flexbox */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+}
 
-    /* Healthcare-specific styles */
-    .healthcare-hero {
-        background: linear-gradient(135deg, rgba(110, 84, 194, 0.1), rgba(76, 144, 230, 0.1), rgba(46, 203, 175, 0.1));
-        position: relative;
-        overflow: hidden;
+.healthcare-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(110, 84, 194, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(76, 144, 230, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(46, 203, 175, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+    animation: pulse 8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+}
+
+.healthcare-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 2rem;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: float-animation 3s ease-in-out infinite;
+}
+
+.pain-point-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.pain-point-card {
+    background: rgba(22, 22, 45, 0.8);
+    border: 1px solid rgba(255, 69, 69, 0.2);
+    border-radius: var(--border-radius-md);
+    padding: 2rem;
+    transition: all var(--transition-medium);
+    position: relative;
+    overflow: hidden;
+}
+
+.pain-point-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(45deg, #ff4545, #ff6b6b);
+    opacity: 0.7;
+}
+
+.pain-point-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 69, 69, 0.4);
+    box-shadow: 0 15px 35px rgba(255, 69, 69, 0.1);
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.feature-card {
+    background: rgba(22, 22, 45, 0.8);
+    border: 1px solid rgba(110, 84, 194, 0.2);
+    border-radius: var(--border-radius-md);
+    padding: 2.5rem;
+    transition: all var(--transition-medium);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    opacity: 0.8;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(110, 84, 194, 0.4);
+    box-shadow: 0 20px 40px rgba(110, 84, 194, 0.15);
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.workflow-container {
+    background: rgba(22, 22, 45, 0.5);
+    border-radius: var(--border-radius-lg);
+    padding: 3rem;
+    margin: 3rem 0;
+    border: 1px solid rgba(110, 84, 194, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.workflow-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(110, 84, 194, 0.05), rgba(76, 144, 230, 0.05));
+    pointer-events: none;
+}
+
+.workflow-diagram {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.workflow-step {
+    text-align: center;
+    position: relative;
+}
+
+.workflow-step::after {
+    content: '→';
+    position: absolute;
+    right: -1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: var(--color-primary);
+    opacity: 0.6;
+}
+
+.workflow-step:last-child::after {
+    display: none;
+}
+
+.workflow-step-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    position: relative;
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(110, 84, 194, 0.4);
     }
-
-    .healthcare-hero::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(circle at 20% 50%, rgba(110, 84, 194, 0.2) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 20%, rgba(76, 144, 230, 0.2) 0%, transparent 50%),
-                    radial-gradient(circle at 40% 80%, rgba(46, 203, 175, 0.2) 0%, transparent 50%);
-        pointer-events: none;
-        animation: pulse 8s ease-in-out infinite;
+    50% {
+        box-shadow: 0 0 30px rgba(110, 84, 194, 0.7);
     }
+}
 
-    @keyframes pulse {
-        0%, 100% { opacity: 0.5; }
-        50% { opacity: 0.8; }
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.stat-card {
+    text-align: center;
+    background: rgba(22, 22, 45, 0.6);
+    padding: 2rem;
+    border-radius: var(--border-radius-md);
+    border: 1px solid rgba(110, 84, 194, 0.2);
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.cta-section {
+    background: linear-gradient(135deg, rgba(110, 84, 194, 0.1), rgba(76, 144, 230, 0.1));
+    border-radius: var(--border-radius-lg);
+    padding: 4rem 2rem;
+    text-align: center;
+    margin: 4rem 0;
+    border: 1px solid rgba(110, 84, 194, 0.2);
+}
+
+/* CSS variables for consistent theming */
+:root {
+    --color-primary: #6E54C2;
+    --color-secondary: #4C90E6;
+    --color-text: #ffffff;
+    --color-text-muted: #a0a0a0;
+    --border-radius-md: 12px;
+    --border-radius-lg: 16px;
+    --transition-medium: 0.3s ease;
+}
+
+body {
+    background: #0a0a17;
+    color: var(--color-text);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.section-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 0 2rem 0;
+    text-align: left;
+}
+
+.text-gradient {
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.btn {
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: all var(--transition-medium);
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(110, 84, 194, 0.3);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--color-text);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center; /* Changed from flex-start to center */
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+/* Hero section specific alignment - UPDATED FOR CENTER ALIGNMENT */
+.hero-content {
+    text-align: center; /* Changed from left to center */
+    max-width: 800px;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-text);
+    text-align: center; /* Changed from left to center */
+}
+
+.hero-content p {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+    text-align: center; /* Changed from left to center */
+}
+
+/* Section header alignment */
+.section-header {
+    text-align: left;
+    margin-bottom: 3rem;
+}
+
+.section-header.center {
+    text-align: center;
+}
+
+.section-header.center .section-title,
+.section-header.center .section-subtitle {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@keyframes float-animation {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Additional animation styles */
+.animate-in {
+    animation: slideInUp 0.6s ease forwards;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
     }
-
-    .healthcare-icon {
-        width: 80px;
-        height: 80px;
-        margin: 0 auto 2rem;
-        background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        animation: float-animation 3s ease-in-out infinite;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
+}
 
-    .pain-point-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        margin-top: 3rem;
-    }
+/* Hover effects for interactive elements */
+.pain-point-card:hover,
+.feature-card:hover {
+    cursor: pointer;
+}
 
-    .pain-point-card {
-        background: rgba(22, 22, 45, 0.8);
-        border: 1px solid rgba(255, 69, 69, 0.2);
-        border-radius: var(--border-radius-md);
-        padding: 2rem;
-        transition: all var(--transition-medium);
-        position: relative;
-        overflow: hidden;
-    }
+.stat-card:hover .stat-number {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
 
-    .pain-point-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 4px;
-        height: 100%;
-        background: linear-gradient(45deg, #ff4545, #ff6b6b);
-        opacity: 0.7;
-    }
-
-    .pain-point-card:hover {
-        transform: translateY(-5px);
-        border-color: rgba(255, 69, 69, 0.4);
-        box-shadow: 0 15px 35px rgba(255, 69, 69, 0.1);
-    }
-
+@media (max-width: 768px) {
+    .pain-point-grid,
     .feature-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 2rem;
-        margin-top: 3rem;
-    }
-
-    .feature-card {
-        background: rgba(22, 22, 45, 0.8);
-        border: 1px solid rgba(110, 84, 194, 0.2);
-        border-radius: var(--border-radius-md);
-        padding: 2.5rem;
-        transition: all var(--transition-medium);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .feature-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 4px;
-        height: 100%;
-        background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
-        opacity: 0.8;
-    }
-
-    .feature-card:hover {
-        transform: translateY(-8px);
-        border-color: rgba(110, 84, 194, 0.4);
-        box-shadow: 0 20px 40px rgba(110, 84, 194, 0.15);
-    }
-
-    .feature-icon {
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 1.5rem;
-    }
-
-    .workflow-container {
-        background: rgba(22, 22, 45, 0.5);
-        border-radius: var(--border-radius-lg);
-        padding: 3rem;
-        margin: 3rem 0;
-        border: 1px solid rgba(110, 84, 194, 0.2);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .workflow-container::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(45deg, rgba(110, 84, 194, 0.05), rgba(76, 144, 230, 0.05));
-        pointer-events: none;
+        grid-template-columns: 1fr;
     }
 
     .workflow-diagram {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 2rem;
-        margin-top: 2rem;
-    }
-
-    .workflow-step {
-        text-align: center;
-        position: relative;
+        grid-template-columns: 1fr;
     }
 
     .workflow-step::after {
-        content: '→';
-        position: absolute;
-        right: -1.5rem;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 2rem;
-        color: var(--color-primary);
-        opacity: 0.6;
+        content: '↓';
+        right: 50%;
+        top: auto;
+        bottom: -1.5rem;
+        transform: translateX(50%);
     }
 
     .workflow-step:last-child::after {
         display: none;
     }
 
-    .workflow-step-icon {
-        width: 80px;
-        height: 80px;
-        background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 1rem;
-        position: relative;
-        animation: pulse-glow 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse-glow {
-        0%, 100% {
-            box-shadow: 0 0 20px rgba(110, 84, 194, 0.4);
-        }
-        50% {
-            box-shadow: 0 0 30px rgba(110, 84, 194, 0.7);
-        }
-    }
-
-    .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 2rem;
-        margin: 3rem 0;
-    }
-
-    .stat-card {
+    .hero-content h1 {
+        font-size: 2.5rem;
         text-align: center;
-        background: rgba(22, 22, 45, 0.6);
-        padding: 2rem;
-        border-radius: var(--border-radius-md);
-        border: 1px solid rgba(110, 84, 194, 0.2);
     }
 
-    .stat-number {
-        font-size: 3rem;
-        font-weight: 700;
-        background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        margin-bottom: 0.5rem;
-    }
-
-    .cta-section {
-        background: linear-gradient(135deg, rgba(110, 84, 194, 0.1), rgba(76, 144, 230, 0.1));
-        border-radius: var(--border-radius-lg);
-        padding: 4rem 2rem;
+    .hero-content p {
         text-align: center;
-        margin: 4rem 0;
-        border: 1px solid rgba(110, 84, 194, 0.2);
-    }
-
-    @media (max-width: 768px) {
-        .pain-point-grid,
-        .feature-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .workflow-diagram {
-            grid-template-columns: 1fr;
-        }
-
-        .workflow-step::after {
-            content: '↓';
-            right: 50%;
-            top: auto;
-            bottom: -1.5rem;
-            transform: translateX(50%);
-        }
-
-        .workflow-step:last-child::after {
-            display: none;
-        }
-    }
-
-    /* CSS variables for consistent theming */
-    :root {
-        --color-primary: #6E54C2;
-        --color-secondary: #4C90E6;
-        --color-text: #ffffff;
-        --color-text-muted: #a0a0a0;
-        --border-radius-md: 12px;
-        --border-radius-lg: 16px;
-        --transition-medium: 0.3s ease;
-    }
-
-    body {
-        background: #0a0a17;
-        color: var(--color-text);
-        font-family: 'Inter', sans-serif;
-        margin: 0;
-        padding: 0;
-    }
-
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 2rem;
     }
 
     .section-title {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
+        font-size: 2rem;
+        text-align: center;
     }
 
-    .text-gradient {
-        background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-    }
-
-    .btn {
-        padding: 0.75rem 2rem;
-        border-radius: 50px;
-        font-weight: 600;
-        text-decoration: none;
-        display: inline-block;
-        transition: all var(--transition-medium);
-        border: none;
-        cursor: pointer;
-        font-size: 1rem;
-    }
-
-    .btn-primary {
-        background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
-        color: white;
-    }
-
-    .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba(110, 84, 194, 0.3);
-    }
-
-    .btn-secondary {
-        background: transparent;
-        color: var(--color-text);
-        border: 2px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .btn-secondary:hover {
-        background: rgba(255, 255, 255, 0.1);
-        border-color: rgba(255, 255, 255, 0.4);
+    .section-subtitle {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .cta-buttons {
-        display: flex;
-        gap: 1rem;
         justify-content: center;
-        flex-wrap: wrap;
     }
 
-    @keyframes float-animation {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-10px); }
+    .section-header {
+        text-align: center;
     }
 
-    /* Additional animation styles */
-    .animate-in {
-        animation: slideInUp 0.6s ease forwards;
+    .section-header .section-title,
+    .section-header .section-subtitle {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2.5rem !important;
     }
 
-    @keyframes slideInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    .section-title {
+        font-size: 2rem !important;
     }
 
-    /* Hover effects for interactive elements */
-    .pain-point-card:hover,
-    .feature-card:hover {
-        cursor: pointer;
+    .cta-section h2 {
+        font-size: 2rem !important;
     }
 
-    .stat-card:hover .stat-number {
-        transform: scale(1.1);
-        transition: transform 0.3s ease;
+    .container {
+        padding: 0 1rem;
     }
 
-    /* Responsive improvements */
-    @media (max-width: 480px) {
-        .healthcare-hero h1 {
-            font-size: 2.5rem !important;
-        }
-
-        .section-title {
-            font-size: 2rem !important;
-        }
-
-        .cta-section h2 {
-            font-size: 2rem !important;
-        }
-
-        .container {
-            padding: 0 1rem;
-        }
-
-        .cta-buttons {
-            flex-direction: column;
-            align-items: center;
-        }
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
     }
-  </style>
+}
+</style>
 </head>
 <body>
 <!-- Navbar will be included here -->
 <div id="navbar-placeholder"></div>
 
 <!-- Hero Section -->
-<section class="healthcare-hero" style="padding: 8rem 0 6rem; margin-top: 80px;">
+<section class="healthcare-hero" style="padding: 6rem 0;">
   <div class="container">
-    <div class="text-center" data-aos="fade-up">
+    <div class="hero-content" data-aos="fade-up">
       <div class="healthcare-icon">
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M12 2C13.1046 2 14 2.89543 14 4V10H20C21.1046 10 22 10.8954 22 12C22 13.1046 21.1046 14 20 14H14V20C14 21.1046 13.1046 22 12 22C10.8954 22 10 21.1046 10 20V14H4C2.89543 14 2 13.1046 2 12C2 10.8954 2.89543 10 4 10H10V4C10 2.89543 10.8954 2 12 2Z" fill="white"/>
         </svg>
       </div>
-      <h1 class="section-title" style="font-size: 3.5rem; margin-bottom: 1.5rem; color: var(--color-text);">
+      <h1>
         Agentic AI for <span class="text-gradient">Healthcare</span>
       </h1>
-      <p style="font-size: 1.25rem; color: var(--color-text-muted); max-width: 700px; margin: 0 auto 2rem;">
+      <p>
         Transform patient care, streamline operations, and accelerate medical breakthroughs with intelligent AI agents that work alongside your healthcare professionals.
       </p>
       <div class="cta-buttons">
@@ -419,9 +510,9 @@
 <!-- Pain Points Section -->
 <section style="padding: 6rem 0;">
   <div class="container">
-    <div class="text-center" data-aos="fade-up">
+    <div class="section-header" data-aos="fade-up">
       <h2 class="section-title">Healthcare Challenges We Solve</h2>
-      <p style="font-size: 1.125rem; color: var(--color-text-muted); max-width: 600px; margin: 0 auto;">
+      <p class="section-subtitle">
         Modern healthcare faces complex challenges that require intelligent, scalable solutions.
       </p>
     </div>
@@ -475,9 +566,9 @@
 <!-- Key Features Section -->
 <section style="padding: 6rem 0; background: rgba(10, 10, 23, 0.5);">
   <div class="container">
-    <div class="text-center" data-aos="fade-up">
+    <div class="section-header" data-aos="fade-up">
       <h2 class="section-title">NeuraTantra Healthcare AI Features</h2>
-      <p style="font-size: 1.125rem; color: var(--color-text-muted); max-width: 600px; margin: 0 auto;">
+      <p class="section-subtitle">
         Intelligent AI agents designed specifically for healthcare workflows and patient outcomes.
       </p>
     </div>
@@ -579,23 +670,23 @@
         <p style="color: var(--color-text-muted); line-height: 1.6; margin-bottom: 1.5rem;">
           Personalized AI assistants provide patients with 24/7 support, appointment scheduling, and health education.
         </p>
-        <ul style="color: var(--color-text-muted); line-height: 1.8;">
-          <li>• 24/7 patient support chatbots</li>
-          <li>• Personalized health insights</li>
-          <li>• Appointment & reminder systems</li>
+                <ul style="color: var(--color-text-muted); line-height: 1.8;">
+          <li>• 24/7 virtual health assistant</li>
+          <li>• Personalized care plans</li>
+          <li>• Health education & reminders</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Workflow Section -->
+<!-- How It Works Section -->
 <section style="padding: 6rem 0;">
   <div class="container">
-    <div class="text-center" data-aos="fade-up">
-      <h2 class="section-title">Healthcare AI Workflow</h2>
-      <p style="font-size: 1.125rem; color: var(--color-text-muted); max-width: 600px; margin: 0 auto;">
-        See how NeuraTantra's AI agents integrate seamlessly into your healthcare operations.
+    <div class="section-header center" data-aos="fade-up">
+      <h2 class="section-title">How NeuraTantra Healthcare AI Works</h2>
+      <p class="section-subtitle">
+        Our AI agents seamlessly integrate into your existing healthcare infrastructure for immediate impact.
       </p>
     </div>
 
@@ -603,7 +694,7 @@
       <div class="workflow-diagram">
         <div class="workflow-step" data-aos="fade-up" data-aos-delay="300">
           <div class="workflow-step-icon">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -611,43 +702,43 @@
           </div>
           <h4 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Data Integration</h4>
           <p style="color: var(--color-text-muted); font-size: 0.9rem;">
-            AI agents securely integrate with existing EHR systems and medical devices.
+            Securely connect to your existing EHR, laboratory, and imaging systems
           </p>
         </div>
 
         <div class="workflow-step" data-aos="fade-up" data-aos-delay="400">
           <div class="workflow-step-icon">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 11H15M9 15H15M17 21H7C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3H12.5858C12.851 3 13.1054 3.10536 13.2929 3.29289L19.7071 9.70711C19.8946 9.89464 20 10.149 20 10.4142V19C20 20.1046 19.1046 21 18 21H17ZM17 21V10H13V3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <svg width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C6.48 2 2 6.48 2 12S6.48 22 12 22 22 17.52 22 12 17.52 2 12 2ZM13 17H11V15H13V17ZM13 13H11V7H13V13Z" fill="white"/>
             </svg>
           </div>
-          <h4 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Analysis & Processing</h4>
+          <h4 style="font-size: 1.25rem; margin-bottom: 0.5rem;">AI Analysis</h4>
           <p style="color: var(--color-text-muted); font-size: 0.9rem;">
-            Advanced algorithms analyze patient data and generate actionable insights.
+            AI agents analyze patient data and clinical patterns in real-time
           </p>
         </div>
 
         <div class="workflow-step" data-aos="fade-up" data-aos-delay="500">
           <div class="workflow-step-icon">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 9V13L15 15M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <svg width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <h4 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Real-time Alerts</h4>
+          <h4 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Smart Recommendations</h4>
           <p style="color: var(--color-text-muted); font-size: 0.9rem;">
-            Immediate notifications and recommendations delivered to healthcare providers.
+            Receive evidence-based insights and actionable recommendations
           </p>
         </div>
 
         <div class="workflow-step" data-aos="fade-up" data-aos-delay="600">
           <div class="workflow-step-icon">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <svg width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22 12H18L15 21L9 3L6 12H2" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <h4 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Improved Outcomes</h4>
+          <h4 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Continuous Monitoring</h4>
           <p style="color: var(--color-text-muted); font-size: 0.9rem;">
-            Enhanced patient care, reduced errors, and optimized operational efficiency.
+            Monitor outcomes and continuously improve care quality
           </p>
         </div>
       </div>
@@ -655,13 +746,13 @@
   </div>
 </section>
 
-<!-- Statistics Section -->
+<!-- Impact Statistics -->
 <section style="padding: 6rem 0; background: rgba(10, 10, 23, 0.5);">
   <div class="container">
-    <div class="text-center" data-aos="fade-up">
-      <h2 class="section-title">Healthcare Impact Metrics</h2>
-      <p style="font-size: 1.125rem; color: var(--color-text-muted); max-width: 600px; margin: 0 auto;">
-        Measurable improvements in patient outcomes and operational efficiency.
+    <div class="section-header center" data-aos="fade-up">
+      <h2 class="section-title">Proven Healthcare Impact</h2>
+      <p class="section-subtitle">
+        See the measurable difference NeuraTantra AI makes in healthcare outcomes and efficiency.
       </p>
     </div>
 
@@ -673,7 +764,7 @@
 
       <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
         <div class="stat-number">40%</div>
-        <p style="color: var(--color-text-muted);">Decrease in Medical Errors</p>
+        <p style="color: var(--color-text-muted);">Fewer Diagnostic Errors</p>
       </div>
 
       <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
@@ -682,18 +773,8 @@
       </div>
 
       <div class="stat-card" data-aos="fade-up" data-aos-delay="400">
-        <div class="stat-number">92%</div>
-        <p style="color: var(--color-text-muted);">Patient Satisfaction Score</p>
-      </div>
-
-      <div class="stat-card" data-aos="fade-up" data-aos-delay="500">
         <div class="stat-number">50%</div>
-        <p style="color: var(--color-text-muted);">Reduction in Readmissions</p>
-      </div>
-
-      <div class="stat-card" data-aos="fade-up" data-aos-delay="600">
-        <div class="stat-number">24/7</div>
-        <p style="color: var(--color-text-muted);">Continuous Patient Monitoring</p>
+        <p style="color: var(--color-text-muted);">Improved Patient Satisfaction</p>
       </div>
     </div>
   </div>
@@ -702,10 +783,10 @@
 <!-- Use Cases Section -->
 <section style="padding: 6rem 0;">
   <div class="container">
-    <div class="text-center" data-aos="fade-up">
+    <div class="section-header" data-aos="fade-up">
       <h2 class="section-title">Healthcare Use Cases</h2>
-      <p style="font-size: 1.125rem; color: var(--color-text-muted); max-width: 600px; margin: 0 auto;">
-        Real-world applications across different healthcare specialties and settings.
+      <p class="section-subtitle">
+        From hospitals to research labs, see how NeuraTantra AI transforms healthcare delivery.
       </p>
     </div>
 
@@ -713,75 +794,83 @@
       <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
         <div class="feature-icon">
           <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M19 14C19.5523 14 20 13.5523 20 13V6C20 4.89543 19.1046 4 18 4H6C4.89543 4 4 4.89543 4 6V13C4 13.5523 4.44772 14 5 14M19 14C19 15.6569 17.6569 17 16 17H8C6.34315 17 5 15.6569 5 14M19 14H5M12 17V20M8 20H16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 2V6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Emergency Departments</h3>
+        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Hospitals & Health Systems</h3>
         <p style="color: var(--color-text-muted); line-height: 1.6;">
-          AI agents prioritize patients based on severity, predict bed availability, and assist with rapid diagnosis in critical situations.
+          Streamline operations, reduce readmissions, and optimize resource allocation across your entire health system with intelligent AI orchestration.
         </p>
       </div>
 
       <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
         <div class="feature-icon">
           <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M8 12H16M8 8H16M8 16H12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14 2V8H20" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Radiology & Imaging</h3>
+        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Clinical Research</h3>
         <p style="color: var(--color-text-muted); line-height: 1.6;">
-          Automated image analysis, anomaly detection, and report generation to support radiologists in faster, more accurate diagnoses.
+          Accelerate clinical trials, identify suitable patients, and monitor trial progress with AI-powered research assistants that never miss a detail.
         </p>
       </div>
 
       <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
         <div class="feature-icon">
           <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M12 8V16M8 12H16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="9" cy="7" r="4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M23 21V19C23 18.1645 22.7155 17.3541 22.2094 16.7018C21.7033 16.0495 20.0075 15.5972 19 15.5C17.9925 15.5972 16.2967 16.0495 15.7906 16.7018C15.2845 17.3541 15 18.1645 15 19V21" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Mental Health</h3>
+        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Primary Care Practices</h3>
         <p style="color: var(--color-text-muted); line-height: 1.6;">
-          AI-powered therapy assistants, mood tracking, and early intervention systems for comprehensive mental health support.
+          Enhance patient care with AI assistants that help with diagnosis, treatment planning, and preventive care recommendations for every patient interaction.
         </p>
       </div>
 
       <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
         <div class="feature-icon">
           <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M19 21V5C19 3.89543 18.1046 3 17 3H7C5.89543 3 5 3.89543 5 5V21L12 17L19 21Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/>
+            <path d="M12 2C13.5 2 16.5 7 16.5 12C16.5 17 13.5 22 12 22C10.5 22 7.5 17 7.5 12C7.5 7 10.5 2 12 2Z" stroke="white" stroke-width="2"/>
+            <path d="M2 12H22" stroke="white" stroke-width="2"/>
           </svg>
         </div>
-        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Pharmaceutical Research</h3>
+        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Telemedicine Platforms</h3>
         <p style="color: var(--color-text-muted); line-height: 1.6;">
-          Accelerate drug discovery through molecular modeling, clinical trial optimization, and adverse event prediction systems.
+          Power remote consultations with AI agents that assist in virtual diagnoses, patient triage, and continuous remote monitoring capabilities.
         </p>
       </div>
 
       <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
         <div class="feature-icon">
           <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M22 16.92V7.08C21.9996 6.71776 21.8949 6.36395 21.6985 6.06131C21.5022 5.75867 21.2225 5.52343 20.895 5.385L12.895 1.385C12.6117 1.26556 12.3084 1.20312 12.001 1.20312C11.6936 1.20312 11.3903 1.26556 11.107 1.385L3.107 5.385C2.77945 5.52343 2.49979 5.75867 2.30344 6.06131C2.10708 6.36395 2.00236 6.71776 2.002 7.08V16.92C2.00236 17.2822 2.10708 17.636 2.30344 17.9387C2.49979 18.2413 2.77945 18.4766 3.107 18.615L11.107 22.615C11.3903 22.7344 11.6936 22.7969 12.001 22.7969C12.3084 22.7969 12.6117 22.7344 12.895 22.615L20.895 18.615C21.2225 18.4766 21.5022 18.2413 21.6985 17.9387C21.8949 17.636 21.9996 17.2822 22 16.92Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M7.5 4.21L12 6.81L16.5 4.21M12 12V22.8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8 12L10.5 14.5L16 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Chronic Care Management</h3>
+        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Pharmaceutical Companies</h3>
         <p style="color: var(--color-text-muted); line-height: 1.6;">
-          Continuous monitoring of chronic conditions, medication adherence tracking, and personalized care plan adjustments.
+          Transform drug discovery and development with AI agents that analyze molecular interactions, predict outcomes, and optimize clinical trial design.
         </p>
       </div>
 
       <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
         <div class="feature-icon">
           <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14.5 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V7.5L14.5 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14 2V8H20" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 13H8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 17H8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10 9H8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Surgical Support</h3>
+        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Medical Device Integration</h3>
         <p style="color: var(--color-text-muted); line-height: 1.6;">
-          Pre-operative planning, real-time surgical guidance, and post-operative monitoring to improve surgical outcomes.
+          Seamlessly integrate with medical devices and IoT sensors to create intelligent monitoring systems that provide real-time insights and alerts.
         </p>
       </div>
     </div>
@@ -793,142 +882,42 @@
   <div class="container">
     <div data-aos="fade-up">
       <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--color-text);">
-        Ready to Transform Healthcare with AI?
+        Ready to Transform Your Healthcare Operations?
       </h2>
-      <p style="font-size: 1.25rem; color: var(--color-text-muted); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-        Join healthcare organizations worldwide who are already using NeuraTantra's AI agents to improve patient outcomes and operational efficiency.
+      <p style="font-size: 1.125rem; color: var(--color-text-muted); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+        Join leading healthcare organizations already using NeuraTantra AI to improve patient outcomes and operational efficiency.
       </p>
-      <div class="cta-buttons">
-        <button class="btn btn-primary">Start Free Trial</button>
-        <button class="btn btn-secondary">Schedule Consultation</button>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <button class="btn btn-primary" style="font-size: 1.125rem; padding: 1rem 2.5rem;">Schedule Demo</button>
+        <button class="btn btn-secondary" style="font-size: 1.125rem; padding: 1rem 2.5rem;">Contact Sales</button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Footer placeholder -->
+<!-- Footer will be included here -->
 <div id="footer-placeholder"></div>
 
-<!-- Scripts -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-  // Initialize AOS animations
   AOS.init({
-    duration: 800,
-    easing: 'ease-out-cubic',
-    once: true,
-    offset: 100
+    duration: 1000,
+    easing: 'ease-in-out',
+    once: true
   });
-
-  // Add smooth scrolling behavior
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
-    });
-  });
-
-  // Add interactive hover effects for cards
-  document.querySelectorAll('.pain-point-card, .feature-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-      this.style.transform = 'translateY(-8px) scale(1.02)';
-    });
-
-    card.addEventListener('mouseleave', function() {
-      this.style.transform = 'translateY(0) scale(1)';
-    });
-  });
-
-  // Animate statistics on scroll
-  const observerOptions = {
-    threshold: 0.5,
-    triggerOnce: true
-  };
-
-  const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const statNumber = entry.target.querySelector('.stat-number');
-        if (statNumber) {
-          // Add counter animation effect
-          statNumber.style.transform = 'scale(1.1)';
-          setTimeout(() => {
-            statNumber.style.transform = 'scale(1)';
-          }, 300);
-        }
-      }
-    });
-  }, observerOptions);
-
-  document.querySelectorAll('.stat-card').forEach(card => {
-    statsObserver.observe(card);
-  });
-
-  // Add button click handlers
-  document.querySelectorAll('.btn').forEach(button => {
-    button.addEventListener('click', function(e) {
-      // Add ripple effect
-      const ripple = document.createElement('span');
-      const rect = this.getBoundingClientRect();
-      const size = Math.max(rect.width, rect.height);
-      const x = e.clientX - rect.left - size / 2;
-      const y = e.clientY - rect.top - size / 2;
-
-      ripple.style.cssText = `
-        position: absolute;
-        width: ${size}px;
-        height: ${size}px;
-        left: ${x}px;
-        top: ${y}px;
-        background: rgba(255, 255, 255, 0.3);
-        border-radius: 50%;
-        transform: scale(0);
-        animation: ripple 0.6s linear;
-        pointer-events: none;
-      `;
-
-      this.style.position = 'relative';
-      this.style.overflow = 'hidden';
-      this.appendChild(ripple);
-
-      setTimeout(() => {
-        ripple.remove();
-      }, 600);
-    });
-  });
-
-  // Add CSS for ripple animation
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes ripple {
-      to {
-        transform: scale(4);
-        opacity: 0;
-      }
-    }
-  `;
-  document.head.appendChild(style);
 
   // Load navbar and footer
-  fetch('/navbar.html')
+  fetch('/components/navbar.html')
     .then(response => response.text())
     .then(data => {
       document.getElementById('navbar-placeholder').innerHTML = data;
-    })
-    .catch(error => console.log('Navbar not loaded:', error));
+    });
 
-  fetch('/footer.html')
+  fetch('/components/footer.html')
     .then(response => response.text())
     .then(data => {
       document.getElementById('footer-placeholder').innerHTML = data;
-    })
-    .catch(error => console.log('Footer not loaded:', error));
+    });
 </script>
 
 </body>
